@@ -22,9 +22,17 @@ export default function Root({ children }: { children: React.ReactNode }) {
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
+        <link rel="preload" href="/fonts/MaterialIcons.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
         <style
           dangerouslySetInnerHTML={{
-            __html: `body { font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }`,
+            __html: `
+              @font-face {
+                font-family: "material";
+                src: url("/fonts/MaterialIcons.ttf") format("truetype");
+                font-display: swap;
+              }
+              body { font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+            `,
           }}
         />
         <ScrollViewStyleReset />

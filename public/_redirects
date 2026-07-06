@@ -1,2 +1,4 @@
-# Cloudflare Pages — client-side routes (static files are served first)
-/*    /index.html   200
+# Cloudflare Pages — serve static assets before SPA fallback
+/fonts/*    /fonts/:splat    200
+/assets/*   /assets/:splat   200
+/*          /index.html      200
