@@ -1,0 +1,75 @@
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { View, StyleSheet } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Language, translations, type TranslationKey } from "@/shared/i18n";
+
+interface I18nContextType {
+  language: Language;
+  setLanguage: (lang: Language) => Promise<void>;
+  t: (key: TranslationKey) => string;
+}
+
+const I18nContext = createContext<I18nContextType | undefined>(undefined);
+
+export function I18nProvider({ children }: { children: React.ReactNode }) {
+  const [language, setLanguageState] = useState<Language>("zh-TW");
+  const [isLoading, setIsLoading] = useState(true);
+
+  // 初始化語言設置
+  useEffect(() => {
+    loadLanguage();
+  }, []);
+
+  const loadLanguage = async () => {
+    try {
+      const saved = await AsyncStorage.getItem("app_language");
+      if (saved && (saved === "zh-TW" || saved === "zh-CN" || saved === "en")) {
+        setLanguageState(saved);
+      }
+    } catch (error) {
+      console.error("Error loading language:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const setLanguage = async (lang: Language) => {
+    try {
+      setLanguageState(lang);
+      await AsyncStorage.setItem("app_language", lang);
+    } catch (error) {
+      console.error("Error saving language:", error);
+    }
+  };
+
+  const t = (key: TranslationKey): string => {
+    return translations[language][key] || translations["zh-TW"][key] || key;
+  };
+
+  if (isLoading) {
+    // Return an empty View instead of null to prevent child unmount/remount
+    // which can cause crashes in New Architecture on iOS
+    return <View style={styles.loadingContainer} />;
+  }
+
+  return (
+    <I18nContext.Provider value={{ language, setLanguage, t }}>
+      {children}
+    </I18nContext.Provider>
+  );
+}
+
+export function useI18n() {
+  const context = useContext(I18nContext);
+  if (!context) {
+    throw new Error("useI18n must be used within I18nProvider");
+  }
+  return context;
+}
+
+const styles = StyleSheet.create({
+  loadingContainer: {
+    flex: 1,
+    backgroundColor: "#ffffff",
+  },
+});

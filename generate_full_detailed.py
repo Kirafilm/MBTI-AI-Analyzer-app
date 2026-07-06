@@ -1,0 +1,554 @@
+#!/usr/bin/env python3
+"""Generate complete detailed results for all new psychology tests."""
+
+def generate_love_style_data():
+    """Generate all 5 love style results."""
+    return {
+        "words": {
+            "titleZh": "言語表達 - 用言語傳遞愛",
+            "titleZhCN": "言语表达 - 用言语传递爱",
+            "titleEn": "Words of Affirmation - Love Through Words",
+            "overviewZh": "你的主要愛情語言是「言語表達」。你透過言語來表達和接收愛。讚美、鼓勵、感謝的話語對你來說意義重大。你需要聽到伴侶說出他們的感受，而不僅僅是用行動表示。一句真誠的「我愛你」或「你做得很好」能讓你感到被深深珍惜。",
+            "overviewZhCN": "你的主要爱情语言是「言语表达」。你通过言语来表达和接收爱。赞美、鼓励、感谢的话语对你来说意义重大。你需要听到伴侣说出他们的感受，而不仅仅是用行动表示。一句真诚的「我爱你」或「你做得很好」能让你感到被深深珍惜。",
+            "overviewEn": "Your primary love language is 'Words of Affirmation'. You express and receive love through words. Compliments, encouragement, and words of gratitude mean the world to you. You need to hear your partner verbalize their feelings. A sincere 'I love you' or 'You did great' makes you feel deeply cherished.",
+            "characteristicsZh": ["重視口頭表達的愛意和讚美", "喜歡收到情書、訊息和甜蜜的話語", "對批評和刻薄的話語特別敏感", "經常用言語鼓勵和支持他人", "記得伴侶說過的每一句重要的話"],
+            "characteristicsZhCN": ["重视口头表达的爱意和赞美", "喜欢收到情书、讯息和甜蜜的话语", "对批评和刻薄的话语特别敏感", "经常用言语鼓励和支持他人", "记得伴侣说过的每一句重要的话"],
+            "characteristicsEn": ["Value verbal expressions of love and praise", "Enjoy receiving love letters, messages, and sweet words", "Particularly sensitive to criticism and harsh words", "Often encourage and support others verbally", "Remember every important word your partner says"],
+            "strengthsZh": ["善於表達感受，讓伴侶感到被愛", "能夠用言語激勵和鼓舞他人", "溝通能力強，善於化解誤會", "懂得欣賞和讚美他人的優點", "能夠清楚地表達自己的需求"],
+            "strengthsZhCN": ["善于表达感受，让伴侣感到被爱", "能够用言语激励和鼓舞他人", "沟通能力强，善于化解误会", "懂得欣赏和赞美他人的优点", "能够清楚地表达自己的需求"],
+            "strengthsEn": ["Good at expressing feelings, making partners feel loved", "Can motivate and inspire others with words", "Strong communication skills, good at resolving misunderstandings", "Know how to appreciate and praise others' strengths", "Can clearly express your own needs"],
+            "areasForGrowthZh": ["學會理解不善言辭的伴侶也在用行動表達愛", "避免過度依賴言語確認來獲得安全感", "學會在沉默中也能感受到愛的存在", "不要因為一句無心的話而過度受傷", "嘗試接受不同形式的愛的表達"],
+            "areasForGrowthZhCN": ["学会理解不善言辞的伴侣也在用行动表达爱", "避免过度依赖言语确认来获得安全感", "学会在沉默中也能感受到爱的存在", "不要因为一句无心的话而过度受伤", "尝试接受不同形式的爱的表达"],
+            "areasForGrowthEn": ["Understand that less verbal partners express love through actions", "Avoid over-relying on verbal confirmation for security", "Learn to feel love even in silence", "Don't be overly hurt by careless words", "Try accepting different forms of love expression"],
+            "lifeAdviceZh": ["每天對伴侶說至少一句真誠的讚美", "寫下你的感受，用文字記錄愛的瞬間", "學會傾聽，不只是等待說話的機會", "用正面的語言取代批評和抱怨", "定期與伴侶進行深度對話"],
+            "lifeAdviceZhCN": ["每天对伴侣说至少一句真诚的赞美", "写下你的感受，用文字记录爱的瞬间", "学会倾听，不只是等待说话的机会", "用正面的语言取代批评和抱怨", "定期与伴侣进行深度对话"],
+            "lifeAdviceEn": ["Say at least one sincere compliment to your partner daily", "Write down your feelings, record moments of love in words", "Learn to listen, not just wait for your turn to speak", "Replace criticism and complaints with positive language", "Have regular deep conversations with your partner"],
+            "relationshipAdviceZh": ["告訴伴侶你需要聽到他們的愛意表達", "不要假設伴侶知道你的需求，主動溝通", "學會用伴侶的愛情語言回應他們", "在衝突時避免使用傷害性的言語", "定期表達感謝和欣賞"],
+            "relationshipAdviceZhCN": ["告诉伴侣你需要听到他们的爱意表达", "不要假设伴侣知道你的需求，主动沟通", "学会用伴侣的爱情语言回应他们", "在冲突时避免使用伤害性的言语", "定期表达感谢和欣赏"],
+            "relationshipAdviceEn": ["Tell your partner you need to hear their love expressed", "Don't assume your partner knows your needs, communicate proactively", "Learn to respond in your partner's love language", "Avoid hurtful words during conflicts", "Regularly express gratitude and appreciation"],
+            "careerAdviceZh": ["適合從事需要溝通和表達的工作", "考慮教育、寫作、公關或諮詢領域", "在團隊中發揮你的激勵和溝通能力", "用正面的反饋來建立良好的工作關係", "發展你的演講和寫作技能"],
+            "careerAdviceZhCN": ["适合从事需要沟通和表达的工作", "考虑教育、写作、公关或咨询领域", "在团队中发挥你的激励和沟通能力", "用正面的反馈来建立良好的工作关系", "发展你的演讲和写作技能"],
+            "careerAdviceEn": ["Suited for jobs requiring communication and expression", "Consider education, writing, PR, or consulting fields", "Leverage your motivational and communication skills in teams", "Build good work relationships with positive feedback", "Develop your speaking and writing skills"],
+            "compatibleTypesZh": ["陪伴時間", "身體接觸"],
+            "compatibleTypesZhCN": ["陪伴时间", "身体接触"],
+            "compatibleTypesEn": ["Quality Time", "Physical Touch"],
+        },
+        "time": {
+            "titleZh": "陪伴時間 - 用時間證明愛",
+            "titleZhCN": "陪伴时间 - 用时间证明爱",
+            "titleEn": "Quality Time - Love Through Presence",
+            "overviewZh": "你的主要愛情語言是「陪伴時間」。對你來說，最珍貴的禮物就是伴侶全心全意的陪伴。你重視的不是一起做什麼，而是在一起的那份專注和投入。當伴侶放下手機、關掉電視，專心與你相處時，你會感到最被愛。",
+            "overviewZhCN": "你的主要爱情语言是「陪伴时间」。对你来说，最珍贵的礼物就是伴侣全心全意的陪伴。你重视的不是一起做什么，而是在一起的那份专注和投入。当伴侣放下手机、关掉电视，专心与你相处时，你会感到最被爱。",
+            "overviewEn": "Your primary love language is 'Quality Time'. The most precious gift for you is your partner's undivided attention. What matters isn't what you do together, but the focus and dedication in being together. You feel most loved when your partner puts down their phone and is fully present with you.",
+            "characteristicsZh": ["重視一對一的專注相處時間", "對伴侶分心或忽視特別敏感", "喜歡一起進行有意義的活動", "珍惜深度對話和眼神交流", "認為時間是最寶貴的禮物"],
+            "characteristicsZhCN": ["重视一对一的专注相处时间", "对伴侣分心或忽视特别敏感", "喜欢一起进行有意义的活动", "珍惜深度对话和眼神交流", "认为时间是最宝贵的礼物"],
+            "characteristicsEn": ["Value one-on-one focused time together", "Sensitive to partner being distracted or neglectful", "Enjoy meaningful activities together", "Cherish deep conversations and eye contact", "Believe time is the most precious gift"],
+            "strengthsZh": ["能夠全心投入關係，給予伴侶專注", "善於創造有意義的共同回憶", "重視關係的深度而非表面", "能夠在平凡中找到幸福", "懂得珍惜當下的每一刻"],
+            "strengthsZhCN": ["能够全心投入关系，给予伴侣专注", "善于创造有意义的共同回忆", "重视关系的深度而非表面", "能够在平凡中找到幸福", "懂得珍惜当下的每一刻"],
+            "strengthsEn": ["Can fully invest in relationships, giving undivided attention", "Good at creating meaningful shared memories", "Value depth over surface in relationships", "Find happiness in ordinary moments", "Know how to cherish every moment"],
+            "areasForGrowthZh": ["理解伴侶可能有不同的時間需求", "學會在獨處時也能感到滿足", "避免因伴侶忙碌而感到被忽視", "發展自己的興趣和社交圈", "學會質量比數量更重要"],
+            "areasForGrowthZhCN": ["理解伴侣可能有不同的时间需求", "学会在独处时也能感到满足", "避免因伴侣忙碌而感到被忽视", "发展自己的兴趣和社交圈", "学会质量比数量更重要"],
+            "areasForGrowthEn": ["Understand your partner may have different time needs", "Learn to feel fulfilled during alone time", "Avoid feeling neglected when partner is busy", "Develop your own interests and social circle", "Learn that quality matters more than quantity"],
+            "lifeAdviceZh": ["安排固定的約會時間，確保有專屬的相處時光", "嘗試新的共同活動，創造新鮮感", "在相處時放下手機，全心投入", "學會享受獨處，培養個人興趣", "與伴侶一起制定時間管理計劃"],
+            "lifeAdviceZhCN": ["安排固定的约会时间，确保有专属的相处时光", "尝试新的共同活动，创造新鲜感", "在相处时放下手机，全心投入", "学会享受独处，培养个人兴趣", "与伴侣一起制定时间管理计划"],
+            "lifeAdviceEn": ["Schedule regular date time for exclusive togetherness", "Try new shared activities for freshness", "Put down your phone during quality time", "Learn to enjoy solitude and develop personal interests", "Create a time management plan together with your partner"],
+            "relationshipAdviceZh": ["與伴侶溝通你對陪伴時間的需求", "尊重伴侶的個人空間和時間", "創造每日的小型連結時刻", "在忙碌時期找到替代的連結方式", "珍惜每次相處，不要把時間視為理所當然"],
+            "relationshipAdviceZhCN": ["与伴侣沟通你对陪伴时间的需求", "尊重伴侣的个人空间和时间", "创造每日的小型连结时刻", "在忙碌时期找到替代的连结方式", "珍惜每次相处，不要把时间视为理所当然"],
+            "relationshipAdviceEn": ["Communicate your need for quality time with your partner", "Respect your partner's personal space and time", "Create daily small moments of connection", "Find alternative ways to connect during busy periods", "Cherish each moment together, don't take time for granted"],
+            "careerAdviceZh": ["適合需要深度合作和團隊互動的工作", "考慮教練、輔導或團隊管理的角色", "在工作中建立有意義的人際關係", "平衡工作和個人生活的時間分配", "選擇能夠與人深度互動的職業"],
+            "careerAdviceZhCN": ["适合需要深度合作和团队互动的工作", "考虑教练、辅导或团队管理的角色", "在工作中建立有意义的人际关系", "平衡工作和个人生活的时间分配", "选择能够与人深度互动的职业"],
+            "careerAdviceEn": ["Suited for jobs requiring deep collaboration and team interaction", "Consider coaching, mentoring, or team management roles", "Build meaningful relationships at work", "Balance time between work and personal life", "Choose careers with deep interpersonal interaction"],
+            "compatibleTypesZh": ["言語表達", "服務行動"],
+            "compatibleTypesZhCN": ["言语表达", "服务行动"],
+            "compatibleTypesEn": ["Words of Affirmation", "Acts of Service"],
+        },
+        "gifts": {
+            "titleZh": "禮物贈送 - 用心意傳遞愛",
+            "titleZhCN": "礼物赠送 - 用心意传递爱",
+            "titleEn": "Receiving Gifts - Love Through Thoughtfulness",
+            "overviewZh": "你的主要愛情語言是「禮物贈送」。對你來說，禮物不在於價格，而在於背後的心意和思考。一份精心挑選的禮物代表著伴侶對你的了解和重視。你珍惜的是那份「我在想你」的感覺，無論是一朵花還是一張手寫卡片。",
+            "overviewZhCN": "你的主要爱情语言是「礼物赠送」。对你来说，礼物不在于价格，而在于背后的心意和思考。一份精心挑选的礼物代表着伴侣对你的了解和重视。你珍惜的是那份「我在想你」的感觉，无论是一朵花还是一张手写卡片。",
+            "overviewEn": "Your primary love language is 'Receiving Gifts'. For you, gifts aren't about price but the thought behind them. A carefully chosen gift represents your partner's understanding and appreciation. What you cherish is the feeling of 'I was thinking of you', whether it's a flower or a handwritten card.",
+            "characteristicsZh": ["重視禮物背後的心意和象徵意義", "善於記住特殊日子和紀念日", "喜歡收集有意義的紀念品", "對伴侶忘記重要日子特別敏感", "喜歡用禮物表達對他人的關心"],
+            "characteristicsZhCN": ["重视礼物背后的心意和象征意义", "善于记住特殊日子和纪念日", "喜欢收集有意义的纪念品", "对伴侣忘记重要日子特别敏感", "喜欢用礼物表达对他人的关心"],
+            "characteristicsEn": ["Value the thought and symbolism behind gifts", "Good at remembering special dates and anniversaries", "Enjoy collecting meaningful mementos", "Sensitive when partner forgets important dates", "Like expressing care through gifts"],
+            "strengthsZh": ["善於觀察他人的喜好和需求", "能夠用小驚喜為關係增添浪漫", "記憶力好，記得重要的日子", "懂得用物質表達情感的藝術", "能夠讓伴侶感到被重視和記住"],
+            "strengthsZhCN": ["善于观察他人的喜好和需求", "能够用小惊喜为关系增添浪漫", "记忆力好，记得重要的日子", "懂得用物质表达情感的艺术", "能够让伴侣感到被重视和记住"],
+            "strengthsEn": ["Good at observing others' preferences and needs", "Can add romance with small surprises", "Good memory for important dates", "Understand the art of expressing emotions through gifts", "Make partners feel valued and remembered"],
+            "areasForGrowthZh": ["避免用禮物的價值來衡量愛的深度", "學會接受不善送禮的伴侶的其他表達方式", "不要因為沒收到禮物就覺得不被愛", "理解有些人表達愛的方式不同", "避免物質主義傾向"],
+            "areasForGrowthZhCN": ["避免用礼物的价值来衡量爱的深度", "学会接受不善送礼的伴侣的其他表达方式", "不要因为没收到礼物就觉得不被爱", "理解有些人表达爱的方式不同", "避免物质主义倾向"],
+            "areasForGrowthEn": ["Avoid measuring love depth by gift value", "Accept other expressions from partners who aren't gift-givers", "Don't feel unloved just because you didn't receive a gift", "Understand people express love differently", "Avoid materialistic tendencies"],
+            "lifeAdviceZh": ["創建一個心願清單，方便伴侶了解你的喜好", "學會欣賞非物質的愛的表達", "用創意而非金錢來表達你的愛", "珍惜禮物背後的故事和意義", "定期為伴侶準備小驚喜"],
+            "lifeAdviceZhCN": ["创建一个心愿清单，方便伴侣了解你的喜好", "学会欣赏非物质的爱的表达", "用创意而非金钱来表达你的爱", "珍惜礼物背后的故事和意义", "定期为伴侣准备小惊喜"],
+            "lifeAdviceEn": ["Create a wish list so your partner knows your preferences", "Learn to appreciate non-material expressions of love", "Express love through creativity, not money", "Cherish the stories and meaning behind gifts", "Regularly prepare small surprises for your partner"],
+            "relationshipAdviceZh": ["與伴侶分享你對禮物的重視，但不要施壓", "學會感恩每一份禮物，無論大小", "用你的觀察力為伴侶選擇有意義的禮物", "不要把禮物當作愛的唯一衡量標準", "創造共同的紀念日傳統"],
+            "relationshipAdviceZhCN": ["与伴侣分享你对礼物的重视，但不要施压", "学会感恩每一份礼物，无论大小", "用你的观察力为伴侣选择有意义的礼物", "不要把礼物当作爱的唯一衡量标准", "创造共同的纪念日传统"],
+            "relationshipAdviceEn": ["Share your appreciation for gifts with your partner without pressure", "Be grateful for every gift regardless of size", "Use your observation skills to choose meaningful gifts", "Don't use gifts as the only measure of love", "Create shared anniversary traditions"],
+            "careerAdviceZh": ["適合需要創意和細節觀察的工作", "考慮活動策劃、設計或零售行業", "在工作中用小禮物建立良好的人際關係", "發揮你的觀察力和記憶力", "選擇能夠表達創意的職業"],
+            "careerAdviceZhCN": ["适合需要创意和细节观察的工作", "考虑活动策划、设计或零售行业", "在工作中用小礼物建立良好的人际关系", "发挥你的观察力和记忆力", "选择能够表达创意的职业"],
+            "careerAdviceEn": ["Suited for jobs requiring creativity and attention to detail", "Consider event planning, design, or retail industries", "Build good relationships at work with small gifts", "Leverage your observation and memory skills", "Choose careers that allow creative expression"],
+            "compatibleTypesZh": ["服務行動", "言語表達"],
+            "compatibleTypesZhCN": ["服务行动", "言语表达"],
+            "compatibleTypesEn": ["Acts of Service", "Words of Affirmation"],
+        },
+        "service": {
+            "titleZh": "服務行動 - 用行動證明愛",
+            "titleZhCN": "服务行动 - 用行动证明爱",
+            "titleEn": "Acts of Service - Love Through Actions",
+            "overviewZh": "你的主要愛情語言是「服務行動」。對你來說，行動勝於言語。當伴侶主動為你做事——煮飯、修理東西、分擔家務——你會感到最被愛。你相信真正的愛是通過實際行動來證明的，而不僅僅是說說而已。",
+            "overviewZhCN": "你的主要爱情语言是「服务行动」。对你来说，行动胜于言语。当伴侣主动为你做事——煮饭、修理东西、分担家务——你会感到最被爱。你相信真正的爱是通过实际行动来证明的，而不仅仅是说说而已。",
+            "overviewEn": "Your primary love language is 'Acts of Service'. For you, actions speak louder than words. When your partner does things for you—cooking, fixing things, sharing chores—you feel most loved. You believe true love is proven through actual actions, not just words.",
+            "characteristicsZh": ["重視伴侶的實際行動和付出", "喜歡為他人做事來表達關心", "對伴侶的懶惰或不負責任特別敏感", "認為行動比言語更能證明愛", "善於觀察他人的需求並主動幫助"],
+            "characteristicsZhCN": ["重视伴侣的实际行动和付出", "喜欢为他人做事来表达关心", "对伴侣的懒惰或不负责任特别敏感", "认为行动比言语更能证明爱", "善于观察他人的需求并主动帮助"],
+            "characteristicsEn": ["Value partner's actual actions and efforts", "Like doing things for others to show care", "Sensitive to partner's laziness or irresponsibility", "Believe actions prove love more than words", "Good at observing others' needs and helping proactively"],
+            "strengthsZh": ["可靠且負責任，言出必行", "善於照顧他人的實際需求", "能夠用行動讓伴侶感到安心", "勤勞且願意為關係付出努力", "能夠在困難時期提供實際支持"],
+            "strengthsZhCN": ["可靠且负责任，言出必行", "善于照顾他人的实际需求", "能够用行动让伴侣感到安心", "勤劳且愿意为关系付出努力", "能够在困难时期提供实际支持"],
+            "strengthsEn": ["Reliable and responsible, follow through on promises", "Good at taking care of others' practical needs", "Can make partners feel secure through actions", "Hardworking and willing to put effort into relationships", "Can provide practical support during difficult times"],
+            "areasForGrowthZh": ["避免因為伴侶不做事就覺得不被愛", "學會接受言語和其他形式的愛", "不要把服務當作控制的工具", "學會請求幫助，而不是獨自承擔一切", "避免因為付出太多而感到怨恨"],
+            "areasForGrowthZhCN": ["避免因为伴侣不做事就觉得不被爱", "学会接受言语和其他形式的爱", "不要把服务当作控制的工具", "学会请求帮助，而不是独自承担一切", "避免因为付出太多而感到怨恨"],
+            "areasForGrowthEn": ["Avoid feeling unloved just because partner doesn't do things", "Learn to accept verbal and other forms of love", "Don't use service as a tool for control", "Learn to ask for help instead of bearing everything alone", "Avoid resentment from giving too much"],
+            "lifeAdviceZh": ["與伴侶分享你最需要的具體幫助", "學會感恩伴侶的每一個小行動", "不要把所有事情都自己扛", "用行動表達愛，但也學會用言語", "建立公平的家務分配制度"],
+            "lifeAdviceZhCN": ["与伴侣分享你最需要的具体帮助", "学会感恩伴侣的每一个小行动", "不要把所有事情都自己扛", "用行动表达爱，但也学会用言语", "建立公平的家务分配制度"],
+            "lifeAdviceEn": ["Share with your partner what specific help you need most", "Be grateful for every small action from your partner", "Don't carry everything on your own", "Express love through actions, but also learn to use words", "Establish a fair division of household duties"],
+            "relationshipAdviceZh": ["明確告訴伴侶哪些行動對你最有意義", "不要期望伴侶能讀懂你的心思", "學會欣賞伴侶的努力，即使結果不完美", "避免用「你從來不幫忙」這類指責", "一起制定家庭責任分配計劃"],
+            "relationshipAdviceZhCN": ["明确告诉伴侣哪些行动对你最有意义", "不要期望伴侣能读懂你的心思", "学会欣赏伴侣的努力，即使结果不完美", "避免用「你从来不帮忙」这类指责", "一起制定家庭责任分配计划"],
+            "relationshipAdviceEn": ["Tell your partner clearly which actions mean most to you", "Don't expect your partner to read your mind", "Appreciate your partner's effort even if results aren't perfect", "Avoid accusations like 'you never help'", "Create a household responsibility plan together"],
+            "careerAdviceZh": ["適合需要實際執行和解決問題的工作", "考慮工程、醫療、社工或服務行業", "在團隊中發揮你的可靠性和執行力", "用你的行動力來推動項目進展", "選擇能夠看到實際成果的職業"],
+            "careerAdviceZhCN": ["适合需要实际执行和解决问题的工作", "考虑工程、医疗、社工或服务行业", "在团队中发挥你的可靠性和执行力", "用你的行动力来推动项目进展", "选择能够看到实际成果的职业"],
+            "careerAdviceEn": ["Suited for jobs requiring practical execution and problem-solving", "Consider engineering, healthcare, social work, or service industries", "Leverage your reliability and execution in teams", "Use your action-orientation to drive project progress", "Choose careers where you can see tangible results"],
+            "compatibleTypesZh": ["陪伴時間", "禮物贈送"],
+            "compatibleTypesZhCN": ["陪伴时间", "礼物赠送"],
+            "compatibleTypesEn": ["Quality Time", "Receiving Gifts"],
+        },
+        "touch": {
+            "titleZh": "身體接觸 - 用觸碰傳遞愛",
+            "titleZhCN": "身体接触 - 用触碰传递爱",
+            "titleEn": "Physical Touch - Love Through Contact",
+            "overviewZh": "你的主要愛情語言是「身體接觸」。對你來說，肢體接觸是最直接的愛的表達。牽手、擁抱、依偎、輕拍肩膀——這些看似簡單的動作對你來說充滿了愛的意義。你透過身體的接觸來感受安全感和被愛的感覺。",
+            "overviewZhCN": "你的主要爱情语言是「身体接触」。对你来说，肢体接触是最直接的爱的表达。牵手、拥抱、依偎、轻拍肩膀——这些看似简单的动作对你来说充满了爱的意义。你通过身体的接触来感受安全感和被爱的感觉。",
+            "overviewEn": "Your primary love language is 'Physical Touch'. For you, physical contact is the most direct expression of love. Holding hands, hugging, cuddling, a pat on the shoulder—these seemingly simple gestures are full of loving meaning. You feel security and love through physical touch.",
+            "characteristicsZh": ["重視肢體接觸和親密的身體互動", "喜歡牽手、擁抱和依偎", "對身體距離和冷淡特別敏感", "用觸碰來表達關心和安慰", "在身體接觸中感到最安全和被愛"],
+            "characteristicsZhCN": ["重视肢体接触和亲密的身体互动", "喜欢牵手、拥抱和依偎", "对身体距离和冷淡特别敏感", "用触碰来表达关心和安慰", "在身体接触中感到最安全和被爱"],
+            "characteristicsEn": ["Value physical contact and intimate body interaction", "Enjoy holding hands, hugging, and cuddling", "Sensitive to physical distance and coldness", "Express care and comfort through touch", "Feel most safe and loved through physical contact"],
+            "strengthsZh": ["能夠用簡單的觸碰傳遞深厚的感情", "善於用身體語言安慰他人", "能夠讓伴侶感到安全和被保護", "直覺敏銳，能感受他人的情緒", "能夠在無言中傳遞愛意"],
+            "strengthsZhCN": ["能够用简单的触碰传递深厚的感情", "善于用身体语言安慰他人", "能够让伴侣感到安全和被保护", "直觉敏锐，能感受他人的情绪", "能够在无言中传递爱意"],
+            "strengthsEn": ["Can convey deep feelings through simple touch", "Good at comforting others with body language", "Can make partners feel safe and protected", "Intuitive, can sense others' emotions", "Can express love without words"],
+            "areasForGrowthZh": ["尊重他人的身體界限和舒適度", "學會用其他方式表達和接收愛", "理解不喜歡身體接觸的人並非不愛你", "在公共場合注意適當的身體接觸", "學會用言語表達你對觸碰的需求"],
+            "areasForGrowthZhCN": ["尊重他人的身体界限和舒适度", "学会用其他方式表达和接收爱", "理解不喜欢身体接触的人并非不爱你", "在公共场合注意适当的身体接触", "学会用言语表达你对触碰的需求"],
+            "areasForGrowthEn": ["Respect others' physical boundaries and comfort levels", "Learn to express and receive love in other ways", "Understand that people who dislike touch don't love you less", "Be mindful of appropriate touch in public", "Learn to verbalize your need for touch"],
+            "lifeAdviceZh": ["與伴侶建立日常的身體接觸習慣", "學會在不同場合用適當的方式表達", "發展其他感受愛的方式作為補充", "用按摩、擁抱等方式來減壓", "尊重伴侶的身體界限和節奏"],
+            "lifeAdviceZhCN": ["与伴侣建立日常的身体接触习惯", "学会在不同场合用适当的方式表达", "发展其他感受爱的方式作为补充", "用按摩、拥抱等方式来减压", "尊重伴侣的身体界限和节奏"],
+            "lifeAdviceEn": ["Establish daily physical touch habits with your partner", "Learn appropriate ways to express in different settings", "Develop other ways to feel loved as supplements", "Use massage, hugs to relieve stress", "Respect your partner's physical boundaries and pace"],
+            "relationshipAdviceZh": ["告訴伴侶身體接觸對你的重要性", "不要因為伴侶不主動觸碰就覺得被拒絕", "學會在伴侶需要空間時給予尊重", "用非性的觸碰來維持日常的親密感", "在衝突後用擁抱來修復關係"],
+            "relationshipAdviceZhCN": ["告诉伴侣身体接触对你的重要性", "不要因为伴侣不主动触碰就觉得被拒绝", "学会在伴侣需要空间时给予尊重", "用非性的触碰来维持日常的亲密感", "在冲突后用拥抱来修复关系"],
+            "relationshipAdviceEn": ["Tell your partner about the importance of physical touch to you", "Don't feel rejected if your partner doesn't initiate touch", "Respect when your partner needs space", "Maintain daily intimacy through non-sexual touch", "Use hugs to repair relationships after conflicts"],
+            "careerAdviceZh": ["適合需要人際互動和身體活動的工作", "考慮按摩治療、舞蹈、運動教練等職業", "在工作中用適當的肢體語言建立信任", "選擇能夠活動身體的工作環境", "發揮你的直覺和感知能力"],
+            "careerAdviceZhCN": ["适合需要人际互动和身体活动的工作", "考虑按摩治疗、舞蹈、运动教练等职业", "在工作中用适当的肢体语言建立信任", "选择能够活动身体的工作环境", "发挥你的直觉和感知能力"],
+            "careerAdviceEn": ["Suited for jobs requiring interpersonal interaction and physical activity", "Consider massage therapy, dance, sports coaching careers", "Build trust at work with appropriate body language", "Choose work environments that allow physical movement", "Leverage your intuition and perception abilities"],
+            "compatibleTypesZh": ["言語表達", "陪伴時間"],
+            "compatibleTypesZhCN": ["言语表达", "陪伴时间"],
+            "compatibleTypesEn": ["Words of Affirmation", "Quality Time"],
+        },
+    }
+
+def generate_work_style_data():
+    """Generate all 5 work style results."""
+    return {
+        "leader": {
+            "titleZh": "領導者 - 團隊的指引者",
+            "titleZhCN": "领导者 - 团队的指引者",
+            "titleEn": "Leader - Team Guide",
+            "overviewZh": "你是天生的領導者，善於制定方向、激勵團隊並推動目標實現。你具有強烈的責任感和決策能力，能夠在壓力下保持冷靜並做出正確的判斷。你的領導風格是以結果為導向的，同時也關注團隊成員的成長。",
+            "overviewZhCN": "你是天生的领导者，善于制定方向、激励团队并推动目标实现。你具有强烈的责任感和决策能力，能够在压力下保持冷静并做出正确的判断。你的领导风格是以结果为导向的，同时也关注团队成员的成长。",
+            "overviewEn": "You are a natural leader, skilled at setting direction, motivating teams, and driving goal achievement. You have a strong sense of responsibility and decision-making ability, staying calm under pressure and making sound judgments. Your leadership style is results-oriented while caring about team growth.",
+            "characteristicsZh": ["善於制定目標和策略", "能夠激勵和鼓舞團隊成員", "在壓力下保持冷靜和理性", "具有強烈的責任感和使命感", "善於做出決策並承擔後果"],
+            "characteristicsZhCN": ["善于制定目标和策略", "能够激励和鼓舞团队成员", "在压力下保持冷静和理性", "具有强烈的责任感和使命感", "善于做出决策并承担后果"],
+            "characteristicsEn": ["Good at setting goals and strategies", "Can motivate and inspire team members", "Stay calm and rational under pressure", "Strong sense of responsibility and mission", "Good at making decisions and bearing consequences"],
+            "strengthsZh": ["決策能力強，能快速做出判斷", "善於統籌全局，把握方向", "能夠激勵團隊，提升士氣", "責任感強，值得信賴", "善於處理危機和壓力"],
+            "strengthsZhCN": ["决策能力强，能快速做出判断", "善于统筹全局，把握方向", "能够激励团队，提升士气", "责任感强，值得信赖", "善于处理危机和压力"],
+            "strengthsEn": ["Strong decision-making, quick judgments", "Good at seeing the big picture", "Can motivate teams and boost morale", "Highly responsible and trustworthy", "Good at handling crises and pressure"],
+            "areasForGrowthZh": ["學會傾聽他人的意見和建議", "避免過度控制，給予團隊自主權", "學會委派任務，不要事事親力親為", "注意工作與生活的平衡", "培養同理心，理解他人的感受"],
+            "areasForGrowthZhCN": ["学会倾听他人的意见和建议", "避免过度控制，给予团队自主权", "学会委派任务，不要事事亲力亲为", "注意工作与生活的平衡", "培养同理心，理解他人的感受"],
+            "areasForGrowthEn": ["Learn to listen to others' opinions and suggestions", "Avoid over-controlling, give team autonomy", "Learn to delegate, don't do everything yourself", "Pay attention to work-life balance", "Develop empathy, understand others' feelings"],
+            "lifeAdviceZh": ["定期反思你的領導風格和效果", "建立導師關係，向更有經驗的人學習", "培養傾聽的習慣，不要急於給出答案", "學會在不確定中做出決策", "保持謙虛，承認自己的不足"],
+            "lifeAdviceZhCN": ["定期反思你的领导风格和效果", "建立导师关系，向更有经验的人学习", "培养倾听的习惯，不要急于给出答案", "学会在不确定中做出决策", "保持谦虚，承认自己的不足"],
+            "lifeAdviceEn": ["Regularly reflect on your leadership style and effectiveness", "Build mentor relationships, learn from experienced people", "Develop listening habits, don't rush to give answers", "Learn to make decisions amid uncertainty", "Stay humble, acknowledge your shortcomings"],
+            "relationshipAdviceZh": ["在家庭中不要總是扮演領導者的角色", "學會與伴侶平等溝通和決策", "給予家人空間和自主權", "用你的領導力來支持家人的成長", "學會在家庭中放鬆和展示脆弱"],
+            "relationshipAdviceZhCN": ["在家庭中不要总是扮演领导者的角色", "学会与伴侣平等沟通和决策", "给予家人空间和自主权", "用你的领导力来支持家人的成长", "学会在家庭中放松和展示脆弱"],
+            "relationshipAdviceEn": ["Don't always play the leader role at home", "Learn to communicate and decide equally with your partner", "Give family members space and autonomy", "Use your leadership to support family growth", "Learn to relax and show vulnerability at home"],
+            "careerAdviceZh": ["尋求能夠發揮領導能力的職位", "考慮管理、創業或高級管理職位", "建立強大的人脈網絡", "持續學習新的管理和領導技能", "找到能夠挑戰你的工作環境"],
+            "careerAdviceZhCN": ["寻求能够发挥领导能力的职位", "考虑管理、创业或高级管理职位", "建立强大的人脉网络", "持续学习新的管理和领导技能", "找到能够挑战你的工作环境"],
+            "careerAdviceEn": ["Seek positions that leverage your leadership abilities", "Consider management, entrepreneurship, or executive roles", "Build a strong professional network", "Continuously learn new management and leadership skills", "Find work environments that challenge you"],
+            "compatibleTypesZh": ["支持者", "分析師"],
+            "compatibleTypesZhCN": ["支持者", "分析师"],
+            "compatibleTypesEn": ["Supporter", "Analyst"],
+        },
+        "supporter": {
+            "titleZh": "支持者 - 團隊的後盾",
+            "titleZhCN": "支持者 - 团队的后盾",
+            "titleEn": "Supporter - Team Backbone",
+            "overviewZh": "你是團隊中不可或缺的支持力量。你善於傾聽、協助他人，並確保每個人都能發揮最佳狀態。你的存在讓團隊感到安心和穩定，你總是願意在幕後默默付出，確保一切順利運行。",
+            "overviewZhCN": "你是团队中不可或缺的支持力量。你善于倾听、协助他人，并确保每个人都能发挥最佳状态。你的存在让团队感到安心和稳定，你总是愿意在幕后默默付出，确保一切顺利运行。",
+            "overviewEn": "You are an indispensable support force in the team. You excel at listening, helping others, and ensuring everyone performs at their best. Your presence makes the team feel secure and stable, always willing to work behind the scenes to keep things running smoothly.",
+            "characteristicsZh": ["善於傾聽和理解他人的需求", "樂於助人，不計較個人得失", "能夠穩定團隊的情緒和氛圍", "注重細節，確保工作質量", "忠誠可靠，值得信賴"],
+            "characteristicsZhCN": ["善于倾听和理解他人的需求", "乐于助人，不计较个人得失", "能够稳定团队的情绪和氛围", "注重细节，确保工作质量", "忠诚可靠，值得信赖"],
+            "characteristicsEn": ["Good at listening and understanding others' needs", "Helpful without caring about personal gains", "Can stabilize team emotions and atmosphere", "Detail-oriented, ensuring work quality", "Loyal, reliable, and trustworthy"],
+            "strengthsZh": ["同理心強，能理解他人感受", "可靠性高，團隊的穩定力量", "善於協調和化解衝突", "注重團隊和諧與合作", "耐心十足，願意花時間幫助他人"],
+            "strengthsZhCN": ["同理心强，能理解他人感受", "可靠性高，团队的稳定力量", "善于协调和化解冲突", "注重团队和谐与合作", "耐心十足，愿意花时间帮助他人"],
+            "strengthsEn": ["Strong empathy, understand others' feelings", "Highly reliable, stabilizing force in teams", "Good at coordinating and resolving conflicts", "Focus on team harmony and cooperation", "Patient, willing to spend time helping others"],
+            "areasForGrowthZh": ["學會設定界限，不要過度犧牲自己", "培養主動表達意見的勇氣", "避免過度依賴他人的認可", "學會說「不」，保護自己的時間", "發展自己的領導潛力"],
+            "areasForGrowthZhCN": ["学会设定界限，不要过度牺牲自己", "培养主动表达意见的勇气", "避免过度依赖他人的认可", "学会说「不」，保护自己的时间", "发展自己的领导潜力"],
+            "areasForGrowthEn": ["Learn to set boundaries, don't over-sacrifice", "Develop courage to express opinions proactively", "Avoid over-relying on others' approval", "Learn to say 'no', protect your time", "Develop your leadership potential"],
+            "lifeAdviceZh": ["定期評估你的付出和收穫是否平衡", "學會優先照顧自己的需求", "發展獨立的興趣和目標", "練習在會議中主動發言", "認識到你的價值不取決於他人的評價"],
+            "lifeAdviceZhCN": ["定期评估你的付出和收获是否平衡", "学会优先照顾自己的需求", "发展独立的兴趣和目标", "练习在会议中主动发言", "认识到你的价值不取决于他人的评价"],
+            "lifeAdviceEn": ["Regularly assess if your giving and receiving are balanced", "Learn to prioritize your own needs", "Develop independent interests and goals", "Practice speaking up in meetings", "Recognize your value doesn't depend on others' opinions"],
+            "relationshipAdviceZh": ["與伴侶建立平等的關係，不要總是付出", "學會表達自己的需求和感受", "不要把所有人的問題都當作自己的責任", "在關係中保持自己的獨立性", "學會接受他人的幫助和關心"],
+            "relationshipAdviceZhCN": ["与伴侣建立平等的关系，不要总是付出", "学会表达自己的需求和感受", "不要把所有人的问题都当作自己的责任", "在关系中保持自己的独立性", "学会接受他人的帮助和关心"],
+            "relationshipAdviceEn": ["Build equal relationships, don't always be the giver", "Learn to express your needs and feelings", "Don't take everyone's problems as your responsibility", "Maintain independence in relationships", "Learn to accept help and care from others"],
+            "careerAdviceZh": ["適合需要協作和支持的角色", "考慮人力資源、客服或助理職位", "在團隊中發揮你的協調和支持能力", "尋找能夠認可你貢獻的工作環境", "逐步發展你的管理和領導技能"],
+            "careerAdviceZhCN": ["适合需要协作和支持的角色", "考虑人力资源、客服或助理职位", "在团队中发挥你的协调和支持能力", "寻找能够认可你贡献的工作环境", "逐步发展你的管理和领导技能"],
+            "careerAdviceEn": ["Suited for collaborative and supportive roles", "Consider HR, customer service, or assistant positions", "Leverage your coordination and support skills in teams", "Find work environments that recognize your contributions", "Gradually develop your management and leadership skills"],
+            "compatibleTypesZh": ["領導者", "創新者"],
+            "compatibleTypesZhCN": ["领导者", "创新者"],
+            "compatibleTypesEn": ["Leader", "Innovator"],
+        },
+        "innovator": {
+            "titleZh": "創新者 - 團隊的靈感源泉",
+            "titleZhCN": "创新者 - 团队的灵感源泉",
+            "titleEn": "Innovator - Team's Inspiration Source",
+            "overviewZh": "你是團隊中的創新引擎，總是能夠帶來新的想法和視角。你不滿足於現狀，總是在尋找更好的方法和解決方案。你的創意思維和冒險精神能夠推動團隊突破常規，實現創新突破。",
+            "overviewZhCN": "你是团队中的创新引擎，总是能够带来新的想法和视角。你不满足于现状，总是在寻找更好的方法和解决方案。你的创意思维和冒险精神能够推动团队突破常规，实现创新突破。",
+            "overviewEn": "You are the innovation engine of the team, always bringing new ideas and perspectives. Never satisfied with the status quo, you're always looking for better methods and solutions. Your creative thinking and adventurous spirit push teams to break conventions and achieve breakthroughs.",
+            "characteristicsZh": ["充滿創意，善於提出新想法", "不滿足現狀，追求持續改進", "勇於冒險和嘗試新事物", "思維靈活，能從不同角度看問題", "對新技術和趨勢保持敏銳"],
+            "characteristicsZhCN": ["充满创意，善于提出新想法", "不满足现状，追求持续改进", "勇于冒险和尝试新事物", "思维灵活，能从不同角度看问题", "对新技术和趋势保持敏锐"],
+            "characteristicsEn": ["Full of creativity, good at proposing new ideas", "Never satisfied, pursue continuous improvement", "Brave in taking risks and trying new things", "Flexible thinking, see problems from different angles", "Stay sharp on new technologies and trends"],
+            "strengthsZh": ["創意無限，能產生突破性想法", "適應能力強，擁抱變化", "能夠看到他人看不到的機會", "善於解決複雜和非常規問題", "能夠激發團隊的創造力"],
+            "strengthsZhCN": ["创意无限，能产生突破性想法", "适应能力强，拥抱变化", "能够看到他人看不到的机会", "善于解决复杂和非常规问题", "能够激发团队的创造力"],
+            "strengthsEn": ["Unlimited creativity, generate breakthrough ideas", "Highly adaptable, embrace change", "Can see opportunities others miss", "Good at solving complex and unconventional problems", "Can inspire team creativity"],
+            "areasForGrowthZh": ["學會將想法落地執行", "培養耐心，不要急於跳到下一個想法", "學會與團隊合作，不要獨斷獨行", "注意細節和執行的可行性", "學會接受建設性的批評"],
+            "areasForGrowthZhCN": ["学会将想法落地执行", "培养耐心，不要急于跳到下一个想法", "学会与团队合作，不要独断独行", "注意细节和执行的可行性", "学会接受建设性的批评"],
+            "areasForGrowthEn": ["Learn to execute ideas into reality", "Develop patience, don't rush to the next idea", "Learn to collaborate, don't act alone", "Pay attention to details and feasibility", "Learn to accept constructive criticism"],
+            "lifeAdviceZh": ["為你的創意建立一個記錄系統", "學會評估想法的可行性再行動", "找到能夠支持你創新的環境和夥伴", "平衡創新和穩定的需求", "定期回顧和完善你的想法"],
+            "lifeAdviceZhCN": ["为你的创意建立一个记录系统", "学会评估想法的可行性再行动", "找到能够支持你创新的环境和伙伴", "平衡创新和稳定的需求", "定期回顾和完善你的想法"],
+            "lifeAdviceEn": ["Create a system to record your creative ideas", "Learn to assess feasibility before acting", "Find environments and partners that support innovation", "Balance innovation with stability needs", "Regularly review and refine your ideas"],
+            "relationshipAdviceZh": ["與伴侶分享你的想法和夢想", "學會在關係中保持穩定和承諾", "不要因為追求新鮮感而忽視關係", "用你的創意為關係增添樂趣", "學會在日常中找到新鮮感"],
+            "relationshipAdviceZhCN": ["与伴侣分享你的想法和梦想", "学会在关系中保持稳定和承诺", "不要因为追求新鲜感而忽视关系", "用你的创意为关系增添乐趣", "学会在日常中找到新鲜感"],
+            "relationshipAdviceEn": ["Share your ideas and dreams with your partner", "Learn to maintain stability and commitment in relationships", "Don't neglect relationships in pursuit of novelty", "Use your creativity to add fun to relationships", "Learn to find freshness in daily life"],
+            "careerAdviceZh": ["尋找鼓勵創新和實驗的工作環境", "考慮研發、設計、創業或策略規劃", "建立一個能夠實現你想法的團隊", "學會將創意轉化為商業價值", "保持學習和探索的習慣"],
+            "careerAdviceZhCN": ["寻找鼓励创新和实验的工作环境", "考虑研发、设计、创业或策略规划", "建立一个能够实现你想法的团队", "学会将创意转化为商业价值", "保持学习和探索的习惯"],
+            "careerAdviceEn": ["Find work environments that encourage innovation", "Consider R&D, design, entrepreneurship, or strategic planning", "Build a team that can realize your ideas", "Learn to convert creativity into business value", "Maintain habits of learning and exploration"],
+            "compatibleTypesZh": ["分析師", "協調者"],
+            "compatibleTypesZhCN": ["分析师", "协调者"],
+            "compatibleTypesEn": ["Analyst", "Coordinator"],
+        },
+        "analyst": {
+            "titleZh": "分析師 - 團隊的智囊",
+            "titleZhCN": "分析师 - 团队的智囊",
+            "titleEn": "Analyst - Team's Think Tank",
+            "overviewZh": "你是團隊中的理性思考者，善於分析數據、發現問題和提供解決方案。你的邏輯思維和批判性分析能力使你能夠看透事物的本質，為團隊提供有價值的洞察和建議。",
+            "overviewZhCN": "你是团队中的理性思考者，善于分析数据、发现问题和提供解决方案。你的逻辑思维和批判性分析能力使你能够看透事物的本质，为团队提供有价值的洞察和建议。",
+            "overviewEn": "You are the rational thinker in the team, skilled at analyzing data, identifying problems, and providing solutions. Your logical thinking and critical analysis abilities allow you to see through to the essence of things, providing valuable insights and recommendations.",
+            "characteristicsZh": ["邏輯思維強，善於分析和推理", "注重數據和事實，不輕易下結論", "善於發現問題和潛在風險", "追求精確和完美", "獨立思考，不隨波逐流"],
+            "characteristicsZhCN": ["逻辑思维强，善于分析和推理", "注重数据和事实，不轻易下结论", "善于发现问题和潜在风险", "追求精确和完美", "独立思考，不随波逐流"],
+            "characteristicsEn": ["Strong logical thinking, good at analysis and reasoning", "Focus on data and facts, don't jump to conclusions", "Good at finding problems and potential risks", "Pursue precision and perfection", "Independent thinking, don't follow the crowd"],
+            "strengthsZh": ["分析能力強，能夠深入理解問題", "決策基於數據和邏輯", "善於發現風險和漏洞", "工作質量高，注重細節", "能夠提供客觀和理性的建議"],
+            "strengthsZhCN": ["分析能力强，能够深入理解问题", "决策基于数据和逻辑", "善于发现风险和漏洞", "工作质量高，注重细节", "能够提供客观和理性的建议"],
+            "strengthsEn": ["Strong analytical ability, deep problem understanding", "Decisions based on data and logic", "Good at finding risks and loopholes", "High work quality, attention to detail", "Can provide objective and rational advice"],
+            "areasForGrowthZh": ["學會在不完美的信息下做出決策", "培養情商和人際交往能力", "避免過度分析導致行動遲緩", "學會接受「足夠好」而非追求完美", "培養創意和直覺思維"],
+            "areasForGrowthZhCN": ["学会在不完美的信息下做出决策", "培养情商和人际交往能力", "避免过度分析导致行动迟缓", "学会接受「足够好」而非追求完美", "培养创意和直觉思维"],
+            "areasForGrowthEn": ["Learn to decide with imperfect information", "Develop emotional intelligence and interpersonal skills", "Avoid analysis paralysis", "Learn to accept 'good enough' instead of perfection", "Develop creative and intuitive thinking"],
+            "lifeAdviceZh": ["設定分析的時間限制，避免過度思考", "培養與人溝通的技巧和耐心", "學會信任直覺，不要事事都需要數據", "發展你的創意和想像力", "學會在不確定中行動"],
+            "lifeAdviceZhCN": ["设定分析的时间限制，避免过度思考", "培养与人沟通的技巧和耐心", "学会信任直觉，不要事事都需要数据", "发展你的创意和想象力", "学会在不确定中行动"],
+            "lifeAdviceEn": ["Set time limits for analysis to avoid overthinking", "Develop communication skills and patience", "Learn to trust intuition, not everything needs data", "Develop your creativity and imagination", "Learn to act amid uncertainty"],
+            "relationshipAdviceZh": ["不要用分析的方式對待感情", "學會表達情感，不只是分析情感", "給予伴侶情感上的支持和理解", "不要總是指出問題，也要看到優點", "學會在關係中放鬆和享受"],
+            "relationshipAdviceZhCN": ["不要用分析的方式对待感情", "学会表达情感，不只是分析情感", "给予伴侣情感上的支持和理解", "不要总是指出问题，也要看到优点", "学会在关系中放松和享受"],
+            "relationshipAdviceEn": ["Don't approach feelings analytically", "Learn to express emotions, not just analyze them", "Give your partner emotional support and understanding", "Don't always point out problems, see strengths too", "Learn to relax and enjoy in relationships"],
+            "careerAdviceZh": ["尋找需要深度分析和研究的職位", "考慮數據分析、研究、金融或諮詢", "在團隊中發揮你的分析和問題解決能力", "學會將分析結果轉化為可行的建議", "持續提升你的專業技能"],
+            "careerAdviceZhCN": ["寻找需要深度分析和研究的职位", "考虑数据分析、研究、金融或咨询", "在团队中发挥你的分析和问题解决能力", "学会将分析结果转化为可行的建议", "持续提升你的专业技能"],
+            "careerAdviceEn": ["Seek positions requiring deep analysis and research", "Consider data analysis, research, finance, or consulting", "Leverage your analytical and problem-solving skills", "Learn to convert analysis into actionable recommendations", "Continuously improve your professional skills"],
+            "compatibleTypesZh": ["領導者", "創新者"],
+            "compatibleTypesZhCN": ["领导者", "创新者"],
+            "compatibleTypesEn": ["Leader", "Innovator"],
+        },
+        "coordinator": {
+            "titleZh": "協調者 - 團隊的黏合劑",
+            "titleZhCN": "协调者 - 团队的黏合剂",
+            "titleEn": "Coordinator - Team's Glue",
+            "overviewZh": "你是團隊中的協調專家，善於連接不同的人和資源，確保團隊高效運作。你具有出色的溝通能力和組織能力，能夠在複雜的環境中保持秩序，讓每個人都能發揮所長。",
+            "overviewZhCN": "你是团队中的协调专家，善于连接不同的人和资源，确保团队高效运作。你具有出色的沟通能力和组织能力，能够在复杂的环境中保持秩序，让每个人都能发挥所长。",
+            "overviewEn": "You are the coordination expert in the team, skilled at connecting different people and resources to ensure efficient team operation. You have excellent communication and organizational abilities, maintaining order in complex environments and helping everyone perform at their best.",
+            "characteristicsZh": ["善於溝通和協調不同的利益方", "組織能力強，能夠管理複雜的項目", "善於建立和維護人際關係", "靈活應變，能夠處理突發情況", "注重公平和團隊和諧"],
+            "characteristicsZhCN": ["善于沟通和协调不同的利益方", "组织能力强，能够管理复杂的项目", "善于建立和维护人际关系", "灵活应变，能够处理突发情况", "注重公平和团队和谐"],
+            "characteristicsEn": ["Good at communicating and coordinating different stakeholders", "Strong organizational skills, manage complex projects", "Good at building and maintaining relationships", "Flexible, handle unexpected situations", "Focus on fairness and team harmony"],
+            "strengthsZh": ["溝通能力出色，善於表達和傾聽", "組織和計劃能力強", "能夠連接不同的人和資源", "善於化解衝突和分歧", "能夠在混亂中建立秩序"],
+            "strengthsZhCN": ["沟通能力出色，善于表达和倾听", "组织和计划能力强", "能够连接不同的人和资源", "善于化解冲突和分歧", "能够在混乱中建立秩序"],
+            "strengthsEn": ["Excellent communication, good at expressing and listening", "Strong organization and planning abilities", "Can connect different people and resources", "Good at resolving conflicts and disagreements", "Can create order from chaos"],
+            "areasForGrowthZh": ["學會在協調中保持自己的立場", "避免過度迎合所有人", "發展自己的專業深度", "學會在必要時做出困難的決定", "不要因為追求和諧而迴避衝突"],
+            "areasForGrowthZhCN": ["学会在协调中保持自己的立场", "避免过度迎合所有人", "发展自己的专业深度", "学会在必要时做出困难的决定", "不要因为追求和谐而回避冲突"],
+            "areasForGrowthEn": ["Learn to maintain your position while coordinating", "Avoid over-accommodating everyone", "Develop your professional depth", "Learn to make difficult decisions when necessary", "Don't avoid conflict in pursuit of harmony"],
+            "lifeAdviceZh": ["發展你的專業技能，不要只做協調", "學會在團隊中表達自己的觀點", "建立清晰的優先級和界限", "培養獨立決策的能力", "定期評估你的職業發展方向"],
+            "lifeAdviceZhCN": ["发展你的专业技能，不要只做协调", "学会在团队中表达自己的观点", "建立清晰的优先级和界限", "培养独立决策的能力", "定期评估你的职业发展方向"],
+            "lifeAdviceEn": ["Develop professional skills beyond coordination", "Learn to express your own views in teams", "Establish clear priorities and boundaries", "Develop independent decision-making ability", "Regularly assess your career development direction"],
+            "relationshipAdviceZh": ["不要在關係中總是扮演調解者", "學會表達自己的需求和感受", "避免因為追求和諧而壓抑自己", "與伴侶建立開放和誠實的溝通", "學會在關係中設定健康的界限"],
+            "relationshipAdviceZhCN": ["不要在关系中总是扮演调解者", "学会表达自己的需求和感受", "避免因为追求和谐而压抑自己", "与伴侣建立开放和诚实的沟通", "学会在关系中设定健康的界限"],
+            "relationshipAdviceEn": ["Don't always play mediator in relationships", "Learn to express your needs and feelings", "Avoid suppressing yourself for harmony", "Build open and honest communication with partner", "Learn to set healthy boundaries in relationships"],
+            "careerAdviceZh": ["尋找需要跨部門協調的職位", "考慮項目管理、活動策劃或公關", "在團隊中發揮你的連接和協調能力", "學會將協調能力轉化為領導力", "建立廣泛的專業人脈網絡"],
+            "careerAdviceZhCN": ["寻找需要跨部门协调的职位", "考虑项目管理、活动策划或公关", "在团队中发挥你的连接和协调能力", "学会将协调能力转化为领导力", "建立广泛的专业人脉网络"],
+            "careerAdviceEn": ["Seek positions requiring cross-department coordination", "Consider project management, event planning, or PR", "Leverage your connecting and coordination skills", "Learn to convert coordination into leadership", "Build a broad professional network"],
+            "compatibleTypesZh": ["創新者", "支持者"],
+            "compatibleTypesZhCN": ["创新者", "支持者"],
+            "compatibleTypesEn": ["Innovator", "Supporter"],
+        },
+    }
+
+def generate_creativity_data():
+    """Generate all 5 creativity type results."""
+    return {
+        "artistic": {
+            "titleZh": "藝術型創意 - 視覺和美學的創造者",
+            "titleZhCN": "艺术型创意 - 视觉和美学的创造者",
+            "titleEn": "Artistic Creativity - Visual & Aesthetic Creator",
+            "overviewZh": "你的創意類型是「藝術型」。你擁有敏銳的美學感知力和視覺想像力，善於通過藝術形式表達內心的想法和情感。你對色彩、形狀、構圖有天生的敏感度，能夠創造出令人驚嘆的視覺作品。",
+            "overviewZhCN": "你的创意类型是「艺术型」。你拥有敏锐的美学感知力和视觉想象力，善于通过艺术形式表达内心的想法和情感。你对色彩、形状、构图有天生的敏感度，能够创造出令人惊叹的视觉作品。",
+            "overviewEn": "Your creativity type is 'Artistic'. You have keen aesthetic perception and visual imagination, expressing inner thoughts and emotions through art. You have natural sensitivity to color, shape, and composition, creating stunning visual works.",
+            "characteristicsZh": ["對美學和視覺有天生的敏感度", "善於用藝術形式表達情感", "追求獨特和原創的表達方式", "對細節和質感有高度要求", "能夠從日常生活中發現美"],
+            "characteristicsZhCN": ["对美学和视觉有天生的敏感度", "善于用艺术形式表达情感", "追求独特和原创的表达方式", "对细节和质感有高度要求", "能够从日常生活中发现美"],
+            "characteristicsEn": ["Natural sensitivity to aesthetics and visuals", "Express emotions through art forms", "Pursue unique and original expression", "High standards for detail and texture", "Find beauty in everyday life"],
+            "strengthsZh": ["視覺想像力豐富", "美學品味出眾", "能夠將抽象概念視覺化", "對色彩和構圖有直覺", "能夠創造情感共鳴的作品"],
+            "strengthsZhCN": ["视觉想象力丰富", "美学品味出众", "能够将抽象概念视觉化", "对色彩和构图有直觉", "能够创造情感共鸣的作品"],
+            "strengthsEn": ["Rich visual imagination", "Outstanding aesthetic taste", "Can visualize abstract concepts", "Intuition for color and composition", "Create emotionally resonant works"],
+            "areasForGrowthZh": ["學會接受不完美的創作過程", "避免過度追求完美而無法完成作品", "發展商業思維，將藝術轉化為價值", "學會接受批評和反饋", "培養時間管理和項目執行能力"],
+            "areasForGrowthZhCN": ["学会接受不完美的创作过程", "避免过度追求完美而无法完成作品", "发展商业思维，将艺术转化为价值", "学会接受批评和反馈", "培养时间管理和项目执行能力"],
+            "areasForGrowthEn": ["Accept imperfect creative processes", "Avoid perfectionism preventing completion", "Develop business thinking to convert art to value", "Learn to accept criticism and feedback", "Develop time management and project execution"],
+            "lifeAdviceZh": ["每天留出時間進行創作練習", "建立作品集，記錄你的創作歷程", "尋找志同道合的藝術社群", "學習新的藝術技巧和媒介", "將你的藝術融入日常生活"],
+            "lifeAdviceZhCN": ["每天留出时间进行创作练习", "建立作品集，记录你的创作历程", "寻找志同道合的艺术社群", "学习新的艺术技巧和媒介", "将你的艺术融入日常生活"],
+            "lifeAdviceEn": ["Set aside daily time for creative practice", "Build a portfolio documenting your creative journey", "Find like-minded art communities", "Learn new artistic techniques and media", "Integrate your art into daily life"],
+            "relationshipAdviceZh": ["與伴侶分享你的創作過程和靈感", "學會在關係中保持創作的空間", "用你的藝術天賦為關係增添浪漫", "理解不是所有人都能理解你的藝術", "在關係中保持情感的表達和溝通"],
+            "relationshipAdviceZhCN": ["与伴侣分享你的创作过程和灵感", "学会在关系中保持创作的空间", "用你的艺术天赋为关系增添浪漫", "理解不是所有人都能理解你的艺术", "在关系中保持情感的表达和沟通"],
+            "relationshipAdviceEn": ["Share your creative process and inspiration with partner", "Maintain creative space within relationships", "Use artistic talent to add romance to relationships", "Understand not everyone will understand your art", "Maintain emotional expression and communication"],
+            "careerAdviceZh": ["考慮設計、攝影、插畫或美術方向", "建立個人品牌和線上作品集", "學習將藝術與商業結合的技能", "尋找能夠發揮創意的工作環境", "持續學習和探索新的藝術形式"],
+            "careerAdviceZhCN": ["考虑设计、摄影、插画或美术方向", "建立个人品牌和线上作品集", "学习将艺术与商业结合的技能", "寻找能够发挥创意的工作环境", "持续学习和探索新的艺术形式"],
+            "careerAdviceEn": ["Consider design, photography, illustration, or fine arts", "Build personal brand and online portfolio", "Learn skills combining art with business", "Find work environments that allow creativity", "Continuously learn and explore new art forms"],
+            "compatibleTypesZh": ["技術型創意", "概念型創意"],
+            "compatibleTypesZhCN": ["技术型创意", "概念型创意"],
+            "compatibleTypesEn": ["Technical Creativity", "Conceptual Creativity"],
+        },
+        "technical": {
+            "titleZh": "技術型創意 - 系統和工程的創新者",
+            "titleZhCN": "技术型创意 - 系统和工程的创新者",
+            "titleEn": "Technical Creativity - Systems & Engineering Innovator",
+            "overviewZh": "你的創意類型是「技術型」。你善於通過技術手段解決問題和創造新事物。你的創意表現在系統設計、工程創新和技術突破上。你能夠將複雜的問題分解為可解決的部分，並用技術手段實現創新。",
+            "overviewZhCN": "你的创意类型是「技术型」。你善于通过技术手段解决问题和创造新事物。你的创意表现在系统设计、工程创新和技术突破上。你能够将复杂的问题分解为可解决的部分，并用技术手段实现创新。",
+            "overviewEn": "Your creativity type is 'Technical'. You excel at solving problems and creating new things through technology. Your creativity manifests in system design, engineering innovation, and technical breakthroughs. You can break complex problems into solvable parts and achieve innovation through technical means.",
+            "characteristicsZh": ["善於用技術解決複雜問題", "對系統和結構有深入理解", "喜歡拆解和重建事物", "追求效率和優化", "能夠將抽象概念轉化為實際產品"],
+            "characteristicsZhCN": ["善于用技术解决复杂问题", "对系统和结构有深入理解", "喜欢拆解和重建事物", "追求效率和优化", "能够将抽象概念转化为实际产品"],
+            "characteristicsEn": ["Good at solving complex problems with technology", "Deep understanding of systems and structures", "Enjoy deconstructing and rebuilding things", "Pursue efficiency and optimization", "Can convert abstract concepts into actual products"],
+            "strengthsZh": ["邏輯思維強，善於系統化思考", "能夠將想法轉化為可運行的系統", "善於優化和改進現有方案", "對技術趨勢有敏銳的洞察力", "能夠在約束條件下找到創新方案"],
+            "strengthsZhCN": ["逻辑思维强，善于系统化思考", "能够将想法转化为可运行的系统", "善于优化和改进现有方案", "对技术趋势有敏锐的洞察力", "能够在约束条件下找到创新方案"],
+            "strengthsEn": ["Strong logical thinking, systematic approach", "Can convert ideas into working systems", "Good at optimizing and improving solutions", "Sharp insight into technology trends", "Find innovative solutions within constraints"],
+            "areasForGrowthZh": ["培養美學和設計感", "學會用非技術語言溝通", "避免過度工程化簡單問題", "發展人際交往和團隊合作能力", "學會從用戶角度思考問題"],
+            "areasForGrowthZhCN": ["培养美学和设计感", "学会用非技术语言沟通", "避免过度工程化简单问题", "发展人际交往和团队合作能力", "学会从用户角度思考问题"],
+            "areasForGrowthEn": ["Develop aesthetic and design sense", "Learn to communicate in non-technical language", "Avoid over-engineering simple problems", "Develop interpersonal and teamwork skills", "Learn to think from user perspective"],
+            "lifeAdviceZh": ["定期學習新技術和工具", "參與開源項目或技術社群", "學會將技術創新與商業需求結合", "培養跨學科的知識和視野", "建立個人技術品牌和影響力"],
+            "lifeAdviceZhCN": ["定期学习新技术和工具", "参与开源项目或技术社群", "学会将技术创新与商业需求结合", "培养跨学科的知识和视野", "建立个人技术品牌和影响力"],
+            "lifeAdviceEn": ["Regularly learn new technologies and tools", "Participate in open source or tech communities", "Combine technical innovation with business needs", "Develop cross-disciplinary knowledge", "Build personal technical brand and influence"],
+            "relationshipAdviceZh": ["學會用情感而非邏輯來處理關係", "與伴侶分享你的技術熱情", "不要用解決問題的方式對待感情", "學會在關係中展示脆弱和情感", "用你的創造力為關係帶來驚喜"],
+            "relationshipAdviceZhCN": ["学会用情感而非逻辑来处理关系", "与伴侣分享你的技术热情", "不要用解决问题的方式对待感情", "学会在关系中展示脆弱和情感", "用你的创造力为关系带来惊喜"],
+            "relationshipAdviceEn": ["Learn to handle relationships with emotion, not logic", "Share your technical passion with your partner", "Don't treat feelings as problems to solve", "Show vulnerability and emotion in relationships", "Use creativity to bring surprises to relationships"],
+            "careerAdviceZh": ["考慮軟件開發、工程或技術研發", "尋找能夠發揮技術創新的環境", "建立技術專長和行業影響力", "學會將技術能力轉化為領導力", "持續關注行業趨勢和新技術"],
+            "careerAdviceZhCN": ["考虑软件开发、工程或技术研发", "寻找能够发挥技术创新的环境", "建立技术专长和行业影响力", "学会将技术能力转化为领导力", "持续关注行业趋势和新技术"],
+            "careerAdviceEn": ["Consider software development, engineering, or tech R&D", "Find environments for technical innovation", "Build technical expertise and industry influence", "Convert technical ability into leadership", "Stay updated on industry trends and new tech"],
+            "compatibleTypesZh": ["藝術型創意", "實踐型創意"],
+            "compatibleTypesZhCN": ["艺术型创意", "实践型创意"],
+            "compatibleTypesEn": ["Artistic Creativity", "Practical Creativity"],
+        },
+        "conceptual": {
+            "titleZh": "概念型創意 - 思想和理論的建構者",
+            "titleZhCN": "概念型创意 - 思想和理论的建构者",
+            "titleEn": "Conceptual Creativity - Ideas & Theory Builder",
+            "overviewZh": "你的創意類型是「概念型」。你善於抽象思考和理論建構，能夠提出全新的概念和框架。你的創意不在於具體的產品，而在於改變人們思考方式的想法和理論。你是思想的建築師。",
+            "overviewZhCN": "你的创意类型是「概念型」。你善于抽象思考和理论建构，能够提出全新的概念和框架。你的创意不在于具体的产品，而在于改变人们思考方式的想法和理论。你是思想的建筑师。",
+            "overviewEn": "Your creativity type is 'Conceptual'. You excel at abstract thinking and theory building, proposing entirely new concepts and frameworks. Your creativity isn't in specific products but in ideas and theories that change how people think. You are an architect of thought.",
+            "characteristicsZh": ["善於抽象思考和理論建構", "能夠提出全新的概念和框架", "喜歡探索深層的原理和規律", "善於連接不同領域的知識", "追求思想的深度和廣度"],
+            "characteristicsZhCN": ["善于抽象思考和理论建构", "能够提出全新的概念和框架", "喜欢探索深层的原理和规律", "善于连接不同领域的知识", "追求思想的深度和广度"],
+            "characteristicsEn": ["Good at abstract thinking and theory building", "Can propose entirely new concepts and frameworks", "Enjoy exploring deep principles and patterns", "Good at connecting knowledge across fields", "Pursue depth and breadth of thought"],
+            "strengthsZh": ["思維深度超越常人", "能夠看到事物之間的隱藏聯繫", "善於提出顛覆性的想法", "跨學科思維能力強", "能夠為複雜問題提供新的思考框架"],
+            "strengthsZhCN": ["思维深度超越常人", "能够看到事物之间的隐藏联系", "善于提出颠覆性的想法", "跨学科思维能力强", "能够为复杂问题提供新的思考框架"],
+            "strengthsEn": ["Thinking depth beyond ordinary", "Can see hidden connections between things", "Good at proposing disruptive ideas", "Strong cross-disciplinary thinking", "Provide new thinking frameworks for complex problems"],
+            "areasForGrowthZh": ["學會將抽象想法轉化為具體行動", "避免過度理論化而脫離現實", "培養實際執行和落地的能力", "學會用簡單的語言解釋複雜概念", "發展與他人合作的能力"],
+            "areasForGrowthZhCN": ["学会将抽象想法转化为具体行动", "避免过度理论化而脱离现实", "培养实际执行和落地的能力", "学会用简单的语言解释复杂概念", "发展与他人合作的能力"],
+            "areasForGrowthEn": ["Convert abstract ideas into concrete actions", "Avoid over-theorizing disconnected from reality", "Develop practical execution abilities", "Explain complex concepts in simple language", "Develop collaboration abilities"],
+            "lifeAdviceZh": ["將你的想法寫下來，建立知識體系", "尋找能夠實現你想法的合作夥伴", "定期與不同領域的人交流", "學會在理論和實踐之間找到平衡", "建立個人的思想品牌和影響力"],
+            "lifeAdviceZhCN": ["将你的想法写下来，建立知识体系", "寻找能够实现你想法的合作伙伴", "定期与不同领域的人交流", "学会在理论和实践之间找到平衡", "建立个人的思想品牌和影响力"],
+            "lifeAdviceEn": ["Write down your ideas, build a knowledge system", "Find partners who can realize your ideas", "Regularly exchange with people from different fields", "Find balance between theory and practice", "Build personal thought brand and influence"],
+            "relationshipAdviceZh": ["學會在關係中不只是思考，也要感受", "與伴侶分享你的想法，但也傾聽他們的", "不要用理論來分析感情", "學會享受當下，不要總是在思考未來", "在關係中保持好奇心和開放性"],
+            "relationshipAdviceZhCN": ["学会在关系中不只是思考，也要感受", "与伴侣分享你的想法，但也倾听他们的", "不要用理论来分析感情", "学会享受当下，不要总是在思考未来", "在关系中保持好奇心和开放性"],
+            "relationshipAdviceEn": ["Learn to feel, not just think, in relationships", "Share ideas with partner but also listen to theirs", "Don't analyze feelings with theories", "Enjoy the present, don't always think about the future", "Maintain curiosity and openness in relationships"],
+            "careerAdviceZh": ["考慮學術研究、策略諮詢或思想領導", "尋找能夠發揮你思考深度的環境", "建立跨學科的知識網絡", "學會將概念轉化為可執行的策略", "發展你的寫作和演講能力"],
+            "careerAdviceZhCN": ["考虑学术研究、策略咨询或思想领导", "寻找能够发挥你思考深度的环境", "建立跨学科的知识网络", "学会将概念转化为可执行的策略", "发展你的写作和演讲能力"],
+            "careerAdviceEn": ["Consider academic research, strategy consulting, or thought leadership", "Find environments for your thinking depth", "Build cross-disciplinary knowledge networks", "Convert concepts into executable strategies", "Develop your writing and speaking abilities"],
+            "compatibleTypesZh": ["藝術型創意", "實驗型創意"],
+            "compatibleTypesZhCN": ["艺术型创意", "实验型创意"],
+            "compatibleTypesEn": ["Artistic Creativity", "Experimental Creativity"],
+        },
+        "practical": {
+            "titleZh": "實踐型創意 - 解決方案的實現者",
+            "titleZhCN": "实践型创意 - 解决方案的实现者",
+            "titleEn": "Practical Creativity - Solution Implementer",
+            "overviewZh": "你的創意類型是「實踐型」。你善於將想法轉化為實際的解決方案和產品。你的創意不在於天馬行空的想像，而在於找到最有效、最實用的方法來解決現實問題。你是創意的執行者和落地者。",
+            "overviewZhCN": "你的创意类型是「实践型」。你善于将想法转化为实际的解决方案和产品。你的创意不在于天马行空的想象，而在于找到最有效、最实用的方法来解决现实问题。你是创意的执行者和落地者。",
+            "overviewEn": "Your creativity type is 'Practical'. You excel at converting ideas into actual solutions and products. Your creativity isn't in wild imagination but in finding the most effective and practical methods to solve real problems. You are the executor and implementer of creativity.",
+            "characteristicsZh": ["善於將想法轉化為實際行動", "注重可行性和實用性", "能夠在限制條件下找到最佳方案", "追求效率和結果", "善於改進和優化現有方案"],
+            "characteristicsZhCN": ["善于将想法转化为实际行动", "注重可行性和实用性", "能够在限制条件下找到最佳方案", "追求效率和结果", "善于改进和优化现有方案"],
+            "characteristicsEn": ["Good at converting ideas into action", "Focus on feasibility and practicality", "Find best solutions within constraints", "Pursue efficiency and results", "Good at improving and optimizing existing solutions"],
+            "strengthsZh": ["執行力強，能夠將想法落地", "善於在資源有限時找到創新方案", "注重結果和實際效果", "能夠快速迭代和改進", "善於解決實際問題"],
+            "strengthsZhCN": ["执行力强，能够将想法落地", "善于在资源有限时找到创新方案", "注重结果和实际效果", "能够快速迭代和改进", "善于解决实际问题"],
+            "strengthsEn": ["Strong execution, can implement ideas", "Find innovative solutions with limited resources", "Focus on results and actual effects", "Can iterate and improve quickly", "Good at solving practical problems"],
+            "areasForGrowthZh": ["培養更大膽的想像力和創意", "不要因為追求實用而限制創新", "學會接受失敗和實驗的過程", "發展長期思維，不只關注眼前", "培養美學和設計思維"],
+            "areasForGrowthZhCN": ["培养更大胆的想象力和创意", "不要因为追求实用而限制创新", "学会接受失败和实验的过程", "发展长期思维，不只关注眼前", "培养美学和设计思维"],
+            "areasForGrowthEn": ["Develop bolder imagination and creativity", "Don't limit innovation by pursuing only practicality", "Accept failure and experimentation", "Develop long-term thinking beyond immediate concerns", "Develop aesthetic and design thinking"],
+            "lifeAdviceZh": ["嘗試一些沒有明確目標的創意活動", "學會享受創作的過程而非只看結果", "與更有想像力的人合作", "定期挑戰自己的舒適區", "建立一個創意實驗的空間"],
+            "lifeAdviceZhCN": ["尝试一些没有明确目标的创意活动", "学会享受创作的过程而非只看结果", "与更有想象力的人合作", "定期挑战自己的舒适区", "建立一个创意实验的空间"],
+            "lifeAdviceEn": ["Try creative activities without clear goals", "Enjoy the creative process, not just results", "Collaborate with more imaginative people", "Regularly challenge your comfort zone", "Create a space for creative experimentation"],
+            "relationshipAdviceZh": ["用你的實踐能力為關係解決實際問題", "學會在關係中也享受浪漫和驚喜", "不要把所有事情都當作問題來解決", "學會欣賞伴侶的夢想和想像", "在關係中保持靈活和開放"],
+            "relationshipAdviceZhCN": ["用你的实践能力为关系解决实际问题", "学会在关系中也享受浪漫和惊喜", "不要把所有事情都当作问题来解决", "学会欣赏伴侣的梦想和想象", "在关系中保持灵活和开放"],
+            "relationshipAdviceEn": ["Use practical ability to solve relationship problems", "Learn to enjoy romance and surprises in relationships", "Don't treat everything as a problem to solve", "Appreciate your partner's dreams and imagination", "Stay flexible and open in relationships"],
+            "careerAdviceZh": ["考慮產品管理、工程或運營管理", "尋找能夠將創意落地的工作環境", "建立從想法到執行的完整能力", "學會與創意型人才合作", "發展項目管理和團隊領導能力"],
+            "careerAdviceZhCN": ["考虑产品管理、工程或运营管理", "寻找能够将创意落地的工作环境", "建立从想法到执行的完整能力", "学会与创意型人才合作", "发展项目管理和团队领导能力"],
+            "careerAdviceEn": ["Consider product management, engineering, or operations", "Find environments for implementing creative ideas", "Build complete idea-to-execution capabilities", "Learn to collaborate with creative talents", "Develop project management and team leadership"],
+            "compatibleTypesZh": ["技術型創意", "實驗型創意"],
+            "compatibleTypesZhCN": ["技术型创意", "实验型创意"],
+            "compatibleTypesEn": ["Technical Creativity", "Experimental Creativity"],
+        },
+        "experimental": {
+            "titleZh": "實驗型創意 - 探索和發現的先驅",
+            "titleZhCN": "实验型创意 - 探索和发现的先驱",
+            "titleEn": "Experimental Creativity - Pioneer of Exploration",
+            "overviewZh": "你的創意類型是「實驗型」。你善於通過嘗試和實驗來發現新事物。你不害怕失敗，因為每次失敗都是一次學習的機會。你的創意來自於不斷的探索、測試和迭代，你相信最好的想法來自於實踐。",
+            "overviewZhCN": "你的创意类型是「实验型」。你善于通过尝试和实验来发现新事物。你不害怕失败，因为每次失败都是一次学习的机会。你的创意来自于不断的探索、测试和迭代，你相信最好的想法来自于实践。",
+            "overviewEn": "Your creativity type is 'Experimental'. You discover new things through trial and experimentation. You don't fear failure because every failure is a learning opportunity. Your creativity comes from continuous exploration, testing, and iteration. You believe the best ideas come from practice.",
+            "characteristicsZh": ["喜歡嘗試和實驗新事物", "不害怕失敗，視為學習機會", "好奇心強，總想探索未知", "善於從實驗中發現規律", "追求創新和突破"],
+            "characteristicsZhCN": ["喜欢尝试和实验新事物", "不害怕失败，视为学习机会", "好奇心强，总想探索未知", "善于从实验中发现规律", "追求创新和突破"],
+            "characteristicsEn": ["Enjoy trying and experimenting with new things", "Don't fear failure, see it as learning", "Strong curiosity, always exploring the unknown", "Good at finding patterns from experiments", "Pursue innovation and breakthroughs"],
+            "strengthsZh": ["勇於嘗試，不怕失敗", "學習能力強，能快速適應", "善於從經驗中總結規律", "能夠在不確定中找到方向", "創新精神和冒險意識強"],
+            "strengthsZhCN": ["勇于尝试，不怕失败", "学习能力强，能快速适应", "善于从经验中总结规律", "能够在不确定中找到方向", "创新精神和冒险意识强"],
+            "strengthsEn": ["Brave to try, not afraid of failure", "Strong learning ability, adapt quickly", "Good at summarizing patterns from experience", "Find direction amid uncertainty", "Strong innovation and risk-taking spirit"],
+            "areasForGrowthZh": ["學會在實驗前做更多規劃", "避免同時進行太多實驗", "培養耐心，給實驗足夠的時間", "學會從失敗中系統性地學習", "發展將實驗結果轉化為穩定方案的能力"],
+            "areasForGrowthZhCN": ["学会在实验前做更多规划", "避免同时进行太多实验", "培养耐心，给实验足够的时间", "学会从失败中系统性地学习", "发展将实验结果转化为稳定方案的能力"],
+            "areasForGrowthEn": ["Plan more before experimenting", "Avoid too many simultaneous experiments", "Develop patience, give experiments enough time", "Learn systematically from failures", "Convert experimental results into stable solutions"],
+            "lifeAdviceZh": ["建立一個實驗記錄系統", "設定明確的實驗目標和評估標準", "學會在適當時候停止實驗並總結", "與他人分享你的實驗發現", "平衡探索和穩定的需求"],
+            "lifeAdviceZhCN": ["建立一个实验记录系统", "设定明确的实验目标和评估标准", "学会在适当时候停止实验并总结", "与他人分享你的实验发现", "平衡探索和稳定的需求"],
+            "lifeAdviceEn": ["Build an experiment recording system", "Set clear experiment goals and evaluation criteria", "Know when to stop experimenting and summarize", "Share your experimental findings with others", "Balance exploration with stability needs"],
+            "relationshipAdviceZh": ["在關係中保持探索和新鮮感", "學會在關係中也建立穩定和安全感", "與伴侶一起嘗試新事物", "不要把關係當作實驗來對待", "學會在關係中承諾和堅持"],
+            "relationshipAdviceZhCN": ["在关系中保持探索和新鲜感", "学会在关系中也建立稳定和安全感", "与伴侣一起尝试新事物", "不要把关系当作实验来对待", "学会在关系中承诺和坚持"],
+            "relationshipAdviceEn": ["Maintain exploration and freshness in relationships", "Build stability and security in relationships too", "Try new things together with your partner", "Don't treat relationships as experiments", "Learn commitment and persistence in relationships"],
+            "careerAdviceZh": ["考慮研發、創業或實驗性項目", "尋找鼓勵實驗和容忍失敗的環境", "建立從實驗到產品的轉化能力", "學會將實驗精神與商業目標結合", "持續探索新的領域和機會"],
+            "careerAdviceZhCN": ["考虑研发、创业或实验性项目", "寻找鼓励实验和容忍失败的环境", "建立从实验到产品的转化能力", "学会将实验精神与商业目标结合", "持续探索新的领域和机会"],
+            "careerAdviceEn": ["Consider R&D, startups, or experimental projects", "Find environments encouraging experimentation and tolerating failure", "Build experiment-to-product conversion abilities", "Combine experimental spirit with business goals", "Continuously explore new fields and opportunities"],
+            "compatibleTypesZh": ["概念型創意", "實踐型創意"],
+            "compatibleTypesZhCN": ["概念型创意", "实践型创意"],
+            "compatibleTypesEn": ["Conceptual Creativity", "Practical Creativity"],
+        },
+    }
+
+# Now generate the complete file
+import json
+
+color_data = {
+    "red": None,  # Keep existing
+    "blue": None,  # Keep existing
+    "green": None,  # Will add
+    "yellow": None,  # Will add
+}
+
+love_data = generate_love_style_data()
+work_data = generate_work_style_data()
+creativity_data = generate_creativity_data()
+
+# Read existing file to get red and blue color data
+with open('/home/ubuntu/mbti-ai-app/shared/new-psychology-detailed-results.ts', 'r') as f:
+    existing = f.read()
+
+# Generate the new complete file
+output = '''// 新心理測驗詳細結果數據 - 完整版
+// 包含所有測驗類型的所有結果的詳細分析
+
+export interface DetailedResultAnalysis {
+  titleZh: string;
+  titleZhCN: string;
+  titleEn: string;
+  overviewZh: string;
+  overviewZhCN: string;
+  overviewEn: string;
+  characteristicsZh: string[];
+  characteristicsZhCN: string[];
+  characteristicsEn: string[];
+  strengthsZh: string[];
+  strengthsZhCN: string[];
+  strengthsEn: string[];
+  areasForGrowthZh: string[];
+  areasForGrowthZhCN: string[];
+  areasForGrowthEn: string[];
+  lifeAdviceZh: string[];
+  lifeAdviceZhCN: string[];
+  lifeAdviceEn: string[];
+  relationshipAdviceZh: string[];
+  relationshipAdviceZhCN: string[];
+  relationshipAdviceEn: string[];
+  careerAdviceZh: string[];
+  careerAdviceZhCN: string[];
+  careerAdviceEn: string[];
+  compatibleTypesZh: string[];
+  compatibleTypesZhCN: string[];
+  compatibleTypesEn: string[];
+}
+
+'''
+
+def format_entry(key, data, indent=2):
+    lines = []
+    prefix = " " * indent
+    lines.append(f'{prefix}{key}: {{')
+    for field, value in data.items():
+        if isinstance(value, list):
+            items = ', '.join(f'"{v}"' for v in value)
+            lines.append(f'{prefix}  {field}: [{items}],')
+        else:
+            # Escape quotes in strings
+            escaped = value.replace('"', '\\"')
+            lines.append(f'{prefix}  {field}: "{escaped}",')
+    lines.append(f'{prefix}}},')
+    return '\n'.join(lines)
+
+# We'll keep the existing COLOR_PERSONALITY_DETAILED as-is since it's already in the enhanced file
+# Just generate LOVE, WORK, CREATIVITY
+
+output += '// 性格色彩測驗 - 保留在 new-psychology-tests-enhanced.ts 中\n'
+output += '// COLOR_PERSONALITY_DETAILED 已在 enhanced 文件中完整定義\n\n'
+
+# Generate LOVE_STYLE_DETAILED
+output += '// 愛情風格測驗 - 詳細結果（完整 5 種類型）\n'
+output += 'export const LOVE_STYLE_DETAILED: Record<string, DetailedResultAnalysis> = {\n'
+for key, data in love_data.items():
+    output += format_entry(key, data) + '\n'
+output += '};\n\n'
+
+# Generate WORK_STYLE_DETAILED
+output += '// 工作風格測驗 - 詳細結果（完整 5 種類型）\n'
+output += 'export const WORK_STYLE_DETAILED: Record<string, DetailedResultAnalysis> = {\n'
+for key, data in work_data.items():
+    output += format_entry(key, data) + '\n'
+output += '};\n\n'
+
+# Generate CREATIVITY_INDEX_DETAILED
+output += '// 創意指數測驗 - 詳細結果（完整 5 種類型）\n'
+output += 'export const CREATIVITY_INDEX_DETAILED: Record<string, DetailedResultAnalysis> = {\n'
+for key, data in creativity_data.items():
+    output += format_entry(key, data) + '\n'
+output += '};\n'
+
+with open('/home/ubuntu/mbti-ai-app/shared/new-psychology-detailed-results.ts', 'w') as f:
+    f.write(output)
+
+print(f"Generated file with {len(love_data)} love styles, {len(work_data)} work styles, {len(creativity_data)} creativity types")
+print("Done!")

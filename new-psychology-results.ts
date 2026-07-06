@@ -1,0 +1,165 @@
+// 新測驗的多語言結果分析數據
+
+export const COLOR_PERSONALITY_RESULTS = {
+  red: {
+    nameZh: "紅色性格",
+    nameZhCN: "红色性格",
+    nameEn: "Red Personality",
+    descriptionZh: "你是一個充滿熱情和行動力的人。紅色性格的人通常是領導者，喜歡挑戰，敢於冒險，充滿自信。",
+    descriptionZhCN: "你是一个充满热情和行动力的人。红色性格的人通常是领导者，喜欢挑战，敢于冒险，充满自信。",
+    descriptionEn: "You are passionate and action-oriented. Red personalities are typically leaders who enjoy challenges, take risks, and are confident.",
+  },
+  blue: {
+    nameZh: "藍色性格",
+    nameZhCN: "蓝色性格",
+    nameEn: "Blue Personality",
+    descriptionZh: "你是一個深思熟慮、重視關係的人。藍色性格的人通常是忠誠的朋友，重視穩定和安全，感情豐富。",
+    descriptionZhCN: "你是一个深思熟虑、重视关系的人。蓝色性格的人通常是忠诚的朋友，重视稳定和安全，感情丰富。",
+    descriptionEn: "You are thoughtful and relationship-focused. Blue personalities are typically loyal friends who value stability and security.",
+  },
+  green: {
+    nameZh: "綠色性格",
+    nameZhCN: "绿色性格",
+    nameEn: "Green Personality",
+    descriptionZh: "你是一個和平、平衡的人。綠色性格的人通常是調和者，喜歡和諧的環境，善於協調和溝通。",
+    descriptionZhCN: "你是一个和平、平衡的人。绿色性格的人通常是调和者，喜欢和谐的环境，善于协调和沟通。",
+    descriptionEn: "You are peaceful and balanced. Green personalities are typically mediators who enjoy harmonious environments and coordination.",
+  },
+  yellow: {
+    nameZh: "黃色性格",
+    nameZhCN: "黄色性格",
+    nameEn: "Yellow Personality",
+    descriptionZh: "你是一個樂觀、充滿創意的人。黃色性格的人通常是創意者，充滿想像力，喜歡自由和創新。",
+    descriptionZhCN: "你是一个乐观、充满创意的人。黄色性格的人通常是创意者，充满想像力，喜欢自由和创新。",
+    descriptionEn: "You are optimistic and creative. Yellow personalities are typically innovators with imagination who love freedom and creativity.",
+  },
+};
+
+export const LOVE_STYLE_RESULTS = {
+  words: {
+    nameZh: "言語表達",
+    nameZhCN: "言语表达",
+    nameEn: "Words of Affirmation",
+    descriptionZh: "你通過言語來表達和接收愛。讚美、鼓勵和肯定的話語對你來說最重要。",
+    descriptionZhCN: "你通过言语来表达和接收爱。赞美、鼓励和肯定的话语对你来说最重要。",
+    descriptionEn: "You express and receive love through words. Compliments, encouragement, and affirmations are most important to you.",
+  },
+  time: {
+    nameZh: "陪伴時間",
+    nameZhCN: "陪伴时间",
+    nameEn: "Quality Time",
+    descriptionZh: "你重視與伴侶共度的時間。專注的陪伴和共同的經歷對你來說最有意義。",
+    descriptionZhCN: "你重视与伴侣共度的时间。专注的陪伴和共同的经历对你来说最有意义。",
+    descriptionEn: "You value quality time with your partner. Focused companionship and shared experiences are most meaningful to you.",
+  },
+  gifts: {
+    nameZh: "禮物贈送",
+    nameZhCN: "礼物赠送",
+    nameEn: "Receiving Gifts",
+    descriptionZh: "你通過禮物來感受愛。有意義的禮物代表著伴侶的思考和關心。",
+    descriptionZhCN: "你通过礼物来感受爱。有意义的礼物代表着伴侣的思考和关心。",
+    descriptionEn: "You feel loved through gifts. Thoughtful gifts represent your partner's care and consideration.",
+  },
+  service: {
+    nameZh: "服務幫助",
+    nameZhCN: "服务帮助",
+    nameEn: "Acts of Service",
+    descriptionZh: "你通過行動來表達愛。幫助、支持和照顧對你來說是最好的愛的表現。",
+    descriptionZhCN: "你通过行动来表达爱。帮助、支持和照顾对你来说是最好的爱的表现。",
+    descriptionEn: "You express love through actions. Helping, supporting, and caring are the best ways to show love to you.",
+  },
+  touch: {
+    nameZh: "身體接觸",
+    nameZhCN: "身体接触",
+    nameEn: "Physical Touch",
+    descriptionZh: "你通過身體接觸來感受親密。擁抱、牽手和親吻對你來說最重要。",
+    descriptionZhCN: "你通过身体接触来感受亲密。拥抱、牵手和亲吻对你来说最重要。",
+    descriptionEn: "You feel intimacy through physical touch. Hugs, holding hands, and kisses are most important to you.",
+  },
+};
+
+export const WORK_STYLE_RESULTS = {
+  leader: {
+    nameZh: "領導者",
+    nameZhCN: "领导者",
+    nameEn: "Leader",
+    descriptionZh: "你天生具有領導才能。你喜歡承擔責任，做出決策，並帶領團隊朝著目標前進。",
+    descriptionZhCN: "你天生具有领导才能。你喜欢承担责任，做出决策，并带领团队朝着目标前进。",
+    descriptionEn: "You have natural leadership abilities. You enjoy taking responsibility, making decisions, and leading teams toward goals.",
+  },
+  supporter: {
+    nameZh: "支持者",
+    nameZhCN: "支持者",
+    nameEn: "Supporter",
+    descriptionZh: "你是一個可靠的團隊成員。你喜歡幫助他人成功，提供支持和鼓勵。",
+    descriptionZhCN: "你是一个可靠的团队成员。你喜欢帮助他人成功，提供支持和鼓励。",
+    descriptionEn: "You are a reliable team member. You enjoy helping others succeed and providing support and encouragement.",
+  },
+  innovator: {
+    nameZh: "創新者",
+    nameZhCN: "创新者",
+    nameEn: "Innovator",
+    descriptionZh: "你充滿創意和想像力。你喜歡尋找新的解決方案，挑戰現狀，推動變革。",
+    descriptionZhCN: "你充满创意和想像力。你喜欢寻找新的解决方案，挑战现状，推动变革。",
+    descriptionEn: "You are creative and imaginative. You enjoy finding new solutions, challenging the status quo, and driving change.",
+  },
+  analyst: {
+    nameZh: "分析者",
+    nameZhCN: "分析者",
+    nameEn: "Analyst",
+    descriptionZh: "你善於分析和解決問題。你喜歡深入研究，確保決策基於事實和數據。",
+    descriptionZhCN: "你善于分析和解决问题。你喜欢深入研究，确保决策基于事实和数据。",
+    descriptionEn: "You are good at analysis and problem-solving. You enjoy in-depth research and ensuring decisions are based on facts and data.",
+  },
+  coordinator: {
+    nameZh: "協調者",
+    nameZhCN: "协调者",
+    nameEn: "Coordinator",
+    descriptionZh: "你善於協調和溝通。你喜歡確保團隊和諧，促進合作，解決衝突。",
+    descriptionZhCN: "你善于协调和沟通。你喜欢确保团队和谐，促进合作，解决冲突。",
+    descriptionEn: "You are good at coordination and communication. You enjoy ensuring team harmony, promoting cooperation, and resolving conflicts.",
+  },
+};
+
+export const CREATIVITY_INDEX_RESULTS = {
+  artistic: {
+    nameZh: "藝術型創意",
+    nameZhCN: "艺术型创意",
+    nameEn: "Artistic Creativity",
+    descriptionZh: "你的創意主要體現在藝術和美學方面。你對色彩、形狀和設計有敏銳的感知。",
+    descriptionZhCN: "你的创意主要体现在艺术和美学方面。你对色彩、形状和设计有敏锐的感知。",
+    descriptionEn: "Your creativity is mainly reflected in art and aesthetics. You have a keen sense of color, shape, and design.",
+  },
+  technical: {
+    nameZh: "技術型創意",
+    nameZhCN: "技术型创意",
+    nameEn: "Technical Creativity",
+    descriptionZh: "你的創意主要體現在技術和工程方面。你善於解決複雜的技術問題。",
+    descriptionZhCN: "你的创意主要体现在技术和工程方面。你善于解决复杂的技术问题。",
+    descriptionEn: "Your creativity is mainly reflected in technology and engineering. You are good at solving complex technical problems.",
+  },
+  conceptual: {
+    nameZh: "概念型創意",
+    nameZhCN: "概念型创意",
+    nameEn: "Conceptual Creativity",
+    descriptionZh: "你的創意主要體現在想法和概念方面。你善於提出新的觀點和理論。",
+    descriptionZhCN: "你的创意主要体现在想法和概念方面。你善于提出新的观点和理论。",
+    descriptionEn: "Your creativity is mainly reflected in ideas and concepts. You are good at proposing new perspectives and theories.",
+  },
+  practical: {
+    nameZh: "實踐型創意",
+    nameZhCN: "实践型创意",
+    nameEn: "Practical Creativity",
+    descriptionZh: "你的創意主要體現在實踐和應用方面。你善於將想法轉化為實際的解決方案。",
+    descriptionZhCN: "你的创意主要体现在实践和应用方面。你善于将想法转化为实际的解决方案。",
+    descriptionEn: "Your creativity is mainly reflected in practice and application. You are good at turning ideas into practical solutions.",
+  },
+  experimental: {
+    nameZh: "實驗型創意",
+    nameZhCN: "实验型创意",
+    nameEn: "Experimental Creativity",
+    descriptionZh: "你的創意主要體現在實驗和探索方面。你喜歡嘗試新的方法和可能性。",
+    descriptionZhCN: "你的创意主要体现在实验和探索方面。你喜欢尝试新的方法和可能性。",
+    descriptionEn: "Your creativity is mainly reflected in experimentation and exploration. You enjoy trying new methods and possibilities.",
+  },
+};

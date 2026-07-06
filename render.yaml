@@ -1,0 +1,56 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+# Deploy: Render Dashboard → New → Blueprint → connect repo
+
+services:
+  # ── API (Express + tRPC) ──────────────────────────────────────────
+  - type: web
+    name: mbti-api
+    runtime: node
+    region: singapore
+    plan: free
+    buildCommand: npm ci && npm run build:api
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: EXPO_PUBLIC_SUPABASE_URL
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: EMAILJS_PRIVATE_KEY
+        sync: false
+      - key: BUILT_IN_FORGE_API_URL
+        sync: false
+      - key: BUILT_IN_FORGE_API_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+
+  # ── Web (Expo static export) ─────────────────────────────────────
+  - type: web
+    name: mbti-web
+    runtime: static
+    buildCommand: npm ci && npm run build:web
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: EXPO_PUBLIC_SUPABASE_URL
+        sync: false
+      - key: EXPO_PUBLIC_SUPABASE_ANON_KEY
+        sync: false
+      - key: EXPO_PUBLIC_API_BASE_URL
+        sync: false
+      - key: EXPO_PUBLIC_EMAILJS_SERVICE_ID
+        sync: false
+      - key: EXPO_PUBLIC_EMAILJS_TEMPLATE_ID
+        sync: false
+      - key: EXPO_PUBLIC_EMAILJS_PUBLIC_KEY
+        sync: false

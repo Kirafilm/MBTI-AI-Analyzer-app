@@ -1,0 +1,51 @@
+{
+  "cli": {
+    "version": ">= 14.0.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": {
+        "simulator": false
+      },
+      "env": {
+        "EXPO_PUBLIC_RC_IOS_API_KEY": "appl_uYbSrlbpwKqkGdLMZqQhyxXgsBA",
+        "EXPO_PUBLIC_RC_ANDROID_API_KEY": "goog_JDkOIGEBAipeiKUVvMgbflcncLx",
+        "EXPO_PUBLIC_RC_WEB_API_KEY": "rcb_your_revenuecat_web_key"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "ios": {
+        "simulator": false
+      },
+      "env": {
+        "EXPO_PUBLIC_RC_IOS_API_KEY": "appl_uYbSrlbpwKqkGdLMZqQhyxXgsBA",
+        "EXPO_PUBLIC_RC_ANDROID_API_KEY": "goog_JDkOIGEBAipeiKUVvMgbflcncLx",
+        "EXPO_PUBLIC_RC_WEB_API_KEY": "rcb_your_revenuecat_web_key"
+      }
+    },
+    "production": {
+      "autoIncrement": true,
+      "ios": {
+        "image": "latest"
+      },
+      "env": {
+        "EXPO_PUBLIC_RC_IOS_API_KEY": "appl_uYbSrlbpwKqkGdLMZqQhyxXgsBA",
+        "EXPO_PUBLIC_RC_ANDROID_API_KEY": "goog_JDkOIGEBAipeiKUVvMgbflcncLx",
+        "EXPO_PUBLIC_RC_WEB_API_KEY": "rcb_your_revenuecat_web_key"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "appleId": "your_apple_id@email.com",
+        "ascAppId": "your_app_store_connect_app_id",
+        "appleTeamId": "your_team_id"
+      }
+    }
+  }
+}
