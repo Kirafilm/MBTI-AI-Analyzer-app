@@ -276,8 +276,13 @@ export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
     response_format,
   } = params;
 
+  // Prefer Flash-Lite on free tier (higher daily quota than gemini-2.5-flash ~20/day).
+  const model =
+    process.env.GEMINI_MODEL?.trim() ||
+    (usesGemini() ? "gemini-2.5-flash-lite" : "gemini-2.5-flash");
+
   const payload: Record<string, unknown> = {
-    model: "gemini-2.5-flash",
+    model,
     messages: messages.map(normalizeMessage),
   };
 
