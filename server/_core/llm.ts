@@ -335,7 +335,7 @@ export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
     payload.tool_choice = normalizedToolChoice;
   }
 
-# Keep output caps conservative for free quotas.
+  // Keep output caps conservative for free quotas.
   payload.max_tokens = provider === "forge" ? 32768 : 8192;
   if (provider === "forge") {
     payload.thinking = {
