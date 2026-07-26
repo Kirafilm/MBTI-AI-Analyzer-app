@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, ScrollView, Pressable, ActivityIndicator } from "react-native";
 import { useRouter } from "expo-router";
 import { ScreenContainer } from "@/components/screen-container";
+import { QuizInlineAd } from "@/components/quiz-inline-ad";
 import { useMBTI } from "@/lib/mbti-context";
 import { useI18n } from "@/lib/i18n-context";
 import { MBTI_QUESTIONS } from "@/shared/mbti-questions";
@@ -185,6 +186,8 @@ export default function MBTIQuizScreen() {
             <Text className="text-center text-xs text-muted">
               {t("progress")}: {answers.length} / {MBTI_QUESTIONS.length}
             </Text>
+
+            <QuizInlineAd />
           </View>
         </View>
       </ScrollView>
