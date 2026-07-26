@@ -209,28 +209,15 @@ const PROVIDER_KEYS: Record<LlmProvider, () => string> = {
   forge: () => ENV.forgeApiKey?.trim() || "",
 };
 
-const resolveProvider = (): LlmProvider => {
-  // Explicit override: LLM_PROVIDER=nvidia|openrouter|forge
+const DEFAULT_PROVIDER_ORDER: LlmProvider[] = ["nvidia", "openrouter", "forge"];
+
+const listConfiguredProviders = (): LlmProvider[] => {
   const forced = process.env.LLM_PROVIDER?.trim().toLowerCase() as LlmProvider | undefined;
   if (forced && forced in PROVIDER_KEYS && PROVIDER_KEYS[forced]()) {
-    return forced;
+    return [forced];
   }
 
-  // Prefer NVIDIA when configured (OpenRouter free tier is easy to exhaust).
-  if (ENV.nvidiaApiKey?.trim()) return "nvidia";
-  if (ENV.openRouterApiKey?.trim()) return "openrouter";
-  return "forge";
-};
-
-const resolveApiKey = () => {
-  const provider = resolveProvider();
-  return (
-    PROVIDER_KEYS[provider]() ||
-    ENV.nvidiaApiKey?.trim() ||
-    ENV.openRouterApiKey?.trim() ||
-    ENV.forgeApiKey?.trim() ||
-    ""
-  );
+  return DEFAULT_PROVIDER_ORDER.filter((provider) => Boolean(PROVIDER_KEYS[provider]()));
 };
 
 const resolveApiUrl = (provider: LlmProvider) => {
@@ -259,11 +246,29 @@ const resolveModel = (provider: LlmProvider) => {
 };
 
 const assertApiKey = () => {
-  if (!resolveApiKey()) {
+  if (listConfiguredProviders().length === 0) {
     throw new Error(
       "No LLM API key configured. Set NVIDIA_API_KEY, OPENROUTER_API_KEY, or BUILT_IN_FORGE_API_KEY.",
     );
   }
+};
+
+const shouldFallback = (status: number) =>
+  status === 429 || status === 502 || status === 503 || status === 504;
+
+const buildHeaders = (provider: LlmProvider): Record<string, string> => {
+  const headers: Record<string, string> = {
+    "content-type": "application/json",
+    authorization: `Bearer ${PROVIDER_KEYS[provider]()}`,
+  };
+
+  if (provider === "openrouter") {
+    headers["HTTP-Referer"] = process.env.OPENROUTER_SITE_URL?.trim() || "https://mbti.hyphenjob.com";
+    headers["X-OpenRouter-Title"] =
+      process.env.OPENROUTER_SITE_NAME?.trim() || "MBTI AI Analyzer";
+  }
+
+  return headers;
 };
 
 const normalizeResponseFormat = ({
@@ -306,10 +311,10 @@ const normalizeResponseFormat = ({
   };
 };
 
-export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
-  assertApiKey();
-
-  const provider = resolveProvider();
+async function invokeWithProvider(
+  provider: LlmProvider,
+  params: InvokeParams,
+): Promise<InvokeResult> {
   const {
     messages,
     tools,
@@ -359,29 +364,49 @@ export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
         : normalizedResponseFormat;
   }
 
-  const headers: Record<string, string> = {
-    "content-type": "application/json",
-    authorization: `Bearer ${resolveApiKey()}`,
-  };
-
-  if (provider === "openrouter") {
-    headers["HTTP-Referer"] = process.env.OPENROUTER_SITE_URL?.trim() || "https://mbti.hyphenjob.com";
-    headers["X-OpenRouter-Title"] =
-      process.env.OPENROUTER_SITE_NAME?.trim() || "MBTI AI Analyzer";
-  }
-
   const response = await fetch(resolveApiUrl(provider), {
     method: "POST",
-    headers,
+    headers: buildHeaders(provider),
     body: JSON.stringify(payload),
   });
 
   if (!response.ok) {
     const errorText = await response.text();
-    throw new Error(
+    const error = new Error(
       `LLM invoke failed (${provider}): ${response.status} ${response.statusText} – ${errorText}`,
-    );
+    ) as Error & { status?: number; provider?: LlmProvider };
+    error.status = response.status;
+    error.provider = provider;
+    throw error;
   }
 
   return (await response.json()) as InvokeResult;
+}
+
+export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
+  assertApiKey();
+
+  const providers = listConfiguredProviders();
+  const failures: string[] = [];
+
+  for (let i = 0; i < providers.length; i += 1) {
+    const provider = providers[i];
+    try {
+      return await invokeWithProvider(provider, params);
+    } catch (err) {
+      const status = typeof (err as { status?: number })?.status === "number"
+        ? (err as { status: number }).status
+        : undefined;
+      const message = err instanceof Error ? err.message : String(err);
+      failures.push(message);
+
+      const canTryNext = i < providers.length - 1 && (status === undefined || shouldFallback(status));
+      if (!canTryNext) {
+        break;
+      }
+      console.warn(`[LLM] ${provider} failed (${status ?? "unknown"}); trying next provider…`);
+    }
+  }
+
+  throw new Error(failures[failures.length - 1] || "LLM invoke failed for all providers");
 }

@@ -110,8 +110,18 @@ export default function MBTIAnalysisScreen() {
         setAnalysis(newAnalysis);
       } catch (err) {
         if (cancelled) return;
-        const message = err instanceof Error ? err.message : "生成分析失敗";
-        setError(message);
+        // Prefer tRPC's server message over generic "Failed to fetch".
+        const anyErr = err as { message?: string; data?: { message?: string }; shape?: { message?: string } };
+        const message =
+          anyErr?.data?.message ||
+          anyErr?.shape?.message ||
+          (err instanceof Error ? err.message : null) ||
+          "生成分析失敗";
+        const friendly =
+          /429|Too Many Requests|rate limit/i.test(message)
+            ? "AI 免費額度已用完，請稍後再試，或更換 NVIDIA / OpenRouter 模型。"
+            : message;
+        setError(friendly);
         console.error("Error generating analysis:", err);
       } finally {
         if (!cancelled) setIsLoading(false);
