@@ -201,13 +201,25 @@ const normalizeToolChoice = (
   return toolChoice;
 };
 
-const usesGemini = () => Boolean(ENV.geminiApiKey?.trim());
+type LlmProvider = "openrouter" | "gemini" | "forge";
+
+const resolveProvider = (): LlmProvider => {
+  if (ENV.openRouterApiKey?.trim()) return "openrouter";
+  if (ENV.geminiApiKey?.trim()) return "gemini";
+  return "forge";
+};
 
 const resolveApiKey = () =>
-  ENV.geminiApiKey?.trim() || ENV.forgeApiKey?.trim() || "";
+  ENV.openRouterApiKey?.trim() ||
+  ENV.geminiApiKey?.trim() ||
+  ENV.forgeApiKey?.trim() ||
+  "";
 
-const resolveApiUrl = () => {
-  if (usesGemini()) {
+const resolveApiUrl = (provider: LlmProvider) => {
+  if (provider === "openrouter") {
+    return "https://openrouter.ai/api/v1/chat/completions";
+  }
+  if (provider === "gemini") {
     return "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
   }
   if (ENV.forgeApiUrl && ENV.forgeApiUrl.trim().length > 0) {
@@ -216,9 +228,23 @@ const resolveApiUrl = () => {
   return "https://forge.manus.im/v1/chat/completions";
 };
 
+const resolveModel = (provider: LlmProvider) => {
+  if (provider === "openrouter") {
+    // openrouter/free auto-picks an available free model that matches request features.
+    // Override with e.g. google/gemma-3-27b-it:free or meta-llama/llama-3.3-70b-instruct:free
+    return process.env.OPENROUTER_MODEL?.trim() || "openrouter/free";
+  }
+  if (provider === "gemini") {
+    return process.env.GEMINI_MODEL?.trim() || "gemini-2.5-flash-lite";
+  }
+  return process.env.LLM_MODEL?.trim() || "gemini-2.5-flash";
+};
+
 const assertApiKey = () => {
   if (!resolveApiKey()) {
-    throw new Error("GEMINI_API_KEY is not configured");
+    throw new Error(
+      "No LLM API key configured. Set OPENROUTER_API_KEY (recommended), GEMINI_API_KEY, or BUILT_IN_FORGE_API_KEY.",
+    );
   }
 };
 
@@ -265,6 +291,7 @@ const normalizeResponseFormat = ({
 export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
   assertApiKey();
 
+  const provider = resolveProvider();
   const {
     messages,
     tools,
@@ -276,13 +303,8 @@ export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
     response_format,
   } = params;
 
-  // Prefer Flash-Lite on free tier (higher daily quota than gemini-2.5-flash ~20/day).
-  const model =
-    process.env.GEMINI_MODEL?.trim() ||
-    (usesGemini() ? "gemini-2.5-flash-lite" : "gemini-2.5-flash");
-
   const payload: Record<string, unknown> = {
-    model,
+    model: resolveModel(provider),
     messages: messages.map(normalizeMessage),
   };
 
@@ -295,9 +317,9 @@ export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
     payload.tool_choice = normalizedToolChoice;
   }
 
-  // Gemini OpenAI-compat output limit is lower than Manus Forge.
-  payload.max_tokens = usesGemini() ? 8192 : 32768;
-  if (!usesGemini()) {
+  // Keep output caps conservative for free / Gemini quotas.
+  payload.max_tokens = provider === "forge" ? 32768 : 8192;
+  if (provider === "forge") {
     payload.thinking = {
       budget_tokens: 128,
     };
@@ -311,21 +333,35 @@ export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
   });
 
   if (normalizedResponseFormat) {
-    payload.response_format = normalizedResponseFormat;
+    // Prefer json_object for broader free-model compatibility than json_schema.
+    payload.response_format =
+      provider === "openrouter" && normalizedResponseFormat.type === "json_schema"
+        ? { type: "json_object" }
+        : normalizedResponseFormat;
   }
 
-  const response = await fetch(resolveApiUrl(), {
+  const headers: Record<string, string> = {
+    "content-type": "application/json",
+    authorization: `Bearer ${resolveApiKey()}`,
+  };
+
+  if (provider === "openrouter") {
+    headers["HTTP-Referer"] = process.env.OPENROUTER_SITE_URL?.trim() || "https://mbti.hyphenjob.com";
+    headers["X-OpenRouter-Title"] =
+      process.env.OPENROUTER_SITE_NAME?.trim() || "MBTI AI Analyzer";
+  }
+
+  const response = await fetch(resolveApiUrl(provider), {
     method: "POST",
-    headers: {
-      "content-type": "application/json",
-      authorization: `Bearer ${resolveApiKey()}`,
-    },
+    headers,
     body: JSON.stringify(payload),
   });
 
   if (!response.ok) {
     const errorText = await response.text();
-    throw new Error(`LLM invoke failed: ${response.status} ${response.statusText} – ${errorText}`);
+    throw new Error(
+      `LLM invoke failed (${provider}): ${response.status} ${response.statusText} – ${errorText}`,
+    );
   }
 
   return (await response.json()) as InvokeResult;

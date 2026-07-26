@@ -9,6 +9,57 @@ type UseAuthOptions = {
   autoFetch?: boolean;
 };
 
+function userFromSupabase(sbUser: {
+  id: string;
+  email?: string | null;
+  user_metadata?: Record<string, unknown> | null;
+}): Auth.User {
+  const meta = sbUser.user_metadata ?? {};
+  const fullName =
+    typeof meta.full_name === "string"
+      ? meta.full_name
+      : typeof meta.name === "string"
+        ? meta.name
+        : null;
+
+  return {
+    id: 0,
+    openId: sbUser.id,
+    name: fullName ?? sbUser.email?.split("@")[0] ?? null,
+    email: sbUser.email ?? null,
+    loginMethod: "supabase",
+    lastSignedIn: new Date(),
+  };
+}
+
+async function syncAuthTokenFromSupabase(): Promise<{
+  accessToken: string | null;
+  user: Auth.User | null;
+}> {
+  try {
+    const supabase = getSupabaseClient();
+    const { data, error } = await supabase.auth.getSession();
+    if (error) {
+      console.warn("[useAuth] supabase.getSession error:", error.message);
+      return { accessToken: null, user: null };
+    }
+
+    const session = data.session;
+    if (!session?.access_token || !session.user) {
+      return { accessToken: null, user: null };
+    }
+
+    await Auth.setSessionToken(session.access_token);
+    return {
+      accessToken: session.access_token,
+      user: userFromSupabase(session.user),
+    };
+  } catch (err) {
+    console.warn("[useAuth] syncAuthTokenFromSupabase failed:", err);
+    return { accessToken: null, user: null };
+  }
+}
+
 export function useAuth(options?: UseAuthOptions) {
   const { autoFetch = true } = options ?? {};
   const [user, setUser] = useState<Auth.User | null>(null);
@@ -23,12 +74,15 @@ export function useAuth(options?: UseAuthOptions) {
       setLoading(true);
       setError(null);
 
-      console.log("[useAuth] Checking for session token...");
-      const sessionToken = await Auth.getSessionToken();
+      // Prefer a live Supabase session (includes refresh) over a stale local token.
+      const supabaseSession = await syncAuthTokenFromSupabase();
+      let sessionToken = supabaseSession.accessToken ?? (await Auth.getSessionToken());
+
       console.log(
         "[useAuth] Session token:",
         sessionToken ? `present (${sessionToken.substring(0, 20)}...)` : "missing",
       );
+
       if (!sessionToken) {
         console.log("[useAuth] No session token, setting user to null");
         setUser(null);
@@ -40,31 +94,45 @@ export function useAuth(options?: UseAuthOptions) {
       const apiUser = await Api.getMe();
       console.log("[useAuth] API user response:", apiUser);
       if (!apiUser) {
-        // Backend is unavailable — try to verify the session via Supabase
-        // so real users aren't logged out just because the custom API is down.
+        // Backend unavailable / token rejected — keep the user signed in when
+        // Supabase still has a valid (or refreshed) session.
+        if (supabaseSession.user) {
+          setUser(supabaseSession.user);
+          await Auth.setUserInfo(supabaseSession.user);
+          return;
+        }
+
+        // Retry once after forcing a token refresh.
         try {
           const supabase = getSupabaseClient();
-          const { data: sessionData } = await supabase.auth.getSession();
-          if (sessionData.session?.user) {
-            const sbUser = sessionData.session.user;
-            const supabaseUser: Auth.User = {
-              id: 0,
-              openId: sbUser.id,
-              name: sbUser.user_metadata?.full_name ?? sbUser.email?.split("@")[0] ?? null,
-              email: sbUser.email ?? null,
-              loginMethod: "supabase",
-              lastSignedIn: new Date(),
-            };
-            setUser(supabaseUser);
-            await Auth.setUserInfo(supabaseUser);
+          const { data: refreshed, error: refreshError } = await supabase.auth.refreshSession();
+          if (!refreshError && refreshed.session?.access_token && refreshed.session.user) {
+            await Auth.setSessionToken(refreshed.session.access_token);
+            const retryUser = await Api.getMe();
+            if (retryUser) {
+              const userInfo: Auth.User = {
+                id: retryUser.id,
+                openId: retryUser.openId,
+                name: retryUser.name,
+                email: retryUser.email,
+                loginMethod: retryUser.loginMethod,
+                lastSignedIn: new Date(retryUser.lastSignedIn),
+              };
+              setUser(userInfo);
+              await Auth.setUserInfo(userInfo);
+              return;
+            }
+
+            const fallback = userFromSupabase(refreshed.session.user);
+            setUser(fallback);
+            await Auth.setUserInfo(fallback);
             return;
           }
-        } catch (sbErr) {
-          console.warn("[useAuth] Supabase getSession fallback failed:", sbErr);
+        } catch (refreshErr) {
+          console.warn("[useAuth] refreshSession fallback failed:", refreshErr);
         }
 
         // Test account fallback (when backend is down and no Supabase session)
-        // Only enable if EXPO_PUBLIC_ENABLE_TEST_LOGIN is true
         if (isTestLoginEnabled) {
           const hasTestOverride = await getTestPremiumOverride();
           if (hasTestOverride) {
@@ -102,24 +170,32 @@ export function useAuth(options?: UseAuthOptions) {
       await Auth.setUserInfo(userInfo);
       return;
     } catch (err) {
-      const error = err instanceof Error ? err : new Error("Failed to fetch user");
-      console.error("[useAuth] fetchUser error:", error);
-      // If test override is active and test login is enabled, keep the user session alive even on error
+      const nextError = err instanceof Error ? err : new Error("Failed to fetch user");
+      console.error("[useAuth] fetchUser error:", nextError);
+
+      // Keep signed-in state if Supabase session is still valid.
+      const { user: sbUser } = await syncAuthTokenFromSupabase();
+      if (sbUser) {
+        setUser(sbUser);
+        await Auth.setUserInfo(sbUser);
+        return;
+      }
+
       if (isTestLoginEnabled) {
         const hasTestOverride = await getTestPremiumOverride();
         if (!hasTestOverride) {
-          setError(error);
+          setError(nextError);
           setUser(null);
         }
       } else {
-        setError(error);
+        setError(nextError);
         setUser(null);
       }
     } finally {
       setLoading(false);
       console.log("[useAuth] fetchUser completed, loading:", false);
     }
-  }, []);
+  }, [isTestLoginEnabled]);
 
   const logout = useCallback(async () => {
     try {
@@ -152,6 +228,41 @@ export function useAuth(options?: UseAuthOptions) {
       setLoading(false);
     }
   }, [autoFetch, fetchUser]);
+
+  // Keep app session token in sync when Supabase refreshes access tokens.
+  useEffect(() => {
+    let unsubscribe: (() => void) | undefined;
+    try {
+      const supabase = getSupabaseClient();
+      const { data } = supabase.auth.onAuthStateChange(async (event, session) => {
+        if (event === "SIGNED_OUT") {
+          await Auth.removeSessionToken();
+          await Auth.clearUserInfo();
+          setUser(null);
+          return;
+        }
+
+        if (
+          (event === "SIGNED_IN" || event === "TOKEN_REFRESHED" || event === "INITIAL_SESSION") &&
+          session?.access_token
+        ) {
+          await Auth.setSessionToken(session.access_token);
+          if (session.user && (event === "SIGNED_IN" || event === "TOKEN_REFRESHED")) {
+            const nextUser = userFromSupabase(session.user);
+            setUser((prev) => prev ?? nextUser);
+            await Auth.setUserInfo(nextUser);
+          }
+        }
+      });
+      unsubscribe = () => data.subscription.unsubscribe();
+    } catch (err) {
+      console.warn("[useAuth] onAuthStateChange setup failed:", err);
+    }
+
+    return () => {
+      unsubscribe?.();
+    };
+  }, []);
 
   useEffect(() => {
     console.log("[useAuth] State updated:", {

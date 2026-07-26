@@ -1,4 +1,6 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { Platform } from "react-native";
 
 const SUPABASE_URL = process.env.EXPO_PUBLIC_SUPABASE_URL ?? "";
 const SUPABASE_ANON_KEY = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY ?? "";
@@ -25,8 +27,12 @@ export function getSupabaseClient(): SupabaseClient {
 
   _client = createClient(baseUrl, SUPABASE_ANON_KEY, {
     auth: {
-      persistSession: false,
-      autoRefreshToken: false,
+      // Persist refresh+access tokens so reload / app relaunch stays signed in.
+      // Web uses localStorage by default; native needs AsyncStorage.
+      ...(Platform.OS === "web" ? {} : { storage: AsyncStorage }),
+      persistSession: true,
+      autoRefreshToken: true,
+      // Password-reset flow parses tokens manually in /auth/reset-password.
       detectSessionInUrl: false,
     },
   });
