@@ -9,5 +9,6 @@ export const ENV = {
   forgeApiKey: process.env.BUILT_IN_FORGE_API_KEY ?? "",
   geminiApiKey: process.env.GEMINI_API_KEY ?? "",
   openRouterApiKey: process.env.OPENROUTER_API_KEY ?? "",
+  nvidiaApiKey: process.env.NVIDIA_API_KEY ?? "",
   emailjsPrivateKey: process.env.EMAILJS_PRIVATE_KEY ?? "",
 };

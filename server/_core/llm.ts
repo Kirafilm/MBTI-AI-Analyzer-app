@@ -201,21 +201,45 @@ const normalizeToolChoice = (
   return toolChoice;
 };
 
-type LlmProvider = "openrouter" | "gemini" | "forge";
+type LlmProvider = "nvidia" | "openrouter" | "gemini" | "forge";
+
+const PROVIDER_KEYS: Record<LlmProvider, () => string> = {
+  nvidia: () => ENV.nvidiaApiKey?.trim() || "",
+  openrouter: () => ENV.openRouterApiKey?.trim() || "",
+  gemini: () => ENV.geminiApiKey?.trim() || "",
+  forge: () => ENV.forgeApiKey?.trim() || "",
+};
 
 const resolveProvider = (): LlmProvider => {
+  // Explicit override: LLM_PROVIDER=nvidia|openrouter|gemini|forge
+  const forced = process.env.LLM_PROVIDER?.trim().toLowerCase() as LlmProvider | undefined;
+  if (forced && forced in PROVIDER_KEYS && PROVIDER_KEYS[forced]()) {
+    return forced;
+  }
+
+  // Prefer NVIDIA when configured (OpenRouter free tier is easy to exhaust).
+  if (ENV.nvidiaApiKey?.trim()) return "nvidia";
   if (ENV.openRouterApiKey?.trim()) return "openrouter";
   if (ENV.geminiApiKey?.trim()) return "gemini";
   return "forge";
 };
 
-const resolveApiKey = () =>
-  ENV.openRouterApiKey?.trim() ||
-  ENV.geminiApiKey?.trim() ||
-  ENV.forgeApiKey?.trim() ||
-  "";
+const resolveApiKey = () => {
+  const provider = resolveProvider();
+  return (
+    PROVIDER_KEYS[provider]() ||
+    ENV.nvidiaApiKey?.trim() ||
+    ENV.openRouterApiKey?.trim() ||
+    ENV.geminiApiKey?.trim() ||
+    ENV.forgeApiKey?.trim() ||
+    ""
+  );
+};
 
 const resolveApiUrl = (provider: LlmProvider) => {
+  if (provider === "nvidia") {
+    return "https://integrate.api.nvidia.com/v1/chat/completions";
+  }
   if (provider === "openrouter") {
     return "https://openrouter.ai/api/v1/chat/completions";
   }
@@ -229,9 +253,12 @@ const resolveApiUrl = (provider: LlmProvider) => {
 };
 
 const resolveModel = (provider: LlmProvider) => {
+  if (provider === "nvidia") {
+    // Pick any chat model from https://build.nvidia.com/models (Free Endpoint filter).
+    return process.env.NVIDIA_MODEL?.trim() || "meta/llama-3.1-8b-instruct";
+  }
   if (provider === "openrouter") {
     // openrouter/free auto-picks an available free model that matches request features.
-    // Override with e.g. google/gemma-3-27b-it:free or meta-llama/llama-3.3-70b-instruct:free
     return process.env.OPENROUTER_MODEL?.trim() || "openrouter/free";
   }
   if (provider === "gemini") {
@@ -243,7 +270,7 @@ const resolveModel = (provider: LlmProvider) => {
 const assertApiKey = () => {
   if (!resolveApiKey()) {
     throw new Error(
-      "No LLM API key configured. Set OPENROUTER_API_KEY (recommended), GEMINI_API_KEY, or BUILT_IN_FORGE_API_KEY.",
+      "No LLM API key configured. Set NVIDIA_API_KEY, OPENROUTER_API_KEY, GEMINI_API_KEY, or BUILT_IN_FORGE_API_KEY.",
     );
   }
 };
@@ -335,7 +362,8 @@ export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
   if (normalizedResponseFormat) {
     // Prefer json_object for broader free-model compatibility than json_schema.
     payload.response_format =
-      provider === "openrouter" && normalizedResponseFormat.type === "json_schema"
+      (provider === "openrouter" || provider === "nvidia") &&
+      normalizedResponseFormat.type === "json_schema"
         ? { type: "json_object" }
         : normalizedResponseFormat;
   }
