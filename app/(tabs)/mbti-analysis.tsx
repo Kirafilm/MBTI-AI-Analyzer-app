@@ -162,8 +162,6 @@ export default function MBTIAnalysisScreen() {
     );
   }
 
-  const careerResultId = result?.id ?? analysis.resultId;
-
   return (
     <ScreenContainer className="p-4">
       <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
@@ -219,24 +217,11 @@ export default function MBTIAnalysisScreen() {
 
           <View className="gap-3 mt-4">
             <Pressable
-              onPress={() =>
-                router.push({
-                  pathname: "/(tabs)/mbti-career",
-                  params: { resultId: careerResultId },
-                })
-              }
-              style={({ pressed }) => [{ opacity: pressed ? 0.9 : 1, transform: [{ scale: pressed ? 0.97 : 1 }] }]}
-            >
-              <View className="p-4 bg-primary rounded-lg items-center">
-                <Text className="text-background font-semibold">查看職業指引</Text>
-              </View>
-            </Pressable>
-            <Pressable
               onPress={() => router.push("/(tabs)")}
               style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}
             >
-              <View className="p-4 bg-surface rounded-lg items-center">
-                <Text className="text-foreground font-semibold">返回首頁</Text>
+              <View className="p-4 bg-primary rounded-lg items-center">
+                <Text className="text-background font-semibold">返回首頁</Text>
               </View>
             </Pressable>
           </View>

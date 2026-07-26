@@ -29,7 +29,7 @@ export const translations = {
     features: "功能特色",
     feature1: "70 道精心設計的測驗題目",
     feature2: "AI 驅動的性格深度分析",
-    feature3: "個性化的職業指引建議",
+    feature3: "豐富的心理測驗題庫",
     feature4: "本地數據存儲，隱私保護",
     psychologyTests: "心理測驗",
 
@@ -249,7 +249,7 @@ export const translations = {
     features: "功能特色",
     feature1: "70 道精心设计的测验题目",
     feature2: "AI 驱动的性格深度分析",
-    feature3: "个性化的职业指引建议",
+    feature3: "丰富的心理测验题库",
     feature4: "本地数据存储，隐私保护",
     psychologyTests: "心理测验",
 
@@ -469,7 +469,7 @@ export const translations = {
     features: "Features",
     feature1: "70 carefully designed quiz questions",
     feature2: "AI-powered personality deep analysis",
-    feature3: "Personalized career guidance",
+    feature3: "A rich library of psychology tests",
     feature4: "Local data storage, privacy protected",
     psychologyTests: "Psychology Tests",
 

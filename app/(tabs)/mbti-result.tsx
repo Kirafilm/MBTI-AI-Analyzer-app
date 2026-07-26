@@ -85,14 +85,6 @@ export default function MBTIResultScreen() {
     });
   };
 
-  const handleViewCareerGuide = async () => {
-    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    router.push({
-      pathname: "/(tabs)/mbti-career",
-      params: { resultId: result.id },
-    });
-  };
-
   return (
     <ScreenContainer className="p-4">
       <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
@@ -158,15 +150,6 @@ export default function MBTIResultScreen() {
             >
               <View className="p-4 bg-primary rounded-lg items-center">
                 <Text className="text-background font-semibold">{t("viewAnalysis")}</Text>
-              </View>
-            </Pressable>
-
-            <Pressable
-              onPress={handleViewCareerGuide}
-              style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}
-            >
-              <View className="p-4 bg-surface border border-primary rounded-lg items-center">
-                <Text className="text-foreground font-semibold">{t("careerGuide")}</Text>
               </View>
             </Pressable>
 
