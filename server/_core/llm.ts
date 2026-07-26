@@ -201,17 +201,16 @@ const normalizeToolChoice = (
   return toolChoice;
 };
 
-type LlmProvider = "nvidia" | "openrouter" | "gemini" | "forge";
+type LlmProvider = "nvidia" | "openrouter" | "forge";
 
 const PROVIDER_KEYS: Record<LlmProvider, () => string> = {
   nvidia: () => ENV.nvidiaApiKey?.trim() || "",
   openrouter: () => ENV.openRouterApiKey?.trim() || "",
-  gemini: () => ENV.geminiApiKey?.trim() || "",
   forge: () => ENV.forgeApiKey?.trim() || "",
 };
 
 const resolveProvider = (): LlmProvider => {
-  // Explicit override: LLM_PROVIDER=nvidia|openrouter|gemini|forge
+  // Explicit override: LLM_PROVIDER=nvidia|openrouter|forge
   const forced = process.env.LLM_PROVIDER?.trim().toLowerCase() as LlmProvider | undefined;
   if (forced && forced in PROVIDER_KEYS && PROVIDER_KEYS[forced]()) {
     return forced;
@@ -220,7 +219,6 @@ const resolveProvider = (): LlmProvider => {
   // Prefer NVIDIA when configured (OpenRouter free tier is easy to exhaust).
   if (ENV.nvidiaApiKey?.trim()) return "nvidia";
   if (ENV.openRouterApiKey?.trim()) return "openrouter";
-  if (ENV.geminiApiKey?.trim()) return "gemini";
   return "forge";
 };
 
@@ -230,7 +228,6 @@ const resolveApiKey = () => {
     PROVIDER_KEYS[provider]() ||
     ENV.nvidiaApiKey?.trim() ||
     ENV.openRouterApiKey?.trim() ||
-    ENV.geminiApiKey?.trim() ||
     ENV.forgeApiKey?.trim() ||
     ""
   );
@@ -242,9 +239,6 @@ const resolveApiUrl = (provider: LlmProvider) => {
   }
   if (provider === "openrouter") {
     return "https://openrouter.ai/api/v1/chat/completions";
-  }
-  if (provider === "gemini") {
-    return "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
   }
   if (ENV.forgeApiUrl && ENV.forgeApiUrl.trim().length > 0) {
     return `${ENV.forgeApiUrl.replace(/\/$/, "")}/v1/chat/completions`;
@@ -261,16 +255,13 @@ const resolveModel = (provider: LlmProvider) => {
     // openrouter/free auto-picks an available free model that matches request features.
     return process.env.OPENROUTER_MODEL?.trim() || "openrouter/free";
   }
-  if (provider === "gemini") {
-    return process.env.GEMINI_MODEL?.trim() || "gemini-2.5-flash-lite";
-  }
-  return process.env.LLM_MODEL?.trim() || "gemini-2.5-flash";
+  return process.env.LLM_MODEL?.trim() || "gpt-4o-mini";
 };
 
 const assertApiKey = () => {
   if (!resolveApiKey()) {
     throw new Error(
-      "No LLM API key configured. Set NVIDIA_API_KEY, OPENROUTER_API_KEY, GEMINI_API_KEY, or BUILT_IN_FORGE_API_KEY.",
+      "No LLM API key configured. Set NVIDIA_API_KEY, OPENROUTER_API_KEY, or BUILT_IN_FORGE_API_KEY.",
     );
   }
 };
@@ -344,7 +335,7 @@ export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
     payload.tool_choice = normalizedToolChoice;
   }
 
-  // Keep output caps conservative for free / Gemini quotas.
+# Keep output caps conservative for free quotas.
   payload.max_tokens = provider === "forge" ? 32768 : 8192;
   if (provider === "forge") {
     payload.thinking = {
