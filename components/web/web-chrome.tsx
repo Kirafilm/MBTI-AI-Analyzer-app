@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { View } from "react-native";
+import { CookieNotice } from "@/components/web/cookie-notice";
 import { WebFooter } from "@/components/web/web-footer";
 import { WebHeader } from "@/components/web/web-header";
 
@@ -13,6 +14,7 @@ export function WebChrome({ children }: WebChromeProps) {
       <WebHeader />
       <View className="flex-1 w-full">{children}</View>
       <WebFooter />
+      <CookieNotice />
     </View>
   );
 }

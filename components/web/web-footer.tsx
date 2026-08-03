@@ -25,6 +25,16 @@ export function WebFooter() {
           <View className="flex-row flex-wrap gap-8">
             <View className="gap-2">
               <Text className="text-xs font-semibold text-muted uppercase tracking-wide">App</Text>
+              <Link href="/about" asChild>
+                <Pressable>
+                  <Text className="text-sm text-foreground">About</Text>
+                </Pressable>
+              </Link>
+              <Link href="/mbti-guide" asChild>
+                <Pressable>
+                  <Text className="text-sm text-foreground">MBTI Guide</Text>
+                </Pressable>
+              </Link>
               <Link href="/psychology-list" asChild>
                 <Pressable>
                   <Text className="text-sm text-foreground">{t("psychologyTests")}</Text>

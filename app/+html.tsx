@@ -1,6 +1,7 @@
 import { ScrollViewStyleReset } from "expo-router/html";
 
-const adSenseClientId = process.env.EXPO_PUBLIC_ADSENSE_CLIENT_ID ?? "";
+const adSenseClientId =
+  process.env.EXPO_PUBLIC_ADSENSE_CLIENT_ID?.trim() || "ca-pub-2239617378202687";
 
 export default function Root({ children }: { children: React.ReactNode }) {
   return (

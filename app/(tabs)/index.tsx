@@ -226,6 +226,21 @@ export default function HomeScreen() {
               </View>
             ))}
           </View>
+
+          <View className="gap-2 pb-4">
+            <Pressable
+              onPress={() => router.push("/mbti-guide")}
+              style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}
+            >
+              <Text className="text-sm text-primary font-semibold text-center">MBTI Guide</Text>
+            </Pressable>
+            <Pressable
+              onPress={() => router.push("/about")}
+              style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}
+            >
+              <Text className="text-sm text-muted text-center">About</Text>
+            </Pressable>
+          </View>
         </View>
       </ScrollView>
     </ScreenContainer>

@@ -7,7 +7,9 @@ declare global {
 let scriptPromise: Promise<void> | null = null;
 
 export function getAdSenseClientId() {
-  return process.env.EXPO_PUBLIC_ADSENSE_CLIENT_ID ?? "";
+  // Publisher ID is public; keep a fallback so site verification works even if
+  // Cloudflare env vars are missing. Slot IDs still come from env.
+  return process.env.EXPO_PUBLIC_ADSENSE_CLIENT_ID?.trim() || "ca-pub-2239617378202687";
 }
 
 export function getAdSenseBannerSlot() {
