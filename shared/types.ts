@@ -132,7 +132,29 @@ export type PsychologyTestType =
   | "resilience"
   | "depression"
   | "sleep"
-  | "focus";
+  | "focus"
+  | "self-esteem"
+  | "emotional-iq"
+  | "burnout"
+  | "procrastination"
+  | "perfectionism"
+  | "attachment-style"
+  | "love-language"
+  | "communication-style"
+  | "conflict-style"
+  | "loneliness"
+  | "optimism"
+  | "gratitude"
+  | "decision-style"
+  | "learning-style"
+  | "time-management"
+  | "digital-wellbeing"
+  | "money-mindset"
+  | "boundaries"
+  | "anger"
+  | "imposter"
+  | "morning-evening"
+  | "team-role";
 
 /**
  * 單道心理測驗題目

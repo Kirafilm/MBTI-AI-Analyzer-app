@@ -1,5 +1,26 @@
 // 心理測驗題庫和計算邏輯
 
+import {
+  EXTRA_INTERPRETATIONS,
+  EXTRA_PSYCHOLOGY_TESTS,
+  EXTRA_RECOMMENDATIONS,
+} from "./psychology-tests-extra";
+
+export type PsychologyTestCategory =
+  | "anxiety"
+  | "happiness"
+  | "stress"
+  | "depression"
+  | "sleep"
+  | "focus"
+  | "self"
+  | "emotion"
+  | "behavior"
+  | "relationship"
+  | "cognition"
+  | "lifestyle"
+  | "career";
+
 export interface PsychologyTest {
   id: string;
   name: string;
@@ -8,7 +29,7 @@ export interface PsychologyTest {
   description: string;
   descriptionZh: string;
   descriptionZhSimplified: string;
-  category: "anxiety" | "happiness" | "stress" | "depression" | "sleep" | "focus";
+  category: PsychologyTestCategory;
   questions: Array<{
     id: string;
     text: string;
@@ -513,6 +534,9 @@ function getInterpretation(
   level: string,
   language: string
 ): string {
+  const fromExtra = EXTRA_INTERPRETATIONS[testId]?.[level]?.[language];
+  if (fromExtra) return fromExtra;
+
   const interpretations: Record<string, Record<string, Record<string, string>>> = {
     anxiety: {
       "very-low": {
@@ -686,6 +710,9 @@ function getRecommendations(
   level: string,
   language: string
 ): string[] {
+  const fromExtra = EXTRA_RECOMMENDATIONS[testId]?.[level]?.[language];
+  if (fromExtra) return fromExtra;
+
   const recommendations: Record<string, Record<string, Record<string, string[]>>> = {
     anxiety: {
       high: {
@@ -1035,4 +1062,12 @@ function getRecommendations(
   );
 }
 
-export const ALL_PSYCHOLOGY_TESTS = [ANXIETY_TEST, HAPPINESS_TEST, STRESS_TEST, DEPRESSION_TEST, SLEEP_TEST, FOCUS_TEST];
+export const ALL_PSYCHOLOGY_TESTS: PsychologyTest[] = [
+  ANXIETY_TEST,
+  HAPPINESS_TEST,
+  STRESS_TEST,
+  DEPRESSION_TEST,
+  SLEEP_TEST,
+  FOCUS_TEST,
+  ...EXTRA_PSYCHOLOGY_TESTS.map(({ polarity: _polarity, ...test }) => test),
+];
