@@ -45,3 +45,8 @@ export function isAdsterraDisplayEnabled() {
 export function adsterraInvokeUrl(key: string) {
   return `https://www.highperformanceformat.com/${key}/invoke.js`;
 }
+
+/** Same-origin static pages that contain the official Adsterra snippet. */
+export function adsterraPagePath(unit: AdsterraUnit) {
+  return `/ads/adsterra-${unit.width}x${unit.height}.html`;
+}

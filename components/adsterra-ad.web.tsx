@@ -1,37 +1,18 @@
-import { createElement, useMemo } from "react";
+import { createElement } from "react";
 import { View } from "react-native";
-import { adsterraInvokeUrl, type AdsterraUnit } from "@/lib/adsterra";
+import { adsterraPagePath, type AdsterraUnit } from "@/lib/adsterra";
 
 type AdsterraAdProps = {
   unit: AdsterraUnit;
 };
 
-function buildAdsterraSrcDoc(unit: AdsterraUnit) {
-  // Escape closing script tags so the browser doesn't truncate srcDoc early.
-  const invoke = adsterraInvokeUrl(unit.key);
-  return `<!DOCTYPE html><html><head><meta charset="utf-8"><style>
-html,body{margin:0;padding:0;background:transparent;overflow:hidden}
-</style></head><body>
-<script type="text/javascript">
-atOptions = {
-  key: ${JSON.stringify(unit.key)},
-  format: "iframe",
-  height: ${unit.height},
-  width: ${unit.width},
-  params: {}
-};
-<\/script>
-<script type="text/javascript" src=${JSON.stringify(invoke)}><\/script>
-</body></html>`;
-}
-
 /**
- * Adsterra's invoke.js expects a normal document context (often uses document.write).
- * Loading it via React appendChild into the main SPA leaves a blank reserved box.
- * Isolate each unit in an iframe srcDoc so scripts run like a classic HTML page.
+ * Load Adsterra from a same-origin HTML page inside an iframe.
+ * srcDoc / SPA script injection often yields blank boxes because Adsterra
+ * validates a real page origin/referrer; static public pages fix that.
  */
 export function AdsterraAd({ unit }: AdsterraAdProps) {
-  const srcDoc = useMemo(() => buildAdsterraSrcDoc(unit), [unit.key, unit.width, unit.height]);
+  const src = adsterraPagePath(unit);
 
   return (
     <View
@@ -45,11 +26,12 @@ export function AdsterraAd({ unit }: AdsterraAdProps) {
     >
       {createElement("iframe", {
         title: `adsterra-${unit.width}x${unit.height}`,
-        srcDoc,
+        src,
         width: unit.width,
         height: unit.height,
         scrolling: "no",
         frameBorder: "0",
+        referrerPolicy: "unsafe-url",
         style: {
           width: unit.width,
           height: unit.height,
