@@ -8,11 +8,15 @@ type WebChromeProps = {
   children: ReactNode;
 };
 
+/**
+ * Site chrome for web: header + content + footer in normal document flow
+ * so the page scrolls with the window (not a nested flex-clipped pane).
+ */
 export function WebChrome({ children }: WebChromeProps) {
   return (
-    <View className="flex-1 min-h-screen bg-background">
+    <View className="w-full min-h-screen bg-background">
       <WebHeader />
-      <View className="flex-1 w-full">{children}</View>
+      <View className="w-full">{children}</View>
       <WebFooter />
       <CookieNotice />
     </View>

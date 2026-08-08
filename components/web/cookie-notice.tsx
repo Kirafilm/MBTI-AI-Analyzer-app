@@ -31,7 +31,17 @@ export function CookieNotice() {
   if (Platform.OS !== "web" || !visible) return null;
 
   return (
-    <View className="absolute bottom-0 left-0 right-0 z-50 px-4 pb-4">
+    <View
+      style={{
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        zIndex: 50,
+        paddingHorizontal: 16,
+        paddingBottom: 16,
+      }}
+    >
       <View className="bg-surface border border-border rounded-xl p-4 gap-3 shadow-lg max-w-3xl mx-auto w-full">
         <Text className="text-sm text-foreground leading-relaxed">
           本網站可能使用 Cookie 及類似技術（包括廣告合作夥伴 Adsterra）以提供服務與廣告。詳見{" "}

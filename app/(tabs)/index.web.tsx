@@ -1,4 +1,4 @@
-import { ScrollView, Text, useWindowDimensions, View, Pressable } from "react-native";
+import { Text, useWindowDimensions, View, Pressable } from "react-native";
 import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import { ScreenContainer } from "@/components/screen-container";
@@ -75,7 +75,7 @@ export default function HomeScreen() {
   }, []);
 
   return (
-    <View className="flex-1 bg-background">
+    <View className="w-full bg-background">
       {/* Hero */}
       <View className="w-full bg-primary/5 border-b border-border">
         <View
@@ -182,7 +182,7 @@ export default function HomeScreen() {
       </View>
 
       <ScreenContainer>
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ gap: 32, paddingBottom: 24 }}>
+        <View style={{ gap: 32, paddingBottom: 24 }}>
           {/* Quick actions */}
           <View className="gap-4">
             <Text className="text-xl font-bold text-foreground">{t("features")}</Text>
@@ -248,7 +248,7 @@ export default function HomeScreen() {
               ))}
             </View>
           </View>
-        </ScrollView>
+        </View>
       </ScreenContainer>
     </View>
   );
