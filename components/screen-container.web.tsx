@@ -21,7 +21,11 @@ export function ScreenContainer({
   return (
     <View className={cn("w-full bg-background", containerClassName)} {...props}>
       <View
-        className={cn("w-full mx-auto", fullWidth ? "px-0" : "px-4 md:px-6 py-6 md:py-8", className)}
+        className={cn(
+          "w-full mx-auto",
+          fullWidth ? "px-0" : "px-4 md:px-6 py-6 md:py-8",
+          className,
+        )}
         style={[{ maxWidth: fullWidth ? undefined : WEB_MAX_CONTENT_WIDTH }, style]}
       >
         {children}

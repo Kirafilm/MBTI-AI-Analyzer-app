@@ -9,14 +9,16 @@ type WebChromeProps = {
 };
 
 /**
- * Site chrome for web: header + content + footer in normal document flow
- * so the page scrolls with the window (not a nested flex-clipped pane).
+ * Web chrome under Expo's body{overflow:hidden} root.
+ * Keeps a flex-1 content slot so tab scenes get a real height; pages scroll inside.
  */
 export function WebChrome({ children }: WebChromeProps) {
   return (
-    <View className="w-full min-h-screen bg-background">
+    <View className="flex-1 w-full bg-background" style={{ minHeight: 0 }}>
       <WebHeader />
-      <View className="w-full">{children}</View>
+      <View className="flex-1 w-full" style={{ flex: 1, minHeight: 0 }}>
+        {children}
+      </View>
       <WebFooter />
       <CookieNotice />
     </View>
