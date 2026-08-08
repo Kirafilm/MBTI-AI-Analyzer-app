@@ -4,6 +4,14 @@ export type AdsterraUnit = {
   height: number;
 };
 
+/**
+ * Smartlink — preferred while iframe banner units stay blank.
+ * Opens in a new tab from explicit sponsored placements (no forced redirect).
+ */
+const SMARTLINK_URL =
+  process.env.EXPO_PUBLIC_ADSTERRA_SMARTLINK_URL?.trim() ||
+  "https://accuracyinstalled.com/uz92t45si?key=2e796aa2215bca4d870f6fe4dc0a63cc";
+
 /** 728×90 — page footer / leaderboard (desktop) */
 const BANNER_728_KEY =
   process.env.EXPO_PUBLIC_ADSTERRA_BANNER_728_KEY?.trim() ||
@@ -18,6 +26,14 @@ const BANNER_320_KEY =
 const DISPLAY_300_KEY =
   process.env.EXPO_PUBLIC_ADSTERRA_DISPLAY_300_KEY?.trim() ||
   "8d72c5b0abf0b964506f69bac341acaf";
+
+export function getAdsterraSmartlinkUrl() {
+  return SMARTLINK_URL;
+}
+
+export function isAdsterraSmartlinkEnabled() {
+  return Boolean(SMARTLINK_URL);
+}
 
 export function getAdsterraBanner728(): AdsterraUnit | null {
   if (!BANNER_728_KEY) return null;
@@ -35,11 +51,11 @@ export function getAdsterraDisplay300(): AdsterraUnit | null {
 }
 
 export function isAdsterraBannerEnabled() {
-  return Boolean(getAdsterraBanner728() || getAdsterraBanner320());
+  return isAdsterraSmartlinkEnabled() || Boolean(getAdsterraBanner728() || getAdsterraBanner320());
 }
 
 export function isAdsterraDisplayEnabled() {
-  return Boolean(getAdsterraDisplay300());
+  return isAdsterraSmartlinkEnabled() || Boolean(getAdsterraDisplay300());
 }
 
 export function adsterraInvokeUrl(key: string) {
@@ -49,4 +65,11 @@ export function adsterraInvokeUrl(key: string) {
 /** Same-origin static pages that contain the official Adsterra snippet. */
 export function adsterraPagePath(unit: AdsterraUnit) {
   return `/ads/adsterra-${unit.width}x${unit.height}.html`;
+}
+
+export function openAdsterraSmartlink() {
+  if (typeof window === "undefined") return;
+  const url = getAdsterraSmartlinkUrl();
+  if (!url) return;
+  window.open(url, "_blank", "noopener,noreferrer");
 }

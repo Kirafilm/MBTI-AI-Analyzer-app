@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { View } from "react-native";
 import { AdsterraAd } from "@/components/adsterra-ad.web";
+import { AdsterraSmartlink } from "@/components/adsterra-smartlink";
 import {
   getAdsterraBanner320,
   getAdsterraBanner728,
   isAdsterraBannerEnabled,
+  isAdsterraSmartlinkEnabled,
 } from "@/lib/adsterra";
 
 function useIsNarrow(breakpoint = 760) {
@@ -22,14 +24,26 @@ function useIsNarrow(breakpoint = 760) {
   return narrow;
 }
 
-/** Web page banner — Adsterra 728×90 / 320×50. */
+/** Web page banner — Smartlink preferred; iframe unit as fallback. */
 export function WebBannerAd() {
   const narrow = useIsNarrow();
-  const unit728 = getAdsterraBanner728();
-  const unit320 = getAdsterraBanner320();
 
   if (!isAdsterraBannerEnabled()) return null;
 
+  if (isAdsterraSmartlinkEnabled()) {
+    const height = narrow ? 56 : 72;
+    return (
+      <View
+        style={{ minHeight: height }}
+        className="bg-background border-t border-border items-center justify-center overflow-hidden py-2"
+      >
+        <AdsterraSmartlink height={height} variant="banner" />
+      </View>
+    );
+  }
+
+  const unit728 = getAdsterraBanner728();
+  const unit320 = getAdsterraBanner320();
   const unit = narrow ? unit320 ?? unit728 : unit728 ?? unit320;
   if (!unit) return null;
 

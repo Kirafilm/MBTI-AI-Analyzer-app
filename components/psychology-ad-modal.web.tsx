@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 import { Modal, Pressable, Text, View } from "react-native";
 import { AdsterraAd } from "@/components/adsterra-ad.web";
+import { AdsterraSmartlink } from "@/components/adsterra-smartlink";
 import { useColors } from "@/hooks/use-colors";
 import { useI18n } from "@/lib/i18n-context";
-import { getAdsterraDisplay300 } from "@/lib/adsterra";
+import {
+  getAdsterraDisplay300,
+  isAdsterraSmartlinkEnabled,
+  openAdsterraSmartlink,
+} from "@/lib/adsterra";
 import {
   dismissPsychologyAdModal,
   subscribePsychologyAdModal,
@@ -18,6 +23,7 @@ export function PsychologyAdModalHost() {
   const [canContinue, setCanContinue] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState(MIN_VIEW_SECONDS);
   const adsterraUnit = getAdsterraDisplay300();
+  const useSmartlink = isAdsterraSmartlinkEnabled();
 
   useEffect(() => subscribePsychologyAdModal(setVisible), []);
 
@@ -62,6 +68,13 @@ export function PsychologyAdModalHost() {
         ? `${secondsLeft} 秒后可继续`
         : `${secondsLeft} 秒後可繼續`;
 
+  const handleContinue = () => {
+    if (useSmartlink) {
+      openAdsterraSmartlink();
+    }
+    dismissPsychologyAdModal();
+  };
+
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={() => {}}>
       <View
@@ -87,11 +100,15 @@ export function PsychologyAdModalHost() {
             {title}
           </Text>
 
-          {adsterraUnit ? <AdsterraAd unit={adsterraUnit} /> : null}
+          {useSmartlink ? (
+            <AdsterraSmartlink height={200} variant="card" />
+          ) : adsterraUnit ? (
+            <AdsterraAd unit={adsterraUnit} />
+          ) : null}
 
           <Pressable
             disabled={!canContinue}
-            onPress={dismissPsychologyAdModal}
+            onPress={handleContinue}
             style={{
               backgroundColor: canContinue ? colors.tint : colors.muted,
               borderRadius: 12,
