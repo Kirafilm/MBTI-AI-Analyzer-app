@@ -1,4 +1,4 @@
-import { createElement, useEffect, useId, useRef } from "react";
+import { createElement, useMemo } from "react";
 import { View } from "react-native";
 import { adsterraInvokeUrl, type AdsterraUnit } from "@/lib/adsterra";
 
@@ -6,42 +6,32 @@ type AdsterraAdProps = {
   unit: AdsterraUnit;
 };
 
+function buildAdsterraSrcDoc(unit: AdsterraUnit) {
+  // Escape closing script tags so the browser doesn't truncate srcDoc early.
+  const invoke = adsterraInvokeUrl(unit.key);
+  return `<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+html,body{margin:0;padding:0;background:transparent;overflow:hidden}
+</style></head><body>
+<script type="text/javascript">
+atOptions = {
+  key: ${JSON.stringify(unit.key)},
+  format: "iframe",
+  height: ${unit.height},
+  width: ${unit.width},
+  params: {}
+};
+<\/script>
+<script type="text/javascript" src=${JSON.stringify(invoke)}><\/script>
+</body></html>`;
+}
+
 /**
- * Loads one Adsterra iframe unit into a dedicated container.
- * Each mount sets window.atOptions then appends invoke.js (Adsterra's required pattern).
+ * Adsterra's invoke.js expects a normal document context (often uses document.write).
+ * Loading it via React appendChild into the main SPA leaves a blank reserved box.
+ * Isolate each unit in an iframe srcDoc so scripts run like a classic HTML page.
  */
 export function AdsterraAd({ unit }: AdsterraAdProps) {
-  const hostRef = useRef<HTMLDivElement | null>(null);
-  const reactId = useId().replace(/:/g, "");
-  const containerId = `at-${unit.key.slice(0, 8)}-${reactId}`;
-
-  useEffect(() => {
-    const host = hostRef.current;
-    if (!host || typeof window === "undefined") return;
-
-    host.innerHTML = "";
-
-    const config = document.createElement("script");
-    config.type = "text/javascript";
-    config.text = `atOptions = {
-  'key': '${unit.key}',
-  'format': 'iframe',
-  'height': ${unit.height},
-  'width': ${unit.width},
-  'params': {}
-};`;
-    host.appendChild(config);
-
-    const invoke = document.createElement("script");
-    invoke.type = "text/javascript";
-    invoke.src = adsterraInvokeUrl(unit.key);
-    invoke.async = true;
-    host.appendChild(invoke);
-
-    return () => {
-      host.innerHTML = "";
-    };
-  }, [unit.key, unit.width, unit.height]);
+  const srcDoc = useMemo(() => buildAdsterraSrcDoc(unit), [unit.key, unit.width, unit.height]);
 
   return (
     <View
@@ -53,14 +43,21 @@ export function AdsterraAd({ unit }: AdsterraAdProps) {
         overflow: "hidden",
       }}
     >
-      {createElement("div", {
-        id: containerId,
-        ref: hostRef,
+      {createElement("iframe", {
+        title: `adsterra-${unit.width}x${unit.height}`,
+        srcDoc,
+        width: unit.width,
+        height: unit.height,
+        scrolling: "no",
+        frameBorder: "0",
         style: {
           width: unit.width,
           height: unit.height,
           maxWidth: "100%",
+          border: 0,
           overflow: "hidden",
+          display: "block",
+          backgroundColor: "transparent",
         },
       })}
     </View>
