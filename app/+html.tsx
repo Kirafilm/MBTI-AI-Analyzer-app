@@ -1,8 +1,5 @@
 import { ScrollViewStyleReset } from "expo-router/html";
 
-const adSenseClientId =
-  process.env.EXPO_PUBLIC_ADSENSE_CLIENT_ID?.trim() || "ca-pub-2239617378202687";
-
 export default function Root({ children }: { children: React.ReactNode }) {
   return (
     <html lang="zh-Hant">
@@ -37,13 +34,6 @@ export default function Root({ children }: { children: React.ReactNode }) {
           }}
         />
         <ScrollViewStyleReset />
-        {adSenseClientId ? (
-          <script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adSenseClientId}`}
-            crossOrigin="anonymous"
-          />
-        ) : null}
       </head>
       <body>{children}</body>
     </html>

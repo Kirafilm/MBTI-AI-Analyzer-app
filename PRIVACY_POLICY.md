@@ -30,7 +30,7 @@ We use the collected information to:
 - Process your MBTI and psychology test results
 - Authenticate your account (via Supabase)
 - Manage your premium subscription (via RevenueCat)
-- Display personalized ads (via Google AdMob)
+- Display ads on the website (via Adsterra)
 - Improve our app and develop new features
 - Send you important updates (if you opt-in)
 
@@ -39,7 +39,7 @@ We use the collected information to:
 We use the following third-party services:
 - **Supabase**: Authentication and database storage
 - **RevenueCat**: In-app purchase and subscription management
-- **Google AdMob**: Displaying advertisements
+- **Adsterra**: Website advertising
 - **EmailJS**: Sending transactional emails
 
 Each third-party service has its own privacy policy governing their use of your information.

@@ -1,10 +1,5 @@
 import type { ExpoConfig } from "expo/config";
 
-// AdMob App IDs — hardcoded here because ts-node ESM compilation 
-// prevents reading process.env at config evaluation time
-const ADMOB_ANDROID_APP_ID = "ca-app-pub-2239617378202687~5545163267";
-const ADMOB_IOS_APP_ID = "ca-app-pub-2239617378202687~6353636450";
-
 // Bundle ID format: space.manus.<project_name_dots>.<timestamp>
 // e.g., "my-app" created at 2024-01-15 10:30:45 -> "space.manus.my.app.t20240115103045"
 // Bundle ID can only contain letters, numbers, and dots
@@ -91,13 +86,6 @@ const config: ExpoConfig = {
   },
   plugins: [
     "expo-router",
-    [
-      "react-native-google-mobile-ads",
-      {
-        androidAppId: ADMOB_ANDROID_APP_ID,
-        iosAppId: ADMOB_IOS_APP_ID,
-      },
-    ],
     [
       "expo-audio",
       {

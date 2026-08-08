@@ -9,7 +9,7 @@
 - [x] App Name: MBTI AI Analyzer
 - [x] ITSAppUsesNonExemptEncryption: false
 - [x] iOS 部署目標: 12.0+
-- [x] AdMob 配置完成
+- [ ] Adsterra web ads configured
 
 ---
 

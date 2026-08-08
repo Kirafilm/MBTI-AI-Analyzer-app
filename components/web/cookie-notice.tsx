@@ -6,7 +6,7 @@ import { Link } from "expo-router";
 const STORAGE_KEY = "cookie_notice_accepted_v1";
 
 /**
- * Lightweight notice for AdSense cookie disclosure on web.
+ * Lightweight notice for Adsterra cookie disclosure on web.
  * Does not block browsing; records acceptance locally.
  */
 export function CookieNotice() {
@@ -34,7 +34,7 @@ export function CookieNotice() {
     <View className="absolute bottom-0 left-0 right-0 z-50 px-4 pb-4">
       <View className="bg-surface border border-border rounded-xl p-4 gap-3 shadow-lg max-w-3xl mx-auto w-full">
         <Text className="text-sm text-foreground leading-relaxed">
-          本網站可能使用 Cookie 及類似技術（包括 Google AdSense）以提供服務與廣告。詳見{" "}
+          本網站可能使用 Cookie 及類似技術（包括廣告合作夥伴 Adsterra）以提供服務與廣告。詳見{" "}
           <Link href="/privacy-policy" asChild>
             <Pressable>
               <Text className="text-primary font-semibold">私隱政策</Text>

@@ -8,7 +8,6 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import "react-native-reanimated";
 import { Platform } from "react-native";
 import "@/lib/_core/nativewind-pressable";
-import { initMobileAds } from "@/lib/admob-init";
 import { ThemeProvider } from "@/lib/theme-provider";
 import {
   SafeAreaFrameContext,
@@ -43,11 +42,6 @@ export default function RootLayout() {
   // Initialize Manus runtime for cookie injection from parent container
   useEffect(() => {
     initManusRuntime();
-  }, []);
-
-  useEffect(() => {
-    if (Platform.OS === "web") return;
-    initMobileAds();
   }, []);
 
   const handleSafeAreaUpdate = useCallback((metrics: Metrics) => {

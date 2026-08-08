@@ -1,1 +1,1 @@
-google.com, pub-2239617378202687, DIRECT, f08c47fec0942fa0
+# Paste Adsterra ads.txt lines from your publisher dashboard here.

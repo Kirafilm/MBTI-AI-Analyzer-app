@@ -1,14 +1,13 @@
 import type { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { BottomTabBar } from "@react-navigation/bottom-tabs";
 import { View } from "react-native";
-import { AdMobBanner } from "@/components/admob-banner";
+import { WebBannerAd } from "@/components/web-banner-ad";
 
 export function TabBarWithAd(props: BottomTabBarProps) {
   return (
     <View>
-      <AdMobBanner />
+      <WebBannerAd />
       <BottomTabBar {...props} />
     </View>
   );
 }
-

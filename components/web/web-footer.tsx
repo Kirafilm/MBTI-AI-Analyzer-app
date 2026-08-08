@@ -2,7 +2,7 @@ import { Pressable, Text, View } from "react-native";
 import { Link } from "expo-router";
 import { useI18n } from "@/lib/i18n-context";
 import { WEB_MAX_CONTENT_WIDTH } from "@/lib/web-layout";
-import { AdMobBanner } from "@/components/admob-banner";
+import { WebBannerAd } from "@/components/web-banner-ad";
 
 export function WebFooter() {
   const { t } = useI18n();
@@ -11,7 +11,7 @@ export function WebFooter() {
   return (
     <View className="w-full border-t border-border bg-surface mt-auto">
       <View className="w-full mx-auto px-4 md:px-6 py-3">
-        <AdMobBanner />
+        <WebBannerAd />
       </View>
       <View
         className="w-full mx-auto px-4 md:px-6 py-8 gap-6"

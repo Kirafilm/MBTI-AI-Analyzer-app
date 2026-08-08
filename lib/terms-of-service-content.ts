@@ -26,7 +26,7 @@ const zhTW: TosContent = {
       title: "一、服務說明",
       body: [
         "MBTI AI Analyzer 是一款性格分析及心理測驗應用程式，提供以下核心功能：",
-        "本應用提供性格分析及心理測驗服務，並可能透過 Google AdMob（行動版）及 Google AdSense（網頁版）展示廣告。",
+        "本應用提供性格分析及心理測驗服務，並可能透過 Adsterra（網頁版）展示廣告。",
       ],
       bullets: [
         "MBTI 性格類型測驗與分析",
@@ -47,9 +47,8 @@ const zhTW: TosContent = {
     {
       title: "三、廣告服務",
       bullets: [
-        "本應用透過 Google AdMob 及 Google AdSense 展示廣告以支持營運。",
-        "行動應用使用 Google AdMob 展示橫幅及插屏廣告。",
-        "網頁版使用 Google AdSense 展示廣告。",
+        "本應用透過 Adsterra 展示廣告以支持營運。",
+        "網頁版使用 Adsterra 展示廣告。",
         "開始心理測驗前，應用程式可能會顯示贊助內容。",
         "廣告內容由 Google 提供，受其廣告政策約束。",
       ],
@@ -99,8 +98,7 @@ const zhTW: TosContent = {
       ],
       bullets: [
         "Supabase — 用戶認證及數據儲存",
-        "Google AdMob — 行動應用廣告服務",
-        "Google AdSense — 網頁版廣告服務",
+        "Adsterra — 網頁版廣告服務",
       ],
     },
     {
@@ -142,7 +140,7 @@ const zhCN: TosContent = {
       title: "一、服务说明",
       body: [
         "MBTI AI Analyzer 是一款性格分析及心理测验应用程序，提供以下核心功能：",
-        "本应用提供性格分析及心理测验服务，并可能通过 Google AdMob（移动版）及 Google AdSense（网页版）展示广告。",
+        "本应用提供性格分析及心理测验服务，并可能通过 Adsterra（网页版）展示广告。",
       ],
       bullets: [
         "MBTI 性格类型测验与分析",
@@ -163,9 +161,8 @@ const zhCN: TosContent = {
     {
       title: "三、广告服务",
       bullets: [
-        "本应用通过 Google AdMob 及 Google AdSense 展示广告以支持营运。",
-        "移动应用使用 Google AdMob 展示横幅及插屏广告。",
-        "网页版使用 Google AdSense 展示广告。",
+        "本应用通过 Adsterra 展示广告以支持营运。",
+        "网页版使用 Adsterra 展示广告。",
         "开始心理测验前，应用程序可能会显示赞助内容。",
         "广告内容由 Google 提供，受其广告政策约束。",
       ],
@@ -215,8 +212,7 @@ const zhCN: TosContent = {
       ],
       bullets: [
         "Supabase — 用户认证及数据储存",
-        "Google AdMob — 移动应用广告服务",
-        "Google AdSense — 网页版广告服务",
+        "Adsterra — 网页版广告服务",
       ],
     },
     {
@@ -258,7 +254,7 @@ const en: TosContent = {
       title: "1. Service Description",
       body: [
         "MBTI AI Analyzer is a personality analysis and psychology test application offering the following core features:",
-        "The App provides personality analysis and psychology tests and may display ads via Google AdMob (mobile) and Google AdSense (web).",
+        "The App provides personality analysis and psychology tests and may display ads via Adsterra on the website.",
       ],
       bullets: [
         "MBTI personality type assessment and analysis",
@@ -279,9 +275,8 @@ const en: TosContent = {
     {
       title: "3. Advertising",
       bullets: [
-        "The App is supported by advertising through Google AdMob and Google AdSense.",
-        "The mobile app uses Google AdMob for banner and interstitial ads.",
-        "The website uses Google AdSense for advertising.",
+        "The App is supported by advertising through Adsterra on the website.",
+        "The website uses Adsterra for advertising.",
         "Sponsored content may be shown before starting a psychology test.",
         "Ad content is served by Google and subject to Google's advertising policies.",
       ],
@@ -331,8 +326,7 @@ const en: TosContent = {
       ],
       bullets: [
         "Supabase — User authentication and data storage",
-        "Google AdMob — Mobile app advertising",
-        "Google AdSense — Website advertising",
+        "Adsterra — Website advertising",
       ],
     },
     {

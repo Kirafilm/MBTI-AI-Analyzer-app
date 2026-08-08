@@ -1,27 +1,20 @@
 import { View } from "react-native";
-import { AdSenseAd } from "@/components/adsense-ad.web";
-import { getAdSenseDisplaySlot, isAdSenseDisplayEnabled } from "@/lib/adsense";
+import { AdsterraAd } from "@/components/adsterra-ad.web";
+import { getAdsterraDisplay300, isAdsterraDisplayEnabled } from "@/lib/adsterra";
 
 const AD_MIN_HEIGHT = 250;
 
-/**
- * In-content AdSense unit shown below quiz progress on web.
- * Uses the display slot (rectangle) when configured; otherwise renders nothing.
- */
+/** In-content Adsterra 300×250 below quiz progress on web. */
 export function QuizInlineAd() {
-  if (!isAdSenseDisplayEnabled()) return null;
+  const unit = getAdsterraDisplay300();
+  if (!isAdsterraDisplayEnabled() || !unit) return null;
 
   return (
     <View
       style={{ minHeight: AD_MIN_HEIGHT }}
       className="w-full items-center justify-center py-3"
     >
-      <AdSenseAd
-        slot={getAdSenseDisplaySlot()}
-        format="rectangle"
-        fullWidthResponsive
-        minHeight={AD_MIN_HEIGHT}
-      />
+      <AdsterraAd unit={unit} />
     </View>
   );
 }

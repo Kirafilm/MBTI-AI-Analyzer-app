@@ -82,7 +82,7 @@ export default function MbtiGuideScreen() {
         },
         {
           q: "Why are there ads?",
-          a: "Ads fund free access to the quiz and tools. See Privacy Policy for AdSense (web) and AdMob (apps).",
+          a: "Ads fund free access to the quiz and tools. See Privacy Policy for Adsterra (web).",
         },
         {
           q: "Can I delete my data?",
@@ -101,7 +101,7 @@ export default function MbtiGuideScreen() {
           },
           {
             q: "为什么有广告？",
-            a: "广告支持免费测验与工具。详见隐私政策中的 AdSense（网页）与 AdMob（App）。",
+            a: "广告支持免费测验与工具。详见隐私政策中的 Adsterra（网页）。",
           },
           {
             q: "如何删除数据？",
@@ -119,7 +119,7 @@ export default function MbtiGuideScreen() {
           },
           {
             q: "為什麼有廣告？",
-            a: "廣告支持免費測驗與工具。詳見私隱政策中的 AdSense（網頁）與 AdMob（App）。",
+            a: "廣告支持免費測驗與工具。詳見私隱政策中的 Adsterra（網頁）。",
           },
           {
             q: "如何刪除資料？",

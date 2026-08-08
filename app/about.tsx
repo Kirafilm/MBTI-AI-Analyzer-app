@@ -26,11 +26,11 @@ export default function AboutScreen() {
             },
             {
               h: "Advertising & sustainability",
-              p: "The free experience is supported by advertising. On the website we may show Google AdSense units. On iOS/Android we may show Google AdMob banners or interstitials. Ads help keep the core quiz free. You can review details in our Privacy Policy.",
+              p: "The free experience is supported by advertising. On the website we may show Adsterra units. Ads help keep the core quiz free. You can review details in our Privacy Policy.",
             },
             {
               h: "Privacy stance",
-              p: "Quiz results are stored on your device by default. Account features use Supabase authentication when you sign in. We do not sell your answers as a mailing list. See the Privacy Policy for processors such as Supabase, AdSense, and AdMob.",
+              p: "Quiz results are stored on your device by default. Account features use Supabase authentication when you sign in. We do not sell your answers as a mailing list. See the Privacy Policy for processors such as Supabase and Adsterra.",
             },
             {
               h: "Contact",
@@ -52,11 +52,11 @@ export default function AboutScreen() {
               },
               {
                 h: "广告与运营",
-                p: "免费体验由广告支持。网页版可能展示 Google AdSense；手机版可能展示 Google AdMob 横幅或插屏。详情见隐私政策。",
+                p: "免费体验由广告支持。网页版可能展示 Adsterra。详情见隐私政策。",
               },
               {
                 h: "隐私立场",
-                p: "测验结果默认保存在你的装置。登录功能使用 Supabase。我们不会把你的答案当作名单出售。隐私政策说明了 Supabase、AdSense、AdMob 等处理方。",
+                p: "测验结果默认保存在你的装置。登录功能使用 Supabase。我们不会把你的答案当作名单出售。隐私政策说明了 Supabase、Adsterra 等处理方。",
               },
               {
                 h: "联系我们",
@@ -77,11 +77,11 @@ export default function AboutScreen() {
               },
               {
                 h: "廣告與營運",
-                p: "免費體驗由廣告支持。網頁版可能展示 Google AdSense；手機版可能展示 Google AdMob 橫幅或插屏。詳情見私隱政策。",
+                p: "免費體驗由廣告支持。網頁版可能展示 Adsterra。詳情見私隱政策。",
               },
               {
                 h: "私隱立場",
-                p: "測驗結果預設保存在你的裝置。登入功能使用 Supabase。我們不會把你的答案當作名單出售。私隱政策說明了 Supabase、AdSense、AdMob 等處理方。",
+                p: "測驗結果預設保存在你的裝置。登入功能使用 Supabase。我們不會把你的答案當作名單出售。私隱政策說明了 Supabase、Adsterra 等處理方。",
               },
               {
                 h: "聯絡我們",

@@ -58,7 +58,7 @@ const zhTW: PrivacyPolicyContent = {
         { label: "賬號管理", value: "驗證您的身份，管理登入狀態" },
         { label: "改善產品", value: "分析使用趨勢以優化應用程式體驗" },
         { label: "客戶支援", value: "回應您的查詢及技術支援請求" },
-        { label: "廣告展示", value: "透過 Google AdMob（行動版）及 Google AdSense（網頁版）展示廣告" },
+        { label: "廣告展示", value: "透過 Adsterra（網頁版）展示廣告" },
       ],
     },
     {
@@ -69,16 +69,13 @@ const zhTW: PrivacyPolicyContent = {
       ],
       table: [
         { label: "Supabase", value: "用戶認證及賬號管理" },
-        { label: "Google AdMob", value: "行動應用廣告展示" },
-        { label: "Google AdSense", value: "網頁版廣告展示" },
+        { label: "Adsterra", value: "網頁版廣告展示" },
       ],
     },
     {
       title: "四、廣告與追蹤",
       bullets: [
-        "行動應用通過 Google AdMob 展示廣告，AdMob 可能使用裝置廣告識別碼（IDFA）來提供個人化廣告。",
-        "網頁版通過 Google AdSense 展示廣告，AdSense 可能使用 Cookie 及類似技術來提供相關廣告。",
-        "您可以在裝置設定中重設廣告識別碼或限制廣告追蹤（iOS：設定 → 隱私與安全性 → 追蹤）。",
+        "網頁版通過 Adsterra 展示廣告，Adsterra 可能使用 Cookie 及類似技術來提供相關廣告。",
       ],
     },
     {
@@ -172,7 +169,7 @@ const zhCN: PrivacyPolicyContent = {
         { label: "账号管理", value: "验证您的身份，管理登录状态" },
         { label: "改善产品", value: "分析使用趋势以优化应用程序体验" },
         { label: "客户支持", value: "回应您的查询及技术支持请求" },
-        { label: "广告展示", value: "通过 Google AdMob（移动版）及 Google AdSense（网页版）展示广告" },
+        { label: "广告展示", value: "通过 Adsterra（网页版）展示广告" },
       ],
     },
     {
@@ -183,16 +180,13 @@ const zhCN: PrivacyPolicyContent = {
       ],
       table: [
         { label: "Supabase", value: "用户认证及账号管理" },
-        { label: "Google AdMob", value: "移动应用广告展示" },
-        { label: "Google AdSense", value: "网页版广告展示" },
+        { label: "Adsterra", value: "网页版广告展示" },
       ],
     },
     {
       title: "四、广告与追踪",
       bullets: [
-        "移动应用通过 Google AdMob 展示广告，AdMob 可能使用设备广告标识符（IDFA）来提供个性化广告。",
-        "网页版通过 Google AdSense 展示广告，AdSense 可能使用 Cookie 及类似技术来提供相关广告。",
-        "您可以在设备设置中重置广告标识符或限制广告追踪（iOS：设置 → 隐私与安全性 → 追踪）。",
+        "网页版通过 Adsterra 展示广告，Adsterra 可能使用 Cookie 及类似技术来提供相关广告。",
       ],
     },
     {
@@ -286,7 +280,7 @@ const en: PrivacyPolicyContent = {
         { label: "Account Management", value: "Verify your identity and manage sign-in sessions" },
         { label: "Product Improvement", value: "Analyze usage trends to enhance the app experience" },
         { label: "Customer Support", value: "Respond to your inquiries and technical support requests" },
-        { label: "Advertising", value: "Display ads via Google AdMob (mobile) and Google AdSense (web)" },
+        { label: "Advertising", value: "Display ads via Adsterra on the website" },
       ],
     },
     {
@@ -297,16 +291,13 @@ const en: PrivacyPolicyContent = {
       ],
       table: [
         { label: "Supabase", value: "User authentication and account management" },
-        { label: "Google AdMob", value: "Mobile app ad serving" },
-        { label: "Google AdSense", value: "Website ad serving" },
+        { label: "Adsterra", value: "Website ad serving" },
       ],
     },
     {
       title: "4. Advertising & Tracking",
       bullets: [
-        "The mobile app displays ads via Google AdMob. AdMob may use your device advertising identifier (IDFA) to serve personalized ads.",
-        "The website displays ads via Google AdSense. AdSense may use cookies and similar technologies to serve relevant ads.",
-        "You can reset your advertising identifier or limit ad tracking in your device settings (iOS: Settings → Privacy & Security → Tracking).",
+        "The website displays ads via Adsterra. Adsterra may use cookies and similar technologies to serve relevant ads.",
       ],
     },
     {

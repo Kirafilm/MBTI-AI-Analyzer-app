@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Modal, Pressable, Text, View } from "react-native";
-import { AdSenseAd } from "@/components/adsense-ad.web";
+import { AdsterraAd } from "@/components/adsterra-ad.web";
 import { useColors } from "@/hooks/use-colors";
 import { useI18n } from "@/lib/i18n-context";
-import { getAdSenseDisplaySlot } from "@/lib/adsense";
+import { getAdsterraDisplay300 } from "@/lib/adsterra";
 import {
   dismissPsychologyAdModal,
   subscribePsychologyAdModal,
@@ -17,6 +17,7 @@ export function PsychologyAdModalHost() {
   const [visible, setVisible] = useState(false);
   const [canContinue, setCanContinue] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState(MIN_VIEW_SECONDS);
+  const adsterraUnit = getAdsterraDisplay300();
 
   useEffect(() => subscribePsychologyAdModal(setVisible), []);
 
@@ -86,7 +87,7 @@ export function PsychologyAdModalHost() {
             {title}
           </Text>
 
-          <AdSenseAd slot={getAdSenseDisplaySlot()} format="rectangle" minHeight={250} />
+          {adsterraUnit ? <AdsterraAd unit={adsterraUnit} /> : null}
 
           <Pressable
             disabled={!canContinue}
