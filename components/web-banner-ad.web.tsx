@@ -8,6 +8,7 @@ import {
   isAdsterraBannerEnabled,
   isAdsterraSmartlinkEnabled,
 } from "@/lib/adsterra";
+import { WEB_MAX_CONTENT_WIDTH } from "@/lib/web-layout";
 
 function useIsNarrow(breakpoint = 760) {
   const [narrow, setNarrow] = useState(false);
@@ -31,13 +32,12 @@ export function WebBannerAd() {
   if (!isAdsterraBannerEnabled()) return null;
 
   if (isAdsterraSmartlinkEnabled()) {
-    const height = narrow ? 56 : 72;
     return (
       <View
-        style={{ minHeight: height }}
-        className="bg-background border-t border-border items-center justify-center overflow-hidden py-2"
+        className="w-full items-center justify-center"
+        style={{ maxWidth: WEB_MAX_CONTENT_WIDTH, alignSelf: "center", width: "100%" }}
       >
-        <AdsterraSmartlink height={height} variant="banner" />
+        <AdsterraSmartlink variant="banner" />
       </View>
     );
   }
@@ -49,8 +49,8 @@ export function WebBannerAd() {
 
   return (
     <View
-      style={{ minHeight: unit.height }}
-      className="bg-background border-t border-border items-center justify-center overflow-hidden"
+      style={{ minHeight: unit.height, maxWidth: WEB_MAX_CONTENT_WIDTH, alignSelf: "center", width: "100%" }}
+      className="items-center justify-center overflow-hidden"
     >
       <AdsterraAd unit={unit} />
     </View>

@@ -10,7 +10,10 @@ export function WebFooter() {
 
   return (
     <View className="w-full border-t border-border bg-surface mt-auto">
-      <View className="w-full mx-auto px-4 md:px-6 py-3">
+      <View
+        className="w-full mx-auto px-4 md:px-6 py-2"
+        style={{ maxWidth: WEB_MAX_CONTENT_WIDTH }}
+      >
         <WebBannerAd />
       </View>
       <View
