@@ -32,12 +32,18 @@ export function WebBannerAd() {
   if (!isAdsterraBannerEnabled()) return null;
 
   if (isAdsterraSmartlinkEnabled()) {
+    const height = narrow ? 56 : 72;
     return (
       <View
-        className="w-full items-center justify-center"
-        style={{ maxWidth: WEB_MAX_CONTENT_WIDTH, alignSelf: "center", width: "100%" }}
+        style={{
+          minHeight: height,
+          maxWidth: WEB_MAX_CONTENT_WIDTH,
+          alignSelf: "center",
+          width: "100%",
+        }}
+        className="items-center justify-center overflow-hidden py-2"
       >
-        <AdsterraSmartlink variant="banner" />
+        <AdsterraSmartlink height={height} variant="banner" />
       </View>
     );
   }
@@ -49,7 +55,12 @@ export function WebBannerAd() {
 
   return (
     <View
-      style={{ minHeight: unit.height, maxWidth: WEB_MAX_CONTENT_WIDTH, alignSelf: "center", width: "100%" }}
+      style={{
+        minHeight: unit.height,
+        maxWidth: WEB_MAX_CONTENT_WIDTH,
+        alignSelf: "center",
+        width: "100%",
+      }}
       className="items-center justify-center overflow-hidden"
     >
       <AdsterraAd unit={unit} />
