@@ -7,7 +7,7 @@ export type AdsterraUnit = {
 /** 728×90 — page footer / leaderboard (desktop) */
 const BANNER_728_KEY =
   process.env.EXPO_PUBLIC_ADSTERRA_BANNER_728_KEY?.trim() ||
-  "10ea28f2d95ec4b2ef9373e1f50b73c8";
+  "38293ea339dba5bc588c2356bbff619a";
 
 /** 320×50 — page footer (mobile) */
 const BANNER_320_KEY =
