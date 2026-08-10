@@ -3,8 +3,6 @@ import { SafeAreaView, type Edge } from "react-native-safe-area-context";
 
 import { cn } from "@/lib/utils";
 
-const webFlexShrink = Platform.OS === "web" ? { flex: 1, minHeight: 0 } : undefined;
-
 export interface ScreenContainerProps extends ViewProps {
   /**
    * SafeArea edges to apply. Defaults to ["top", "left", "right"].
@@ -28,17 +26,8 @@ export interface ScreenContainerProps extends ViewProps {
 /**
  * A container component that properly handles SafeArea and background colors.
  *
- * The outer View extends to full screen (including status bar area) with the background color,
- * while the inner SafeAreaView ensures content is within safe bounds.
- *
- * Usage:
- * ```tsx
- * <ScreenContainer className="p-4">
- *   <Text className="text-2xl font-bold text-foreground">
- *     Welcome
- *   </Text>
- * </ScreenContainer>
- * ```
+ * On web we avoid locking height to the viewport so document scroll can grow
+ * with page content (Expo defaults to body{overflow:hidden} + flex shells).
  */
 export function ScreenContainer({
   children,
@@ -49,22 +38,23 @@ export function ScreenContainer({
   style,
   ...props
 }: ScreenContainerProps) {
+  const isWeb = Platform.OS === "web";
+
   return (
     <View
-      className={cn(
-        "flex-1",
-        "bg-background",
-        containerClassName
-      )}
-      style={webFlexShrink}
+      className={cn(isWeb ? "w-full" : "flex-1", "bg-background", containerClassName)}
+      style={isWeb ? { width: "100%", flexGrow: 1 } : undefined}
       {...props}
     >
       <SafeAreaView
-        edges={edges}
-        className={cn("flex-1", safeAreaClassName)}
-        style={[webFlexShrink, style]}
+        edges={isWeb ? [] : edges}
+        className={cn(isWeb ? "w-full" : "flex-1", safeAreaClassName)}
+        style={[isWeb ? { width: "100%", flexGrow: 1 } : undefined, style]}
       >
-        <View className={cn("flex-1", className)} style={webFlexShrink}>
+        <View
+          className={cn(isWeb ? "w-full" : "flex-1", className)}
+          style={isWeb ? { width: "100%" } : undefined}
+        >
           {children}
         </View>
       </SafeAreaView>

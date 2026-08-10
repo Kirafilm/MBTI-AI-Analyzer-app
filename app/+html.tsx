@@ -60,6 +60,32 @@ export default function Root({ children }: { children: React.ReactNode }) {
           }}
         />
         <ScrollViewStyleReset />
+        {/* Override Expo's body{overflow:hidden} so long content pages can use document scroll. */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              html, body {
+                height: auto !important;
+                min-height: 100% !important;
+                overflow-x: hidden !important;
+                overflow-y: auto !important;
+              }
+              #root {
+                display: block !important;
+                height: auto !important;
+                min-height: 100vh !important;
+                overflow: visible !important;
+              }
+              /* Let Expo Router / React Navigation shells grow with content */
+              #root > div,
+              #root [data-reactroot] {
+                min-height: 100vh;
+                height: auto !important;
+                overflow: visible !important;
+              }
+            `,
+          }}
+        />
       </head>
       <body>
         <noscript>

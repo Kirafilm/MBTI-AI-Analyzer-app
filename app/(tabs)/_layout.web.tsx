@@ -1,25 +1,14 @@
-import { Tabs } from "expo-router";
+import { Slot } from "expo-router";
+import { View } from "react-native";
 
+/**
+ * Web does not use a bottom tab bar. Prefer Slot over Tabs so scenes are not
+ * absolutely positioned / height-locked (which blocks document scroll).
+ */
 export default function TabLayout() {
   return (
-    <Tabs
-      tabBar={() => null}
-      screenOptions={{
-        headerShown: false,
-        sceneStyle: { flex: 1, minHeight: 0 },
-      }}
-    >
-      <Tabs.Screen name="index" />
-      <Tabs.Screen name="mbti-quiz" options={{ href: null }} />
-      <Tabs.Screen name="mbti-result" options={{ href: null }} />
-      <Tabs.Screen name="mbti-analysis" options={{ href: null }} />
-      <Tabs.Screen name="mbti-career" options={{ href: null }} />
-      <Tabs.Screen name="purchase" options={{ href: null }} />
-      <Tabs.Screen name="history" />
-      <Tabs.Screen name="psychology-list" />
-      <Tabs.Screen name="psychology-quiz" options={{ href: null }} />
-      <Tabs.Screen name="psychology-result" options={{ href: null }} />
-      <Tabs.Screen name="comparison" options={{ href: null }} />
-    </Tabs>
+    <View style={{ width: "100%", flexGrow: 1 }}>
+      <Slot />
+    </View>
   );
 }

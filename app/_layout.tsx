@@ -102,7 +102,13 @@ export default function RootLayout() {
   );
 
   const content = (
-    <GestureHandlerRootView style={{ flex: 1 }}>
+    <GestureHandlerRootView
+      style={
+        Platform.OS === "web"
+          ? { minHeight: "100%", width: "100%", flexGrow: 1 }
+          : { flex: 1 }
+      }
+    >
       <trpc.Provider client={trpcClient} queryClient={queryClient}>
         <QueryClientProvider client={queryClient}>
           <I18nProvider>

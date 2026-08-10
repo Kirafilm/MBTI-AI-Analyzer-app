@@ -85,9 +85,9 @@ export default function HomeScreen() {
         includeSiteGraph
       />
     <ScrollView
-      className="flex-1 bg-background"
-      style={{ flex: 1 }}
-      contentContainerStyle={{ flexGrow: 1 }}
+      className="w-full bg-background"
+      style={{ width: "100%" }}
+      contentContainerStyle={{ flexGrow: 1, paddingBottom: 24 }}
       showsVerticalScrollIndicator={false}
     >
       {/* Hero */}

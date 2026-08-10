@@ -9,14 +9,23 @@ type WebChromeProps = {
 };
 
 /**
- * Web chrome under Expo's body{overflow:hidden} root.
- * Keeps a flex-1 content slot so tab scenes get a real height; pages scroll inside.
+ * Web shell using document scroll (body overflow:auto).
+ * Header stays sticky; main + footer grow with page content.
  */
 export function WebChrome({ children }: WebChromeProps) {
   return (
-    <View className="flex-1 w-full bg-background" style={{ minHeight: 0 }}>
-      <WebHeader />
-      <View className="flex-1 w-full" style={{ flex: 1, minHeight: 0 }}>
+    <View className="w-full bg-background" style={{ minHeight: "100%" as const, width: "100%" }}>
+      <View
+        style={{
+          position: "sticky" as const,
+          top: 0,
+          zIndex: 50,
+          backgroundColor: "transparent",
+        }}
+      >
+        <WebHeader />
+      </View>
+      <View className="w-full" style={{ width: "100%", flexGrow: 1 }}>
         {children}
       </View>
       <WebFooter />
