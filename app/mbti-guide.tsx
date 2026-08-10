@@ -1,7 +1,8 @@
 import { ScrollView, Text, View, Pressable } from "react-native";
-import { useRouter, Stack, Link } from "expo-router";
+import { useRouter, Stack, Link, type Href } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import { ScreenContainer } from "@/components/screen-container";
+import { SeoHead } from "@/components/seo-head";
 import { useColors } from "@/hooks/use-colors";
 import { useI18n } from "@/lib/i18n-context";
 import * as Haptics from "expo-haptics";
@@ -131,6 +132,11 @@ export default function MbtiGuideScreen() {
 
   return (
     <>
+      <SeoHead
+        title="MBTI 指南｜16型人格、維度解讀與測驗說明"
+        description="用繁中說明 MBTI 四個維度、16 型人格代碼，以及如何開始免費測驗。含常見問題與職涯探索提示。"
+        path="/mbti-guide"
+      />
       <Stack.Screen options={{ headerShown: false }} />
       <ScreenContainer className="p-4">
         <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 48 }} showsVerticalScrollIndicator={false}>
@@ -146,7 +152,9 @@ export default function MbtiGuideScreen() {
                   <MaterialIcons name="arrow-back" size={20} color={colors.text} />
                 </View>
               </Pressable>
-              <Text className="text-2xl font-bold text-foreground flex-1">{title}</Text>
+              <Text accessibilityRole="header" className="text-2xl font-bold text-foreground flex-1">
+                {title}
+              </Text>
             </View>
 
             <Text className="text-sm text-foreground leading-relaxed">{intro}</Text>
@@ -174,9 +182,22 @@ export default function MbtiGuideScreen() {
 
             <View className="gap-2">
               <Text className="text-lg font-semibold text-foreground">{typesTitle}</Text>
-              <Text className="text-sm text-muted leading-relaxed">
-                {TYPES.join(" · ")}
-              </Text>
+              <View className="flex-row flex-wrap gap-2">
+                {TYPES.map((code) => (
+                  <Link key={code} href={`/types/${code.toLowerCase()}` as Href} asChild>
+                    <Pressable className="px-3 py-2 rounded-lg border border-border bg-surface">
+                      <Text className="text-sm font-semibold text-primary">{code}</Text>
+                    </Pressable>
+                  </Link>
+                ))}
+              </View>
+              <Link href={"/types" as Href} asChild>
+                <Pressable>
+                  <Text className="text-sm font-semibold text-primary">
+                    {isEn ? "Browse all type pages →" : isCn ? "查看全部类型详解 →" : "查看全部類型詳解 →"}
+                  </Text>
+                </Pressable>
+              </Link>
             </View>
 
             <View className="gap-4">

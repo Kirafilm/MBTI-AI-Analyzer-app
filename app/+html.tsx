@@ -1,5 +1,12 @@
 import { ScrollViewStyleReset } from "expo-router/html";
+import { DEFAULT_SEO, organizationJsonLd, SITE_URL, websiteJsonLd } from "@/lib/seo";
 
+const siteGraph = JSON.stringify([organizationJsonLd(), websiteJsonLd()]).replace(/</g, "\\u003c");
+
+/**
+ * Root HTML shell for static web export.
+ * Keep this Node-safe (no window) so meta tags bake into every HTML file.
+ */
 export default function Root({ children }: { children: React.ReactNode }) {
   return (
     <html lang="zh-Hant">
@@ -10,10 +17,29 @@ export default function Root({ children }: { children: React.ReactNode }) {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        <meta
-          name="description"
-          content="MBTI AI Analyzer — 性格測驗、AI 分析與心理測驗"
-        />
+        <title>{DEFAULT_SEO.title}</title>
+        <meta name="description" content={DEFAULT_SEO.description} />
+        <meta name="robots" content="index,follow" />
+        <link rel="canonical" href={`${SITE_URL}/`} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="MBTI AI Analyzer" />
+        <meta property="og:title" content={DEFAULT_SEO.title} />
+        <meta property="og:description" content={DEFAULT_SEO.description} />
+        <meta property="og:url" content={`${SITE_URL}/`} />
+        <meta property="og:image" content={`${SITE_URL}/assets/images/icon.png`} />
+        <meta property="og:locale" content="zh_TW" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={DEFAULT_SEO.title} />
+        <meta name="twitter:description" content={DEFAULT_SEO.description} />
+        <meta name="twitter:image" content={`${SITE_URL}/assets/images/icon.png`} />
+
+        <link rel="alternate" hrefLang="zh-Hant" href={`${SITE_URL}/`} />
+        <link rel="alternate" hrefLang="x-default" href={`${SITE_URL}/`} />
+
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: siteGraph }} />
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
@@ -35,7 +61,19 @@ export default function Root({ children }: { children: React.ReactNode }) {
         />
         <ScrollViewStyleReset />
       </head>
-      <body>{children}</body>
+      <body>
+        <noscript>
+          <main style={{ maxWidth: 720, margin: "40px auto", padding: 16, lineHeight: 1.7 }}>
+            <h1>MBTI 性格測驗 — 用 AI 讀懂你的天賦</h1>
+            <p>{DEFAULT_SEO.description}</p>
+            <p>
+              請啟用 JavaScript 以進行完整測驗，或先瀏覽{" "}
+              <a href="/types">16 型人格解析</a>、<a href="/mbti-guide">MBTI 指南</a>。
+            </p>
+          </main>
+        </noscript>
+        {children}
+      </body>
     </html>
   );
 }

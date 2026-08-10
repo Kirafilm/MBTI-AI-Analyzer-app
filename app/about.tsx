@@ -2,6 +2,7 @@ import { ScrollView, Text, View, Pressable } from "react-native";
 import { useRouter, Stack } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import { ScreenContainer } from "@/components/screen-container";
+import { SeoHead } from "@/components/seo-head";
 import { useColors } from "@/hooks/use-colors";
 import { useI18n } from "@/lib/i18n-context";
 import * as Haptics from "expo-haptics";
@@ -92,6 +93,11 @@ export default function AboutScreen() {
 
   return (
     <>
+      <SeoHead
+        title={copy.title}
+        description="了解 MBTI AI Analyzer：免費性格測驗、AI 分析、心理測驗與隱私立場。"
+        path="/about"
+      />
       <Stack.Screen options={{ headerShown: false }} />
       <ScreenContainer className="p-4">
         <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
@@ -108,7 +114,9 @@ export default function AboutScreen() {
                   <MaterialIcons name="arrow-back" size={20} color={colors.text} />
                 </View>
               </Pressable>
-              <Text className="text-2xl font-bold text-foreground flex-1">{copy.title}</Text>
+              <Text accessibilityRole="header" className="text-2xl font-bold text-foreground flex-1">
+                {copy.title}
+              </Text>
             </View>
 
             {copy.sections.map((section) => (

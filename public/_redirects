@@ -1,4 +1,11 @@
-# Cloudflare Pages — serve static assets before SPA fallback
-/fonts/*    /fonts/:splat    200
-/assets/*   /assets/:splat   200
-/*          /index.html      200
+# Cloudflare Pages — prefer exported static HTML over SPA shell.
+# Do NOT use a global /* -> /index.html rewrite; it flattens SEO pages.
+
+/fonts/*     /fonts/:splat    200
+/assets/*    /assets/:splat   200
+/ads/*       /ads/:splat      200
+
+# Auth / account screens that may not have dedicated HTML
+/auth/*      /index.html      200
+/oauth/*     /index.html      200
+/profile     /index.html      200

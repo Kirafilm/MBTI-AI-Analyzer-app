@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { FlatList, Pressable, ScrollView, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import { ScreenContainer } from "@/components/screen-container";
+import { SeoHead } from "@/components/seo-head";
 import { useI18n } from "@/lib/i18n-context";
 import { ALL_PSYCHOLOGY_TESTS } from "@/psychology-tests-data";
 import * as Haptics from "expo-haptics";
@@ -80,10 +81,18 @@ export default function PsychologyListScreen() {
 
   return (
     <ScreenContainer className="p-4">
+      <SeoHead
+        title="心理測驗總覽｜情緒、焦慮與自我探索"
+        description="免費心理測驗列表：壓力、情緒、焦慮、自我認識等短測，搭配 MBTI 性格測驗一起探索自己。"
+        path="/psychology-list"
+      />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View className="gap-4 pb-8">
           <View className="gap-2 pt-2">
-            <Text className="text-2xl font-bold text-foreground">
+            <Text
+              accessibilityRole="header"
+              className="text-2xl font-bold text-foreground"
+            >
               {language === "en" ? "Psychology Tests" : language === "zh-CN" ? "心理测验" : "心理測驗"}
             </Text>
             <Text className="text-sm text-muted">{getSubtitle()}</Text>

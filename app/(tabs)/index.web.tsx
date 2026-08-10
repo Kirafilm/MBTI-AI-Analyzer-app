@@ -1,7 +1,8 @@
 import { ScrollView, Text, useWindowDimensions, View, Pressable } from "react-native";
-import { useRouter } from "expo-router";
+import { Link, useRouter, type Href } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import { ScreenContainer } from "@/components/screen-container";
+import { SeoHead } from "@/components/seo-head";
 import { useMBTI } from "@/lib/mbti-context";
 import { useI18n } from "@/lib/i18n-context";
 import { getLatestMBTIResult } from "@/lib/storage";
@@ -10,6 +11,7 @@ import { useEffect, useState } from "react";
 import type { MBTIResult } from "@/shared/types";
 import { localeForDates } from "@/shared/i18n";
 import { WEB_MAX_CONTENT_WIDTH } from "@/lib/web-layout";
+import { DEFAULT_SEO } from "@/lib/seo";
 
 const QUICK_ACTIONS = [
   {
@@ -75,6 +77,13 @@ export default function HomeScreen() {
   }, []);
 
   return (
+    <>
+      <SeoHead
+        title={DEFAULT_SEO.title}
+        description={DEFAULT_SEO.description}
+        path="/"
+        includeSiteGraph
+      />
     <ScrollView
       className="flex-1 bg-background"
       style={{ flex: 1 }}
@@ -114,16 +123,17 @@ export default function HomeScreen() {
                 <Text className="text-xs font-semibold text-primary">AI · MBTI · Psychology</Text>
               </View>
               <Text
+                accessibilityRole="header"
                 className="text-4xl md:text-5xl font-bold text-foreground leading-tight"
                 style={{ textAlign: isWide ? "left" : "center" }}
               >
-                {t("appTitle")}
+                MBTI 性格測驗 — 用 AI 讀懂你的天賦
               </Text>
               <Text
                 className="text-lg text-muted leading-relaxed max-w-xl"
                 style={{ textAlign: isWide ? "left" : "center" }}
               >
-                {t("appSubtitle")}
+                {t("appSubtitle")} 探索 INTJ、ENFP 等 16 型人格，並取得職涯與自由職方向建議。
               </Text>
               <View className="flex-row flex-wrap gap-3 pt-2">
                 <Pressable
@@ -135,6 +145,11 @@ export default function HomeScreen() {
                 >
                   <Text className="text-white font-semibold text-base">{t("startQuiz")}</Text>
                 </Pressable>
+                <Link href={"/types" as Href} asChild>
+                  <Pressable className="border border-primary rounded-xl px-6 py-3.5">
+                    <Text className="text-primary font-semibold text-base">16 型人格解析</Text>
+                  </Pressable>
+                </Link>
               </View>
             </View>
 
@@ -256,5 +271,6 @@ export default function HomeScreen() {
         </View>
       </ScreenContainer>
     </ScrollView>
+    </>
   );
 }

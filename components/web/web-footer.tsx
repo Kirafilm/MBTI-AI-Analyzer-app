@@ -1,5 +1,5 @@
 import { Pressable, Text, View } from "react-native";
-import { Link } from "expo-router";
+import { Link, type Href } from "expo-router";
 import { useI18n } from "@/lib/i18n-context";
 import { WEB_MAX_CONTENT_WIDTH } from "@/lib/web-layout";
 import { WebBannerAd } from "@/components/web-banner-ad";
@@ -28,14 +28,19 @@ export function WebFooter() {
           <View className="flex-row flex-wrap gap-8">
             <View className="gap-2">
               <Text className="text-xs font-semibold text-muted uppercase tracking-wide">App</Text>
-              <Link href="/about" asChild>
+              <Link href={"/about" as Href} asChild>
                 <Pressable>
                   <Text className="text-sm text-foreground">About</Text>
                 </Pressable>
               </Link>
-              <Link href="/mbti-guide" asChild>
+              <Link href={"/mbti-guide" as Href} asChild>
                 <Pressable>
                   <Text className="text-sm text-foreground">MBTI Guide</Text>
+                </Pressable>
+              </Link>
+              <Link href={"/types" as Href} asChild>
+                <Pressable>
+                  <Text className="text-sm text-foreground">16 型人格</Text>
                 </Pressable>
               </Link>
               <Link href="/psychology-list" asChild>
