@@ -38,6 +38,8 @@ export const translations = {
     tabUnlock: "解鎖",
     tabHistory: "歷史",
     tabPsychology: "心理測驗",
+    navTypes: "16型人格",
+    navMbtiGuide: "MBTI指南",
 
     // 測驗頁面
     quiz: "測驗",
@@ -258,6 +260,8 @@ export const translations = {
     tabUnlock: "解锁",
     tabHistory: "历史",
     tabPsychology: "心理测验",
+    navTypes: "16型人格",
+    navMbtiGuide: "MBTI指南",
 
     // 测验页面
     quiz: "测验",
@@ -478,6 +482,8 @@ export const translations = {
     tabUnlock: "Unlock",
     tabHistory: "History",
     tabPsychology: "Psych",
+    navTypes: "16 Types",
+    navMbtiGuide: "MBTI Guide",
 
     // Quiz Page
     quiz: "Quiz",

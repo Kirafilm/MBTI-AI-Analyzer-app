@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Pressable, Text, useWindowDimensions, View } from "react-native";
-import { Link, usePathname, useRouter } from "expo-router";
+import { Link, usePathname, useRouter, type Href } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useColors } from "@/hooks/use-colors";
 import { useAuth } from "@/hooks/use-auth";
@@ -175,12 +175,12 @@ export function WebHeader() {
           {showDesktopNav ? (
             <View
               className="flex-1 flex-row items-center justify-center"
-              style={{ gap: 36, flexShrink: 1 }}
+              style={{ gap: 28, flexShrink: 1 }}
             >
               {WEB_NAV_LINKS.map((item) => {
                 const active = isNavActive(pathname, item.match);
                 return (
-                  <Link key={item.href} href={item.href} asChild>
+                  <Link key={item.href} href={item.href as Href} asChild>
                     <Pressable className={`px-3 py-2 rounded-lg ${active ? "bg-primary/10" : ""}`}>
                       <Text
                         className={`text-sm font-semibold whitespace-nowrap ${active ? "text-primary" : "text-muted"}`}
@@ -303,7 +303,7 @@ export function WebHeader() {
           {WEB_NAV_LINKS.map((item) => {
             const active = isNavActive(pathname, item.match);
             return (
-              <Link key={item.href} href={item.href} asChild>
+              <Link key={item.href} href={item.href as Href} asChild>
                 <Pressable
                   onPress={() => setMobileOpen(false)}
                   className={`px-3 py-3 rounded-lg ${active ? "bg-primary/10" : ""}`}
