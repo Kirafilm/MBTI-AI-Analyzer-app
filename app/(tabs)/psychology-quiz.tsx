@@ -168,8 +168,13 @@ export default function PsychologyQuizScreen() {
 
   return (
     <ScreenContainer className="p-4">
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View className="gap-6 pb-8">
+      <ScrollView
+        className="flex-1"
+        style={{ flex: 1 }}
+        contentContainerStyle={{ flexGrow: 1, paddingBottom: 32 }}
+        showsVerticalScrollIndicator={false}
+      >
+        <View className="gap-6">
           <View className="gap-2">
             <View className="flex-row items-center justify-between">
               <Text className="text-sm font-semibold text-foreground">

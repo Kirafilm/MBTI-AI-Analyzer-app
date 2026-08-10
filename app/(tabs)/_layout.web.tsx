@@ -6,6 +6,7 @@ export default function TabLayout() {
       tabBar={() => null}
       screenOptions={{
         headerShown: false,
+        sceneStyle: { flex: 1, minHeight: 0 },
       }}
     >
       <Tabs.Screen name="index" />

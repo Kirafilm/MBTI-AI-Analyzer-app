@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { FlatList, Pressable, ScrollView, Text, View } from "react-native";
+import { Pressable, ScrollView, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import { ScreenContainer } from "@/components/screen-container";
 import { SeoHead } from "@/components/seo-head";
@@ -86,8 +86,13 @@ export default function PsychologyListScreen() {
         description="免費心理測驗列表：壓力、情緒、焦慮、自我認識等短測，搭配 MBTI 性格測驗一起探索自己。"
         path="/psychology-list"
       />
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View className="gap-4 pb-8">
+      <ScrollView
+        className="flex-1"
+        style={{ flex: 1 }}
+        contentContainerStyle={{ flexGrow: 1, paddingBottom: 32 }}
+        showsVerticalScrollIndicator={false}
+      >
+        <View className="gap-4">
           <View className="gap-2 pt-2">
             <Text
               accessibilityRole="header"
@@ -98,13 +103,9 @@ export default function PsychologyListScreen() {
             <Text className="text-sm text-muted">{getSubtitle()}</Text>
           </View>
 
-          <FlatList
-            data={ALL_PSYCHOLOGY_TESTS}
-            renderItem={renderTestCard}
-            keyExtractor={(item) => item.id}
-            scrollEnabled={false}
-            ItemSeparatorComponent={() => <View className="h-2" />}
-          />
+          {ALL_PSYCHOLOGY_TESTS.map((item) => (
+            <View key={item.id}>{renderTestCard({ item })}</View>
+          ))}
         </View>
       </ScrollView>
     </ScreenContainer>

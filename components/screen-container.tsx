@@ -1,7 +1,9 @@
-import { View, type ViewProps } from "react-native";
+import { Platform, View, type ViewProps } from "react-native";
 import { SafeAreaView, type Edge } from "react-native-safe-area-context";
 
 import { cn } from "@/lib/utils";
+
+const webFlexShrink = Platform.OS === "web" ? { flex: 1, minHeight: 0 } : undefined;
 
 export interface ScreenContainerProps extends ViewProps {
   /**
@@ -54,14 +56,17 @@ export function ScreenContainer({
         "bg-background",
         containerClassName
       )}
+      style={webFlexShrink}
       {...props}
     >
       <SafeAreaView
         edges={edges}
         className={cn("flex-1", safeAreaClassName)}
-        style={style}
+        style={[webFlexShrink, style]}
       >
-        <View className={cn("flex-1", className)}>{children}</View>
+        <View className={cn("flex-1", className)} style={webFlexShrink}>
+          {children}
+        </View>
       </SafeAreaView>
     </View>
   );
