@@ -3,67 +3,34 @@ import "@/global.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import "react-native-reanimated";
-import { Platform } from "react-native";
 import "@/lib/_core/nativewind-pressable";
 import { ThemeProvider } from "@/lib/theme-provider";
-import {
-  SafeAreaFrameContext,
-  SafeAreaInsetsContext,
-  SafeAreaProvider,
-  initialWindowMetrics,
-} from "react-native-safe-area-context";
-import type { EdgeInsets, Metrics, Rect } from "react-native-safe-area-context";
+import { SafeAreaProvider, initialWindowMetrics } from "react-native-safe-area-context";
 
 import { trpc, createTRPCClient } from "@/lib/trpc";
-import { initManusRuntime, subscribeSafeAreaInsets } from "@/lib/_core/manus-runtime";
+import { initManusRuntime } from "@/lib/_core/manus-runtime";
 import { MBTIProvider } from "@/lib/mbti-context";
 import { I18nProvider } from "@/lib/i18n-context";
 import { PremiumAccessProvider } from "@/lib/premium-access";
-import { PsychologyAdModalHost } from "@/components/psychology-ad-modal";
-import { WebRootShell } from "@/components/web/web-root-shell";
-
-const DEFAULT_WEB_INSETS: EdgeInsets = { top: 0, right: 0, bottom: 0, left: 0 };
-const DEFAULT_WEB_FRAME: Rect = { x: 0, y: 0, width: 0, height: 0 };
 
 export const unstable_settings = {
   anchor: "(tabs)",
 };
 
 export default function RootLayout() {
-  const initialInsets = initialWindowMetrics?.insets ?? DEFAULT_WEB_INSETS;
-  const initialFrame = initialWindowMetrics?.frame ?? DEFAULT_WEB_FRAME;
-
-  const [insets, setInsets] = useState<EdgeInsets>(initialInsets);
-  const [frame, setFrame] = useState<Rect>(initialFrame);
-
-  // Initialize Manus runtime for cookie injection from parent container
   useEffect(() => {
     initManusRuntime();
   }, []);
 
-  const handleSafeAreaUpdate = useCallback((metrics: Metrics) => {
-    setInsets(metrics.insets);
-    setFrame(metrics.frame);
-  }, []);
-
-  useEffect(() => {
-    if (Platform.OS !== "web") return;
-    const unsubscribe = subscribeSafeAreaInsets(handleSafeAreaUpdate);
-    return () => unsubscribe();
-  }, [handleSafeAreaUpdate]);
-
-  // Create clients once and reuse them
   const [queryClient] = useState(
     () =>
       new QueryClient({
         defaultOptions: {
           queries: {
-            // Disable automatic refetching on window focus for mobile
             refetchOnWindowFocus: false,
-            // Retry failed requests once
             retry: 1,
           },
         },
@@ -71,9 +38,11 @@ export default function RootLayout() {
   );
   const [trpcClient] = useState(() => createTRPCClient());
 
-  // Ensure minimum 8px padding for top and bottom on mobile
   const providerInitialMetrics = useMemo(() => {
-    const metrics = initialWindowMetrics ?? { insets: initialInsets, frame: initialFrame };
+    const metrics = initialWindowMetrics ?? {
+      insets: { top: 0, right: 0, bottom: 0, left: 0 },
+      frame: { x: 0, y: 0, width: 0, height: 0 },
+    };
     return {
       ...metrics,
       insets: {
@@ -82,82 +51,39 @@ export default function RootLayout() {
         bottom: Math.max(metrics.insets.bottom, 12),
       },
     };
-  }, [initialInsets, initialFrame]);
-
-  const stack = (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-        ...(Platform.OS === "web"
-          ? {
-              contentStyle: {
-                flexGrow: 0,
-                flexShrink: 0,
-                flexBasis: "auto" as unknown as number,
-                overflow: "visible",
-              },
-            }
-          : null),
-      }}
-    >
-      <Stack.Screen name="(tabs)" />
-      <Stack.Screen name="auth/login" options={{ presentation: "fullScreenModal" }} />
-      <Stack.Screen name="auth/register" options={{ presentation: "fullScreenModal" }} />
-      <Stack.Screen name="oauth/callback" />
-      <Stack.Screen name="profile" options={{ headerShown: false }} />
-      <Stack.Screen name="privacy-policy" options={{ headerShown: false }} />
-      <Stack.Screen name="terms-of-service" options={{ headerShown: false }} />
-      <Stack.Screen name="contact-us" options={{ headerShown: false }} />
-      <Stack.Screen name="about" options={{ headerShown: false }} />
-      <Stack.Screen name="mbti-guide" options={{ headerShown: false }} />
-      <Stack.Screen name="types/index" options={{ headerShown: false }} />
-      <Stack.Screen name="types/[type]" options={{ headerShown: false }} />
-    </Stack>
-  );
-
-  const content = (
-    <GestureHandlerRootView
-      style={
-        Platform.OS === "web"
-          ? { minHeight: "100%", width: "100%", flexGrow: 1 }
-          : { flex: 1 }
-      }
-    >
-      <trpc.Provider client={trpcClient} queryClient={queryClient}>
-        <QueryClientProvider client={queryClient}>
-          <I18nProvider>
-            <PremiumAccessProvider>
-              <MBTIProvider>
-                {Platform.OS === "web" ? <WebRootShell>{stack}</WebRootShell> : stack}
-                <StatusBar style="auto" />
-                {Platform.OS === "web" ? <PsychologyAdModalHost /> : null}
-              </MBTIProvider>
-            </PremiumAccessProvider>
-          </I18nProvider>
-        </QueryClientProvider>
-      </trpc.Provider>
-    </GestureHandlerRootView>
-  );
-
-  const shouldOverrideSafeArea = Platform.OS === "web";
-
-  if (shouldOverrideSafeArea) {
-    return (
-      <ThemeProvider>
-        <SafeAreaProvider initialMetrics={providerInitialMetrics}>
-          <SafeAreaFrameContext.Provider value={frame}>
-            <SafeAreaInsetsContext.Provider value={insets}>
-              {content}
-            </SafeAreaInsetsContext.Provider>
-          </SafeAreaFrameContext.Provider>
-        </SafeAreaProvider>
-      </ThemeProvider>
-    );
-  }
+  }, []);
 
   return (
     <ThemeProvider>
-      <SafeAreaProvider initialMetrics={providerInitialMetrics}>{content}</SafeAreaProvider>
+      <SafeAreaProvider initialMetrics={providerInitialMetrics}>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <trpc.Provider client={trpcClient} queryClient={queryClient}>
+            <QueryClientProvider client={queryClient}>
+              <I18nProvider>
+                <PremiumAccessProvider>
+                  <MBTIProvider>
+                    <Stack screenOptions={{ headerShown: false }}>
+                      <Stack.Screen name="(tabs)" />
+                      <Stack.Screen name="auth/login" options={{ presentation: "fullScreenModal" }} />
+                      <Stack.Screen name="auth/register" options={{ presentation: "fullScreenModal" }} />
+                      <Stack.Screen name="oauth/callback" />
+                      <Stack.Screen name="profile" options={{ headerShown: false }} />
+                      <Stack.Screen name="privacy-policy" options={{ headerShown: false }} />
+                      <Stack.Screen name="terms-of-service" options={{ headerShown: false }} />
+                      <Stack.Screen name="contact-us" options={{ headerShown: false }} />
+                      <Stack.Screen name="about" options={{ headerShown: false }} />
+                      <Stack.Screen name="mbti-guide" options={{ headerShown: false }} />
+                      <Stack.Screen name="types/index" options={{ headerShown: false }} />
+                      <Stack.Screen name="types/[type]" options={{ headerShown: false }} />
+                    </Stack>
+                    <StatusBar style="auto" />
+                  </MBTIProvider>
+                </PremiumAccessProvider>
+              </I18nProvider>
+            </QueryClientProvider>
+          </trpc.Provider>
+        </GestureHandlerRootView>
+      </SafeAreaProvider>
     </ThemeProvider>
   );
 }

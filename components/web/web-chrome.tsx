@@ -9,13 +9,15 @@ type WebChromeProps = {
 };
 
 /**
- * Web shell: sticky header, main app column, then footer.
- * Main uses nativeID so CSS can un-absolutize React Navigation screens
- * (otherwise the main column collapses and the footer jumps under the header).
+ * Document-flow web chrome: header → page → footer.
+ * Relies on Slot-based root layout (not Native Stack absolute screens).
  */
 export function WebChrome({ children }: WebChromeProps) {
   return (
-    <View className="w-full bg-background" style={{ minHeight: "100%" as const, width: "100%" }}>
+    <View
+      className="w-full bg-background"
+      style={{ width: "100%", minHeight: "100%" as const }}
+    >
       <View
         style={{
           position: "sticky" as const,
@@ -26,9 +28,7 @@ export function WebChrome({ children }: WebChromeProps) {
       >
         <WebHeader />
       </View>
-      <View nativeID="web-app-main" style={{ width: "100%" }}>
-        {children}
-      </View>
+      <View style={{ width: "100%" }}>{children}</View>
       <WebFooter />
       <CookieNotice />
     </View>
