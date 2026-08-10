@@ -76,11 +76,34 @@ export default function Root({ children }: { children: React.ReactNode }) {
                 min-height: 100vh !important;
                 overflow: visible !important;
               }
-              /* Let Expo Router / React Navigation shells grow with content */
-              #root > div,
-              #root [data-reactroot] {
+              #root > div {
                 min-height: 100vh;
                 height: auto !important;
+                overflow: visible !important;
+              }
+              /*
+               * Native Stack screens use StyleSheet.absoluteFill, which collapses
+               * #web-app-main to 0 height and parks the footer under the header.
+               * Force those screens into normal document flow on web.
+               */
+              #web-app-main [aria-hidden="false"],
+              #web-app-main [aria-hidden="true"] {
+                position: relative !important;
+                inset: auto !important;
+                top: auto !important;
+                right: auto !important;
+                bottom: auto !important;
+                left: auto !important;
+                width: 100% !important;
+                height: auto !important;
+                flex: 0 0 auto !important;
+                overflow: visible !important;
+              }
+              #web-app-main [aria-hidden="false"] > div,
+              #web-app-main [aria-hidden="true"] > div {
+                flex: 0 0 auto !important;
+                height: auto !important;
+                min-height: 0 !important;
                 overflow: visible !important;
               }
             `,

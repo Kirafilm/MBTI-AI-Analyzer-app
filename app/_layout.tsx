@@ -85,7 +85,21 @@ export default function RootLayout() {
   }, [initialInsets, initialFrame]);
 
   const stack = (
-    <Stack screenOptions={{ headerShown: false }}>
+    <Stack
+      screenOptions={{
+        headerShown: false,
+        ...(Platform.OS === "web"
+          ? {
+              contentStyle: {
+                flexGrow: 0,
+                flexShrink: 0,
+                flexBasis: "auto" as unknown as number,
+                overflow: "visible",
+              },
+            }
+          : null),
+      }}
+    >
       <Stack.Screen name="(tabs)" />
       <Stack.Screen name="auth/login" options={{ presentation: "fullScreenModal" }} />
       <Stack.Screen name="auth/register" options={{ presentation: "fullScreenModal" }} />

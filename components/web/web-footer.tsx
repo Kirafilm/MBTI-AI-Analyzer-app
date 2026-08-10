@@ -44,14 +44,14 @@ export function WebFooter() {
                 style={{
                   flexDirection: "row",
                   flexWrap: "wrap",
-                  width: 300,
+                  width: 240,
                   rowGap: 6,
                 }}
               >
                 {APP_LINKS.map((item) => {
                   const label = "label" in item ? item.label : t(item.labelKey);
                   return (
-                    <View key={String(item.href)} style={{ width: "33.33%", paddingRight: 8 }}>
+                    <View key={String(item.href)} style={{ width: "50%", paddingRight: 8 }}>
                       <Link href={item.href as Href} asChild>
                         <Pressable>
                           <Text className="text-sm text-foreground" numberOfLines={1}>

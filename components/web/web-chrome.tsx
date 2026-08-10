@@ -9,8 +9,9 @@ type WebChromeProps = {
 };
 
 /**
- * Web shell using document scroll (body overflow:auto).
- * Header stays sticky; main + footer grow with page content.
+ * Web shell: sticky header, main app column, then footer.
+ * Main uses nativeID so CSS can un-absolutize React Navigation screens
+ * (otherwise the main column collapses and the footer jumps under the header).
  */
 export function WebChrome({ children }: WebChromeProps) {
   return (
@@ -20,12 +21,12 @@ export function WebChrome({ children }: WebChromeProps) {
           position: "sticky" as const,
           top: 0,
           zIndex: 50,
-          backgroundColor: "transparent",
+          width: "100%",
         }}
       >
         <WebHeader />
       </View>
-      <View className="w-full" style={{ width: "100%", flexGrow: 1 }}>
+      <View nativeID="web-app-main" style={{ width: "100%" }}>
         {children}
       </View>
       <WebFooter />
