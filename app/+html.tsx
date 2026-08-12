@@ -1,10 +1,6 @@
 import { ScrollViewStyleReset } from "expo-router/html";
 import { DEFAULT_SEO, organizationJsonLd, SITE_URL, websiteJsonLd } from "@/lib/seo";
-import {
-  PROPELLER_PUSH_ENABLED,
-  PROPELLER_PUSH_SCRIPT_SRC,
-  PROPELLER_PUSH_ZONE,
-} from "@/lib/propellerads";
+import { PROPELLER_PUSH_ENABLED, PROPELLER_PUSH_SCRIPT_SRC } from "@/lib/propellerads";
 
 const siteGraph = JSON.stringify([organizationJsonLd(), websiteJsonLd()]).replace(/</g, "\\u003c");
 
@@ -23,12 +19,7 @@ export default function Root({ children }: { children: React.ReactNode }) {
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
         {PROPELLER_PUSH_ENABLED ? (
-          <script
-            src={PROPELLER_PUSH_SCRIPT_SRC}
-            data-zone={PROPELLER_PUSH_ZONE}
-            async
-            data-cfasync="false"
-          />
+          <script src={PROPELLER_PUSH_SCRIPT_SRC} data-cfasync="false" async />
         ) : null}
         <title>{DEFAULT_SEO.title}</title>
         <meta name="description" content={DEFAULT_SEO.description} />
