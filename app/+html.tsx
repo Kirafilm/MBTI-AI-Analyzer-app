@@ -85,11 +85,11 @@ export default function Root({ children }: { children: React.ReactNode }) {
             `,
           }}
         />
+      </head>
+      <body>
         {PROPELLER_PUSH_ENABLED ? (
           <script src={PROPELLER_PUSH_SCRIPT_SRC} data-cfasync="false" async />
         ) : null}
-      </head>
-      <body>
         <noscript>
           <main style={{ maxWidth: 720, margin: "40px auto", padding: 16, lineHeight: 1.7 }}>
             <h1>MBTI 性格測驗 — 用 AI 讀懂你的天賦</h1>

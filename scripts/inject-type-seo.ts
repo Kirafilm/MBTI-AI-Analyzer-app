@@ -58,7 +58,6 @@ function renderTypeHtml(page: MbtiTypePage) {
   <meta name="twitter:description" content="${esc(description)}" />
   <link rel="alternate" hrefLang="zh-Hant" href="${esc(url)}" />
   <script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, "\\u003c")}</script>
-  ${pushScriptTag}
   <style>
     body{font-family:Inter,system-ui,-apple-system,sans-serif;margin:0;background:#fff;color:#11181C;line-height:1.7}
     main{max-width:760px;margin:0 auto;padding:32px 20px 64px}
@@ -73,6 +72,7 @@ function renderTypeHtml(page: MbtiTypePage) {
   </style>
 </head>
 <body>
+${pushScriptTag}
 <main>
   <p><a href="/types">← 16 型總覽</a></p>
   <p class="muted">${esc(page.code)} · ${esc(page.englishName)}</p>
@@ -143,7 +143,6 @@ function renderIndexHtml(pages: MbtiTypePage[]) {
   <script type="application/ld+json">${JSON.stringify(
     articleJsonLd({ title, description, path: "/types" }),
   ).replace(/</g, "\\u003c")}</script>
-  ${pushScriptTag}
   <style>
     body{font-family:Inter,system-ui,sans-serif;margin:0;color:#11181C;line-height:1.6}
     main{max-width:960px;margin:0 auto;padding:32px 20px 64px}
@@ -155,6 +154,7 @@ function renderIndexHtml(pages: MbtiTypePage[]) {
   </style>
 </head>
 <body>
+${pushScriptTag}
 <main>
   <p><a href="/">← 回首頁</a></p>
   <h1>MBTI 16 型人格總覽</h1>
