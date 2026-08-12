@@ -6,6 +6,11 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { allMbtiTypePages, type MbtiTypePage } from "../shared/mbti-type-pages";
 import { absoluteUrl, articleJsonLd, faqJsonLd } from "../lib/seo";
+import { PROPELLER_PUSH_ENABLED, PROPELLER_PUSH_SCRIPT_SRC } from "../lib/propellerads";
+
+const pushScriptTag = PROPELLER_PUSH_ENABLED
+  ? `<script src="${PROPELLER_PUSH_SCRIPT_SRC}" data-cfasync="false" async></script>`
+  : "";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const distTypes = path.resolve(__dirname, "../dist/types");
@@ -53,6 +58,7 @@ function renderTypeHtml(page: MbtiTypePage) {
   <meta name="twitter:description" content="${esc(description)}" />
   <link rel="alternate" hrefLang="zh-Hant" href="${esc(url)}" />
   <script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, "\\u003c")}</script>
+  ${pushScriptTag}
   <style>
     body{font-family:Inter,system-ui,-apple-system,sans-serif;margin:0;background:#fff;color:#11181C;line-height:1.7}
     main{max-width:760px;margin:0 auto;padding:32px 20px 64px}
@@ -137,6 +143,7 @@ function renderIndexHtml(pages: MbtiTypePage[]) {
   <script type="application/ld+json">${JSON.stringify(
     articleJsonLd({ title, description, path: "/types" }),
   ).replace(/</g, "\\u003c")}</script>
+  ${pushScriptTag}
   <style>
     body{font-family:Inter,system-ui,sans-serif;margin:0;color:#11181C;line-height:1.6}
     main{max-width:960px;margin:0 auto;padding:32px 20px 64px}
