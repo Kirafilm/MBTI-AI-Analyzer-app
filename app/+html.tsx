@@ -22,6 +22,14 @@ export default function Root({ children }: { children: React.ReactNode }) {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
+        {PROPELLER_PUSH_ENABLED ? (
+          <script
+            src={PROPELLER_PUSH_SCRIPT_SRC}
+            data-zone={PROPELLER_PUSH_ZONE}
+            async
+            data-cfasync="false"
+          />
+        ) : null}
         <title>{DEFAULT_SEO.title}</title>
         <meta name="description" content={DEFAULT_SEO.description} />
         <meta name="robots" content="index,follow" />
@@ -91,14 +99,6 @@ export default function Root({ children }: { children: React.ReactNode }) {
         />
       </head>
       <body>
-        {PROPELLER_PUSH_ENABLED ? (
-          <script
-            src={PROPELLER_PUSH_SCRIPT_SRC}
-            data-zone={PROPELLER_PUSH_ZONE}
-            async
-            data-cfasync="false"
-          />
-        ) : null}
         <noscript>
           <main style={{ maxWidth: 720, margin: "40px auto", padding: 16, lineHeight: 1.7 }}>
             <h1>MBTI 性格測驗 — 用 AI 讀懂你的天賦</h1>

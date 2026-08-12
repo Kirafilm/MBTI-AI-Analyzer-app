@@ -47,6 +47,7 @@ function renderTypeHtml(page: MbtiTypePage) {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  ${pushScriptTag}
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(description)}" />
   <meta name="robots" content="index,follow" />
@@ -76,7 +77,6 @@ function renderTypeHtml(page: MbtiTypePage) {
   </style>
 </head>
 <body>
-${pushScriptTag}
 <main>
   <p><a href="/types">← 16 型總覽</a></p>
   <p class="muted">${esc(page.code)} · ${esc(page.englishName)}</p>
@@ -138,6 +138,7 @@ function renderIndexHtml(pages: MbtiTypePage[]) {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  ${pushScriptTag}
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(description)}" />
   <link rel="canonical" href="${esc(url)}" />
@@ -158,7 +159,6 @@ function renderIndexHtml(pages: MbtiTypePage[]) {
   </style>
 </head>
 <body>
-${pushScriptTag}
 <main>
   <p><a href="/">← 回首頁</a></p>
   <h1>MBTI 16 型人格總覽</h1>
