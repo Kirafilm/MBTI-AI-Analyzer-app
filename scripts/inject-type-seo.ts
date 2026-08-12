@@ -6,10 +6,14 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { allMbtiTypePages, type MbtiTypePage } from "../shared/mbti-type-pages";
 import { absoluteUrl, articleJsonLd, faqJsonLd } from "../lib/seo";
-import { PROPELLER_PUSH_ENABLED, PROPELLER_PUSH_SCRIPT_SRC } from "../lib/propellerads";
+import {
+  PROPELLER_PUSH_ENABLED,
+  PROPELLER_PUSH_SCRIPT_SRC,
+  PROPELLER_PUSH_ZONE,
+} from "../lib/propellerads";
 
 const pushScriptTag = PROPELLER_PUSH_ENABLED
-  ? `<script src="${PROPELLER_PUSH_SCRIPT_SRC}" data-cfasync="false" async></script>`
+  ? `<script src="${PROPELLER_PUSH_SCRIPT_SRC}" data-zone="${PROPELLER_PUSH_ZONE}" async data-cfasync="false"></script>`
   : "";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
