@@ -1,5 +1,5 @@
 import { ScrollView, Text, useWindowDimensions, View, Pressable } from "react-native";
-import { Link, useRouter, type Href } from "expo-router";
+import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import { ScreenContainer } from "@/components/screen-container";
 import { SeoHead } from "@/components/seo-head";
@@ -135,22 +135,6 @@ export default function HomeScreen() {
               >
                 {t("appSubtitle")} 探索 INTJ、ENFP 等 16 型人格，並取得職涯與自由職方向建議。
               </Text>
-              <View className="flex-row flex-wrap gap-3 pt-2">
-                <Pressable
-                  onPress={() => {
-                    resetQuiz();
-                    router.push("/(tabs)/mbti-quiz");
-                  }}
-                  className="bg-primary rounded-xl px-6 py-3.5"
-                >
-                  <Text className="text-white font-semibold text-base">{t("startQuiz")}</Text>
-                </Pressable>
-                <Link href={"/types" as Href} asChild>
-                  <Pressable className="border border-primary rounded-xl px-6 py-3.5">
-                    <Text className="text-primary font-semibold text-base">16 型人格解析</Text>
-                  </Pressable>
-                </Link>
-              </View>
             </View>
 
             <View
